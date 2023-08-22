@@ -1,0 +1,24 @@
+default: &default
+  adapter: postgresql
+  timeout: 5000
+  encoding: unicode
+  host: <%= ENV.fetch('POSTGRESQL_HOST', '127.0.0.1') %>
+  username: <%= ENV.fetch('POSTGRESQL_USERNAME', 'postgres') %>
+  password: <%= ENV.fetch('POSTGRESQL_PASSWORD', 'dev') %>
+  pool: <%= ENV.fetch("RAILS_MAX_THREADS", 5) %>
+
+
+development:
+  <<: *default
+  database: <%= ENV.fetch('POSTGRESQL_DATABASE_DEV', 'member_memo_dev') %>
+
+# Warning: The database defined as "test" will be erased and
+# re-generated from your development database when you run "rake".
+# Do not set this db to the same as development or production.
+test:
+  <<: *default
+  database: <%= ENV.fetch('POSTGRESQL_DATABASE_TEST', 'member_memo_test') %>
+
+production:
+  <<: *default
+  database: <%= ENV.fetch('POSTGRESQL_DATABASE_PRD', 'member_memo_prd') %>
