@@ -13,7 +13,8 @@ class Users::SessionsController < Devise::SessionsController
       user.save
     end
     sign_in(resource_name, user)
-    render json: { success: true, location: '/' }
+
+    render json: { success: true, location: root_path }
   end
 
   def send_verify_code

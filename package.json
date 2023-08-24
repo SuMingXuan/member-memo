@@ -7,6 +7,7 @@
     "@babel/preset-env": "7",
     "@babel/preset-react": "^7.22.5",
     "@babel/runtime": "7",
+    "@rails/ujs": "^7.0.7-2",
     "@types/babel__core": "7",
     "@types/webpack": "5",
     "antd": "^5.8.4",
