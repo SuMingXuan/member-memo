@@ -1,0 +1,6 @@
+# Additional translations at https://github.com/heartcombo/devise/wiki/I18n
+
+zh-CN:
+  errors:
+    messages:
+      frequent_sending: 请勿频繁获取验证码

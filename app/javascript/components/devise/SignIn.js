@@ -1,5 +1,5 @@
 import React from 'react';
-import { Form, Button, Input } from 'antd';
+import { Form, Button, Input, notification } from 'antd';
 import { PhoneOutlined } from '@ant-design/icons';
 
 const { Item } = Form;
@@ -30,11 +30,8 @@ export default class SignIn extends React.Component {
       })
         .then((res) => res.json())
         .then((res) => {
-          if (res.success) {
-            setTimeout(() => Turbolinks.visit(location.toString()), 1000);
-            App.message.success('操作成功！');
-          } else {
-            App.message.error(`操作失败！${res.message}`);
+          if (!res.success) {
+            App.message.error(res.message);
           }
         });
 
@@ -42,7 +39,7 @@ export default class SignIn extends React.Component {
         const { countdown } = this.state;
         if (countdown === 1) {
           clearInterval(countdownTimer);
-          this.setState({ sending: false, countdown: 0 });
+          this.setState({ sending: false, countdown: 60 });
         } else {
           this.setState({ countdown: countdown - 1 });
         }
