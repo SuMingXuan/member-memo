@@ -18,7 +18,7 @@ export default class SignIn extends React.Component {
   sendVerifyCode = () => {
     if (!this.state.sending) {
       this.setState({ sending: true });
-      fetch(`/users/sign_up/send_verify_code`, {
+      fetch(`/users/sign_in/send_verify_code`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -47,6 +47,26 @@ export default class SignIn extends React.Component {
     }
   };
 
+  SignIn = (values) => {
+    fetch(`/users/sign_in`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'X-CSRF-Token': csrf_token,
+      },
+      body: JSON.stringify(values)
+    })
+      .then((res) => res.json())
+      .then((res) => {
+        console.log('res:', res);
+        if (res.success) {
+          window.location.href = res.location;
+        } else {
+          App.message.error(res.message);
+        }
+      });
+  }
+
   handlePhoneChange = (_, field) => {
     const phoneField = field[0]
     if (phoneField.validating || phoneField.errors.length === 0) {
@@ -61,14 +81,15 @@ export default class SignIn extends React.Component {
 
     return (
       <Form
-        name='sign_up'
+        name='sign_in'
         layout='vertical'
         className='lg:w-[380px]'
-        onFinish={this.SignUp}
-        onFieldsChange={this.handlePhoneChange} // 监听字段变化
+        onFinish={(values) => this.SignIn(values)}
+        onFieldsChange={this.handlePhoneChange}
       >
+        <input type="hidden" name="authenticity_token" value={csrf_token} />
         <Item
-          name={['user', 'phone']}
+          name='phone'
           hasFeedback
           rules={[
             {
@@ -85,7 +106,7 @@ export default class SignIn extends React.Component {
         </Item>
 
         <Item
-          name={['user', 'verify_code']}
+          name='verify_code'
           rules={[
             {
               required: true,
