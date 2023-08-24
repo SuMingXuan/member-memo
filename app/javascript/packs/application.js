@@ -15,6 +15,7 @@ window.App = $.extend({}, window.App, {
       notification.success({
         message: title,
         description: message,
+        placement: 'top'
       })
     },
     error: (title, message) => {
@@ -22,6 +23,7 @@ window.App = $.extend({}, window.App, {
       notification.error({
         message: title,
         description: message,
+        placement: 'top'
       })
     },
     info: (title, message) => {
@@ -29,6 +31,7 @@ window.App = $.extend({}, window.App, {
       notification.info({
         message: title,
         description: message,
+        placement: 'top'
       })
     },
   },
