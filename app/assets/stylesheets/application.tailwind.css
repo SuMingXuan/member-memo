@@ -1,0 +1,19 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer components {
+  .btn-primary {
+    @apply bg-primary text-white font-semibold rounded-full px-[10px] h-[47px] text-base flex justify-center items-center;
+  }
+
+  .sign-bg {
+    @apply before:fixed  before:w-[1000px] lg:before:w-[3500px] before:h-[1000px] lg:before:h-[4000px] before:top-0 before:translate-x-[0] before:translate-y-[-60%] lg:before:translate-x-[-35%] lg:before:translate-y-[-50%] before:bg-[#4481eb] before:duration-1000 before:ease-in-out before:rounded-full before:z-[-1];
+  }
+  .h1 {
+    @apply text-[30px] lg:text-[46px] leading-[38px] lg:leading-[64px];
+  }
+  .p {
+    @apply text-[14px] lg:text-base leading-[24px] lg:leading-[26px];
+  }
+}

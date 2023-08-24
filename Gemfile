@@ -43,7 +43,11 @@ gem 'tzinfo-data', platforms: %i[mingw mswin x64_mingw jruby]
 gem 'bootsnap', require: false
 gem 'devise', '~> 4.9', '>= 4.9.2'
 gem 'figaro', '~> 1.2'
+gem 'react-rails', '~> 3.1', '>= 3.1.1'
+gem 'redis', '~> 5.0', '>= 5.0.7'
+gem 'shakapacker', '~> 7.0', '>= 7.0.3'
 gem 'sidekiq', '~> 7.1', '>= 7.1.2'
+gem 'tailwindcss-rails', '~> 2.0', '>= 2.0.30'
 # Use Sass to process CSS
 # gem "sassc-rails"
 

@@ -1,0 +1,33 @@
+body {
+  color: #444;
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  line-height: 1.2;
+}
+
+h1,
+h2 {
+  font-weight: 700;
+}
+
+.ant-input-affix-wrapper {
+  padding: 10px 19px;
+  border-radius: 999px;
+  font-size: 16px;
+  height: 48px;
+}
+
+.ant-input-affix-wrapper .ant-input {
+}
+
+.ant-input-affix-wrapper .ant-input-prefix {
+  margin-inline-end: 12px;
+}
+.ant-input-suffix .ant-form-item-feedback-icon {
+  display: flex;
+}
