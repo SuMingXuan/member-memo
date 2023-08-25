@@ -1,8 +1,8 @@
 <div class="flex flex-col lg:flex-row justify-center lg:justify-between lg:justify-items-center items-center h-[100vh]">
   <div class="sign-bg text-white flex justify-center flex-col items-center gap-[16px] w-[400px]">
     <%= image_tag 'logo.png', class: 'rounded-[12px] w-[90px] lg:w-[120px] lg:mb-[30px]' %>
-    <h1 class='h1'>会员笔记</h1>
-    <p class='p mb-[80px]'>记录每一刻，关怀相伴，全面管理尽在掌握。</p>
+    <h1 class='h1'><%= t('site_name') %></h1>
+    <p class='p mb-[80px]'><%= t('site_slogan') %></p>
     
   </div>
   <div class=''>
@@ -10,5 +10,5 @@
   </div>
 </div>
 <div class="absolute bottom-0 flex justify-center w-full">
-  <p class='p text-[#a7a7a7]'>未注册账号验证后自动登录</p>
+  <p class='p text-[#a7a7a7]'><%= t('auto_login_after_verified') %></p>
 </div>
