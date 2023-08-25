@@ -3,6 +3,7 @@
   <head>
     <title>MemberMemo</title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta name="turbo-visit-control" content="reload">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
     <%= stylesheet_link_tag "tailwind", "inter-font", "data-turbo-track": "reload" %>
@@ -12,12 +13,6 @@
   </head>
 
   <body class='bg-[#F5F5F5]'>
-    <%= react_component 'layout/Header', phone:  current_user.phone %>
-    <div class="flex">
-      <%= react_component 'layout/LeftSider' %>
-      <%= turbo_frame_tag "main_frame" do %>
-        <%= yield %>
-      <% end%>
-    </div>
+    <%= yield %>
   </body>
 </html>
