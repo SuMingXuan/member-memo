@@ -1,40 +1,24 @@
 import React from 'react';
 import {
-  DesktopOutlined,
-  FileOutlined,
   PieChartOutlined,
-  TeamOutlined,
   UserOutlined,
 } from '@ant-design/icons';
-import { Breadcrumb, Layout, Menu, theme } from 'antd';
-const { Header, Content, Footer, Sider } = Layout;
+import { Layout, Menu } from 'antd';
+const { Sider } = Layout;
 
 
 export default class LeftSider extends React.Component {
-  state = {
-    collapsed: false
-  }
-  getItem = (label, key, icon, children) => {
-    return {
-      key,
-      icon,
-      children,
-      label,
-    };
-  }
-
   render() {
-    const { collapsed } = this.state
     const items = [
       {
         key: 'dashboard',
         icon: <PieChartOutlined />,
-        label: <a data-turbo-track="replace" href='/'>看板</a>
+        label: <a data-turbo-frame="main_frame" data-turbo-action="replace" href='/'>看板</a>,
       },
       {
         key: 'member',
         icon: <UserOutlined />,
-        label: '会员'
+        label: <a data-turbo-frame="main_frame" data-turbo-action="replace" href='/'>会员</a>
       },
       {
         key: 'coupons',

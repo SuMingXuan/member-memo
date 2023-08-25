@@ -15,8 +15,9 @@
     <%= react_component 'layout/Header', phone:  current_user.phone %>
     <div class="flex">
       <%= react_component 'layout/LeftSider' %>
-      <%= yield %>
+      <%= turbo_frame_tag "main_frame" do %>
+        <%= yield %>
+      <% end%>
     </div>
-
   </body>
 </html>

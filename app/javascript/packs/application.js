@@ -1,8 +1,9 @@
 // Support component names relative to this directory:
+import { Turbo } from "@hotwired/turbo-rails"
 import jQuery from 'jquery'
 import { notification } from 'antd'
-import { Turbo } from "@hotwired/turbo-rails"
 Turbo.session.drive = true
+Window.Turbo = Turbo
 Turbo.start()
 
 window.Rails = require('@rails/ujs')

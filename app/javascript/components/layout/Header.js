@@ -17,7 +17,7 @@ export default class Header extends React.Component {
           },
           {
             key: 'signOut',
-            label: <a href="/users/sign_out">退出登录</a>,
+            label: <a data-turbo-method="delete" href="/users/sign_out">退出登录</a>,
           },
         ],
       }
