@@ -1,15 +1,17 @@
 // Support component names relative to this directory:
 import jQuery from 'jquery'
 import { notification } from 'antd'
+import { Turbo } from "@hotwired/turbo-rails"
+Turbo.session.drive = true
+Turbo.start()
 
+window.Rails = require('@rails/ujs')
+Rails.start()
 
 var componentRequireContext = require.context("components", true);
 var ReactRailsUJS = require("react_ujs");
 ReactRailsUJS.useContext(componentRequireContext);
 window.$ = jQuery
-
-window.Rails = require('@rails/ujs')
-Rails.start()
 
 window.App = $.extend({}, window.App, {
   message: {
