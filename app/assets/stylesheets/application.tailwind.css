@@ -25,6 +25,13 @@
   .line-clamp-1 {
     -webkit-line-clamp: 1;
   }
+  .page-link {
+    @apply w-[38px] h-[38px] inline-block rounded-full mx-[8px] flex justify-center items-center cursor-pointer hover:border-primary-599 hover:border-[2px];
+  }
+
+  .pagination-action {
+    @apply inline-block w-[10px] h-[10px] border-t-[2px] border-l-[2px] border-primary-599;
+  }
 
   /* primary card start */
   .bg-gradient-primary {
@@ -40,7 +47,7 @@
 
   /* dark card end */
   .member-card {
-    @apply rounded-[12px] p-[20px] border shadow-[0_10px_15px_rgba(0,0,0,0.2)] w-full h-[210px] z-[10] before:absolute before:rounded-full before:z-[-30] after:absolute after:rounded-full after:z-[-30];
+    @apply rounded-[12px] p-[20px] border shadow-[0_10px_15px_rgba(0,0,0,0.2)] w-full max-w-[470px] h-[210px] z-[10] before:absolute before:rounded-full before:z-[-30] after:absolute after:rounded-full after:z-[-30];
   }
   .level {
     @apply border border-[white]/50 border-[0.5px] px-[15px] rounded-full text-[12px] flex items-center;
