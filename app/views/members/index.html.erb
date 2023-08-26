@@ -1,0 +1,9 @@
+<%= turbo_frame_tag "main_frame" do %>
+  <div class="grid p-[20px] w-full grid-cols-3 gap-[35px]">
+    <% @members.each do |member| %>
+      <div>
+        <%= react_component "member/themes/#{member.theme}", member: member.as_list_json %>
+      </div>
+    <% end %>
+  </div>
+<% end %>

@@ -12,10 +12,9 @@
   </head>
 
   <body class='bg-[#F5F5F5]'>
-    <%= react_component 'layout/Header', phone:  current_user.phone %>
     <div class="flex">
-      <%= react_component 'layout/LeftSider' %>
-      <%= turbo_frame_tag "main_frame" do %>
+      <%= react_component 'layout/LeftSider', activeKey: params[:controller], logo: image_path('logo.png') %>
+      <%= turbo_frame_tag "main_frame", class: 'w-full p-[40px]' do %>
         <%= yield %>
       <% end%>
     </div>

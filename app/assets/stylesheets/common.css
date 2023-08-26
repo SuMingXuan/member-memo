@@ -31,3 +31,8 @@ h2 {
 .ant-input-suffix .ant-form-item-feedback-icon {
   display: flex;
 }
+
+.ant-badge.ant-badge-status .ant-badge-status-dot {
+  width: 10px;
+  height: 10px;
+}

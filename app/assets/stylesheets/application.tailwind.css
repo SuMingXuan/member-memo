@@ -4,16 +4,51 @@
 
 @layer components {
   .btn-primary {
-    @apply bg-primary text-white font-semibold rounded-full px-[10px] h-[47px] text-base flex justify-center items-center;
+    @apply bg-[#5995fd] text-white font-semibold rounded-full px-[10px] h-[47px] text-base flex justify-center items-center;
   }
 
   .sign-bg {
-    @apply before:fixed  before:w-[1000px] lg:before:w-[3500px] before:h-[1000px] lg:before:h-[4000px] before:top-0 before:translate-x-[0] before:translate-y-[-60%] lg:before:translate-x-[-35%] lg:before:translate-y-[-50%] before:bg-[#4481eb] before:duration-1000 before:ease-in-out before:rounded-full before:z-[-1];
+    @apply before:fixed before:w-[1000px] lg:before:w-[3500px] before:h-[1000px] lg:before:h-[4000px] before:top-0 before:translate-x-[0] before:translate-y-[-60%] lg:before:translate-x-[-35%] lg:before:translate-y-[-50%] before:bg-[#4481eb] before:duration-1000 before:ease-in-out before:rounded-full before:z-[-1];
   }
   .h1 {
     @apply text-[30px] lg:text-[46px] leading-[38px] lg:leading-[64px];
   }
   .p {
     @apply text-[14px] lg:text-base leading-[24px] lg:leading-[26px];
+  }
+  .line-clamp {
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+  }
+
+  .line-clamp-1 {
+    -webkit-line-clamp: 1;
+  }
+
+  /* primary card start */
+  .bg-gradient-primary {
+    @apply bg-gradient-to-r from-primary-599 to-green-47C text-white relative overflow-hidden before:blur-2xl before:bg-[#FFBA01] before:w-[200px] before:h-[200px] before:top-[100px] before:left-[320px];
+  }
+
+  /* primary card end */
+
+  /* dark card end */
+  .bg-gradient-dark {
+    @apply bg-gradient-to-r from-black-303 to-black-191 text-orange-f9c relative overflow-hidden before:bg-[#00000099] after:bg-[#00000099] before:w-[400px] before:h-[400px] before:top-[67px] before:left-[70px] after:w-[400px] after:h-[400px] after:top-[-260px] after:left-[-160px];
+  }
+
+  /* dark card end */
+  .member-card {
+    @apply rounded-[12px] p-[20px] border shadow-[0_10px_15px_rgba(0,0,0,0.2)] w-full h-[210px] z-[10] before:absolute before:rounded-full before:z-[-30] after:absolute after:rounded-full after:z-[-30];
+  }
+  .level {
+    @apply border border-[white]/50 border-[0.5px] px-[15px] rounded-full text-[12px] flex items-center;
+  }
+  .store-name {
+    @apply text-[32px] font-bold line-clamp line-clamp-1;
+  }
+  .setting-icon {
+    @apply absolute right-[10px] top-[6px];
   }
 }
