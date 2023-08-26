@@ -2,8 +2,15 @@
 import { Turbo } from "@hotwired/turbo-rails"
 import jQuery from 'jquery'
 import { notification } from 'antd'
+
+import dayjs from 'dayjs'
+import 'dayjs/locale/zh-cn'
+dayjs.locale('zh-cn')
+
 Turbo.session.drive = true
 Window.Turbo = Turbo
+console.log('Window.Turbo = Turbo')
+
 Turbo.start()
 
 window.Rails = require('@rails/ujs')
@@ -49,4 +56,10 @@ window.App = $.extend({}, window.App, {
       return fallbackValue
     }
   },
+})
+
+
+document.addEventListener("turbo:load", (event) => {
+  // 因为 turbo_frame 的存在，在 load 之后需要重新加载框架，否则 react 不会运行
+  ReactRailsUJS.mountComponents('#main_frame')
 })

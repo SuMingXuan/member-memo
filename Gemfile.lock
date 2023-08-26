@@ -118,9 +118,6 @@ GEM
     importmap-rails (1.2.1)
       actionpack (>= 6.0.0)
       railties (>= 6.0.0)
-    jbuilder (2.11.5)
-      actionview (>= 5.0.0)
-      activesupport (>= 5.0.0)
     json (2.6.3)
     language_server-protocol (3.17.0.3)
     launchy (2.5.2)
@@ -325,7 +322,6 @@ DEPENDENCIES
   ffaker (~> 2.21)
   figaro (~> 1.2)
   importmap-rails
-  jbuilder
   letter_opener_web (~> 2.0)
   pg (~> 1.5, >= 1.5.3)
   pry
