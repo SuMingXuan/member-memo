@@ -6,15 +6,13 @@
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
     <%= stylesheet_link_tag "tailwind", "inter-font", "data-turbo-track": "reload" %>
-
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
     <%= javascript_pack_tag "application", "data-turbo-track": "reload" %>
   </head>
-
   <body class='bg-[#F5F5F5]'>
     <div class="flex">
       <%= react_component 'layout/LeftSider', activeKey: params[:controller], logo: image_path('logo.png') %>
-      <%= turbo_frame_tag "main_frame", class: 'w-full p-[40px]' do %>
+      <%= turbo_frame_tag "main_frame", class: 'w-full p-[40px] h-[100vh] overflow-y-scroll' do %>
         <%= yield %>
       <% end%>
     </div>
