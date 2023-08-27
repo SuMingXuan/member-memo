@@ -11,8 +11,23 @@ export default class Create extends React.Component {
     isModalOpen: false,
     theme: 'dark',
   }
-  createMember = () => {
-
+  createMember = (values) => {
+    fetch(`/members`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'X-CSRF-Token': csrf_token,
+      },
+      body: JSON.stringify(values)
+    })
+      .then((res) => res.json())
+      .then((res) => {
+        if (res.success) {
+          Turbo.visit(res.location);
+        } else {
+          App.message.error(res.message);
+        }
+      });
   }
   openCreateModal = () => {
     this.setState({ isModalOpen: true })
@@ -32,10 +47,13 @@ export default class Create extends React.Component {
       dark: 'bg-gradient-dark',
       primary: 'bg-gradient-primary'
     }
+    console.log(userInfo.birthday, dayjs(userInfo.birthday, dateFormat))
     const initialValues = {
       card_number: userInfo.phone || userInfo.name,
-      birthday: dayjs(userInfo.birthday, dateFormat),
-      theme: theme
+      birthday: userInfo.birthday && dayjs(userInfo.birthday, dateFormat),
+      theme: theme,
+      balance: 0,
+      consumption: 0,
     }
 
     const ColorRadio = ({ value }) => (
@@ -56,18 +74,27 @@ export default class Create extends React.Component {
               <Button
                 type='primary'
                 onClick={() => this.openCreateModal()}
-                className='lg:block hidden btn-primary w-[200px] h-[60px] mr-[20px] rounded-[12px] shadow-2xl'>
+                className='lg:block hidden btn-primary w-[150px] h-[45px] mr-[20px] rounded-[12px] shadow-2xl'>
                 创建
               </Button>
             </div>
         }
 
-        <Modal title="创建会员" open={isModalOpen} onCancel={() => this.closeCreateModal()}>
+        <Modal
+          title="创建会员"
+          zIndex={200}
+          style={{
+            top: MobilePlatform ? 20 : 100,
+          }}
+          open={isModalOpen}
+          footer={null}
+          onCancel={() => this.closeCreateModal()}>
+
           <Form
             layout="vertical"
             name="create_member"
             initialValues={initialValues}
-            onFinish={() => this.createMember()}
+            onFinish={(values) => this.createMember(values)}
           >
             <input type="hidden" name="authenticity_token" value={csrf_token} />
             <Item
@@ -101,7 +128,7 @@ export default class Create extends React.Component {
                   name="balance"
                   label="充值金额"
                 >
-                  <InputNumber prefix="￥" className='w-full' size='large' defaultValue={0} />
+                  <InputNumber prefix="￥" className='w-full' size='large' />
                 </Item>
               </Col>
               <Col span={12}>
@@ -109,15 +136,15 @@ export default class Create extends React.Component {
                   name="consumption"
                   label="本次消费金额"
                 >
-                  <InputNumber prefix="￥" className='w-full' size='large' defaultValue={0} />
+                  <InputNumber prefix="￥" className='w-full' size='large' />
                 </Item>
               </Col>
             </Row>
 
             <Item
               name="birthday"
-              label="生日"
-              help='如果补充生日，我们会在当天发送提醒'
+              label="会员生日"
+              help={userInfo.birthday ? null : '如果该会员有生日活动，补充生日后我们会在当天发送提醒'}
             >
               <DatePicker className='common-input w-full' size='large' format={dateFormat} locale={locale} />
             </Item>
@@ -126,12 +153,16 @@ export default class Create extends React.Component {
               name="theme"
               label="卡面"
             >
-              <Radio.Group className='flex justify-start gap-[10px]' defaultValue={theme} onChange={(e) => { this.selectTheme(e) }}>
+              <Radio.Group className='flex justify-start gap-[10px]' onChange={(e) => { this.selectTheme(e) }}>
                 <ColorRadio value='dark' />
                 <ColorRadio value='primary' />
               </Radio.Group>
             </Item>
-
+            <Item>
+              <Button type="primary" htmlType="submit" className="btn-primary rounded-[12px] float-right w-[150px]">
+                确定
+              </Button>
+            </Item>
           </Form>
         </Modal>
       </>

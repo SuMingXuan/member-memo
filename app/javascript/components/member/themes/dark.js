@@ -7,7 +7,7 @@ export default class BaseCard extends React.Component {
   render() {
     const { member } = this.props
     const BaseInfo = ({ label, value }) => (
-      <div className='flex flex-col'>
+      <div className='flex flex-col mt-[5px]'>
         <div className="font-[100]">
           {label}
         </div>
@@ -31,7 +31,7 @@ export default class BaseCard extends React.Component {
                 {ThemeUtil.formatCardNumber(member.card_number)}
               </div>
             </div>
-            <div className='level'>{member.level}</div>
+            {member.level && <div className='level'>{member.level}</div>}
           </div>
           <div className='flex justify-between'>
             {member.balance > 0 && <BaseInfo value={member.balance} label='余额' />}
