@@ -76,6 +76,7 @@ group :development do
 end
 
 group :test do
+  gem 'rails-controller-testing'
   gem 'simplecov', '~> 0.21.2'
   gem 'simplecov-lcov', require: false
   # Use system testing [https://guides.rubyonrails.org/testing.html#system-testing]

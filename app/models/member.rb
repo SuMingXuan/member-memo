@@ -8,10 +8,4 @@ class Member < ApplicationRecord
       CASE WHEN expires_at IS NULL THEN 1 WHEN expires_at > '#{Time.now}' THEN 0 ELSE 2 END,
       expires_at ASC"))
   }
-
-  def as_list_json
-    as_json(
-      except: %i[id user_id created_at updated_at]
-    )
-  end
 end

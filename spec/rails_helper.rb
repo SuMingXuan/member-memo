@@ -1,5 +1,4 @@
 # This file is copied to spec/ when you run 'rails generate rspec:install'
-
 # Make sure SIMPLECOV environment variable has a value if you want generate coverage files
 if ENV.key?('SIMPLECOV') && ENV['SIMPLECOV'] != '0'
   require 'simplecov_helper'
@@ -71,6 +70,8 @@ RSpec.configure do |config|
   config.filter_rails_from_backtrace!
   # arbitrary gems may also be filtered via:
   # config.filter_gems_from_backtrace("gem name")
+  config.include SessionsHelper
   config.include FactoryBot::Syntax::Methods
-  config.include Warden::Test::Helpers, type: :request
+  config.include Warden::Test::Helpers, type: :controller
+  config.include Devise::Test::ControllerHelpers, type: :controller
 end

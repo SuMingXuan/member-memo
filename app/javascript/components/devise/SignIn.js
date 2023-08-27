@@ -3,8 +3,6 @@ import { Form, Button, Input } from 'antd';
 import { PhoneOutlined } from '@ant-design/icons';
 
 const { Item } = Form;
-const csrf_token = document.querySelector('meta[name=csrf-token]').getAttribute('content');
-
 export default class SignIn extends React.Component {
   constructor(props) {
     super(props);
@@ -58,7 +56,6 @@ export default class SignIn extends React.Component {
     })
       .then((res) => res.json())
       .then((res) => {
-        console.log('res:', res);
         if (res.success) {
           window.location.href = res.location;
         } else {
@@ -102,7 +99,7 @@ export default class SignIn extends React.Component {
             }
           ]}
         >
-          <Input placeholder="手机号码" prefix={<PhoneOutlined />} />
+          <Input className='rounded-full px-[19px] py-[10px] h-[48px] text-[16px]' placeholder="手机号码" prefix={<span className='mr-[12px] flex'><PhoneOutlined /></span>} />
         </Item>
 
         <Item
@@ -116,6 +113,7 @@ export default class SignIn extends React.Component {
         >
           <Input
             placeholder="验证码"
+            className='rounded-full px-[19px] py-[10px] h-[48px] text-[16px]'
             suffix={
               <Button type="link" block onClick={this.sendVerifyCode} disabled={sending || !phoneValue}>
                 {

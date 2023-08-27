@@ -7,9 +7,9 @@
     per_page:      number of items to fetch per page
     remote:        data-remote
 -%>
-<span class="<%= 'page-link bg-primary-599 text-white ' if page.current? %> ">
+<span class="<%= 'page-link bg-primary-599 text-white shadow-2xl' if page.current? %> ">
   <%= link_to_unless page.current?, page, url,
       class: "page-link",
       rel: page.rel,
-      data: { turbo_frame: :main_frame, turbo_action: :replace } %>
+      data: { turbo_frame: :member_index, turbo_action: :replace } %>
 </span>

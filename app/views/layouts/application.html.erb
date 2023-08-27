@@ -12,7 +12,7 @@
   <body class='bg-[#F5F5F5]'>
     <div class="flex">
       <%= react_component 'layout/LeftSider', activeKey: params[:controller], logo: image_path('logo.png') %>
-      <%= turbo_frame_tag "main_frame", class: 'w-full p-[40px] h-[100vh] overflow-y-scroll' do %>
+      <%= turbo_frame_tag "main_frame", class: 'w-full p-[20px] lg:p-[40px] h-[100vh] overflow-y-scroll' do %>
         <%= yield %>
       <% end%>
     </div>

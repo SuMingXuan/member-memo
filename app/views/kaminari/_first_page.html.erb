@@ -7,5 +7,5 @@
     remote:        data-remote
 -%>
 <span class="first">
-  <%= link_to_unless current_page.first?, t('views.pagination.first').html_safe, url, data: { turbo_frame: :main_frame, turbo_action: :replace } %>
+  <%= link_to_unless current_page.first?, t('views.pagination.first').html_safe, url, data: { turbo_frame: :member_index, turbo_action: :replace } %>
 </span>
