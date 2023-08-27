@@ -28,7 +28,7 @@ export default class BaseCard extends React.Component {
           </div>
           <div className='flex justify-between'>
             <span className={`card-number-primary`}>{ThemeUtil.formatCardNumber(member.card_number)}</span>
-            <span className='level font-[700] border-[2px]'>{member.level}</span>
+            {member.level && <span className='level font-[700] border-[2px]'>{member.level}</span>}
           </div>
           <div className='flex justify-between'>
             {member.balance > 0 && <BaseInfo value={member.balance} label='余额' />}

@@ -3,7 +3,6 @@ FactoryBot.define do
     card_number { "136#{rand(0..99_999_999).to_s.rjust(8, '0')}" }
     level { '白银' }
     birthday { FFaker::Time.date(year_range: 30) }
-    created_card_at { '2023-08-24 23:14:40' }
     expires_at { Time.now + rand(0..365).days }
     store_name { FFaker::CompanyCN.name }
     store_address { FFaker::Address.street_address }

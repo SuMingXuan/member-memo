@@ -10,19 +10,20 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_08_27_080604) do
+ActiveRecord::Schema[7.0].define(version: 2023_08_27_134012) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "members", force: :cascade do |t|
+    t.uuid "uuid", default: -> { "gen_random_uuid()" }, null: false
     t.string "card_number"
     t.string "level"
     t.date "birthday"
-    t.datetime "created_card_at"
     t.date "expires_at"
     t.string "store_name"
     t.string "store_address"
     t.string "store_image_url"
+    t.integer "theme", default: 0
     t.string "activity_rules"
     t.integer "coupons_count", default: 0
     t.integer "points", default: 0
@@ -30,7 +31,6 @@ ActiveRecord::Schema[7.0].define(version: 2023_08_27_080604) do
     t.bigint "user_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "theme", default: 0, null: false
     t.index ["user_id"], name: "index_members_on_user_id"
   end
 
@@ -49,6 +49,8 @@ ActiveRecord::Schema[7.0].define(version: 2023_08_27_080604) do
     t.string "last_sign_in_ip"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "members_count", default: 0
+    t.integer "max_members_count", default: 10
     t.index ["phone"], name: "index_users_on_phone", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
