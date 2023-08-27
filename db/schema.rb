@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_08_25_151921) do
+ActiveRecord::Schema[7.0].define(version: 2023_08_27_080604) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -19,7 +19,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_08_25_151921) do
     t.string "level"
     t.date "birthday"
     t.datetime "created_card_at"
-    t.datetime "expires_at"
+    t.date "expires_at"
     t.string "store_name"
     t.string "store_address"
     t.string "store_image_url"

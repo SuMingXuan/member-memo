@@ -3,11 +3,11 @@ import {
   PieChartOutlined,
   UserOutlined,
   CreditCardOutlined,
-  TransactionOutlined
+  TransactionOutlined,
+  AppstoreOutlined
 } from '@ant-design/icons';
-import { Layout, Menu, Divider } from 'antd';
+import { Layout, Menu, Divider, FloatButton } from 'antd';
 const { Sider } = Layout;
-
 
 export default class LeftSider extends React.Component {
   render() {
@@ -61,15 +61,31 @@ export default class LeftSider extends React.Component {
 
 
     return (
-      <Layout className='h-[100vh] strick bg-white'>
-        <Sider theme='light'>
-          <div className="demo-logo-vertical flex justify-center">
-            <img src={logo} className='rounded-[12px] my-[20px] w-[90px]'></img>
-          </div>
-          <Divider />
-          <Menu defaultSelectedKeys={[activeKey]} defaultOpenKeys={['card']} mode="inline" items={items} />
-        </Sider>
-      </Layout>
+      MobilePlatform ?
+        <>
+          <FloatButton.Group
+            trigger="click"
+            type="primary"
+            style={{ right: 5, bottom: 80 }}
+            icon={<AppstoreOutlined />}
+          >
+            <FloatButton type='primary' data-turbo-frame='main_frame' data-turbo-action="replace" href='/' icon={<PieChartOutlined />} />
+            <FloatButton type='primary' data-turbo-frame='main_frame' data-turbo-action="replace" href='/members' icon={<CreditCardOutlined />} />
+            <FloatButton type='primary' icon={<TransactionOutlined />} />
+            <FloatButton type='primary' icon={<UserOutlined />} />
+          </FloatButton.Group>
+        </>
+        :
+        <Layout className='hidden lg:flex h-[100vh] strick bg-white'>
+          <Sider theme='light'>
+            <div className="demo-logo-vertical flex justify-center">
+              <img src={logo} className='rounded-[12px] my-[20px] w-[90px]'></img>
+            </div>
+            <Divider />
+            <Menu defaultSelectedKeys={[activeKey]} defaultOpenKeys={['card']} mode="inline" items={items} />
+          </Sider>
+        </Layout>
+
     );
   }
 }

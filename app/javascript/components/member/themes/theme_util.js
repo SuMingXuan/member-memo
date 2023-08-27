@@ -32,7 +32,7 @@ export function formatExpiresAt(expiresAt) {
       case 'expired':
         return '已过期'
       default:
-        return `${dayjs(expiresAt).format('YYYY/MM/DD')} 过期`
+        return `${dayjs(expiresAt).format(dateFormat)} 过期`
     }
   }
   return '永久'

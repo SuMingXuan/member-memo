@@ -1,10 +1,9 @@
 <%= turbo_frame_tag "main_frame" do %>
-  <div class="grid p-[20px] w-full grid-cols-3 gap-[35px]">
-    <% @members.each do |member| %>
-      <div>
-        <%= react_component "member/themes/#{member.theme}", member: member.as_list_json %>
-      </div>
-    <% end %>
-  </div>
-  <%= paginate @members %>
+  <%= turbo_frame_tag "member_index" do %>
+    <%= react_component "member/List",
+        members: @members.as_json(except:%i[id user_id created_at updated_at])
+      %>
+    <%= paginate @members %>
+  <% end %>
+  <%= react_component "member/Create", userInfo: current_user.user_info_json %>
 <% end %>

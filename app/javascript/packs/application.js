@@ -2,14 +2,12 @@
 import { Turbo } from "@hotwired/turbo-rails"
 import jQuery from 'jquery'
 import { notification } from 'antd'
-
 import dayjs from 'dayjs'
 import 'dayjs/locale/zh-cn'
 dayjs.locale('zh-cn')
 
 Turbo.session.drive = true
 Window.Turbo = Turbo
-console.log('Window.Turbo = Turbo')
 
 Turbo.start()
 
@@ -63,3 +61,7 @@ document.addEventListener("turbo:load", (event) => {
   // 因为 turbo_frame 的存在，在 load 之后需要重新加载框架，否则 react 不会运行
   ReactRailsUJS.mountComponents('#main_frame')
 })
+
+window.MobilePlatform = window.innerWidth < 1024
+window.csrf_token = document.querySelector('meta[name=csrf-token]').getAttribute('content');
+window.dateFormat = 'YYYY/MM/DD'

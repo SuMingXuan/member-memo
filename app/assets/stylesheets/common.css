@@ -15,19 +15,6 @@ h2 {
   font-weight: 700;
 }
 
-.ant-input-affix-wrapper {
-  padding: 10px 19px;
-  border-radius: 999px;
-  font-size: 16px;
-  height: 48px;
-}
-
-.ant-input-affix-wrapper .ant-input {
-}
-
-.ant-input-affix-wrapper .ant-input-prefix {
-  margin-inline-end: 12px;
-}
 .ant-input-suffix .ant-form-item-feedback-icon {
   display: flex;
 }
@@ -35,4 +22,17 @@ h2 {
 .ant-badge.ant-badge-status .ant-badge-status-dot {
   width: 10px;
   height: 10px;
+}
+
+.ant-float-btn-icon {
+  display: flex;
+  justify-content: center;
+  justify-items: center;
+}
+
+.ant-picker .ant-picker-input > input {
+  font-size: 16px;
+}
+.hidden-radio .ant-radio {
+  display: none !important;
 }
