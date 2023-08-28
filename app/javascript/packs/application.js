@@ -56,12 +56,16 @@ window.App = $.extend({}, window.App, {
   },
 })
 
-
-document.addEventListener("turbo:load", (event) => {
-  // 因为 turbo_frame 的存在，在 load 之后需要重新加载框架，否则 react 不会运行
+document.addEventListener("turbo:frame-load", (event) => {
   ReactRailsUJS.mountComponents('#main_frame')
 })
 
+
+// document.addEventListener("turbo:load", (event) => {
+// 因为 turbo_frame 的存在，在 load 之后需要重新加载框架，否则 react 不会运行
+//   ReactRailsUJS.mountComponents('#main_frame')
+// })
+
 window.MobilePlatform = window.innerWidth < 1024
 window.csrf_token = document.querySelector('meta[name=csrf-token]').getAttribute('content');
-window.dateFormat = 'YYYY/MM/DD'
+window.dateFormat = 'YYYY-MM-DD'

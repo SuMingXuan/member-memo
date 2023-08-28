@@ -21,21 +21,7 @@ export default class LeftSider extends React.Component {
       {
         key: 'card',
         icon: <CreditCardOutlined />,
-        label: '会员',
-        children: [
-          {
-            key: 'members',
-            label: <a data-turbo-frame="main_frame" data-turbo-action="replace" href='/members'>卡管理</a>
-          },
-          {
-            key: 'coupons',
-            label: '优惠券'
-          },
-          {
-            key: 'points',
-            label: '积分'
-          },
-        ]
+        label: <a data-turbo-frame="main_frame" data-turbo-action="replace" href='/members'>卡管理</a>,
       },
       {
         key: 'member_order',
