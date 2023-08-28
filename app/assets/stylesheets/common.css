@@ -36,3 +36,6 @@ h2 {
 .hidden-radio .ant-radio {
   display: none !important;
 }
+.rounded-none {
+  border-radius: 0px !important;
+}
