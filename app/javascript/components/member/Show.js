@@ -10,7 +10,6 @@ export default class Show extends React.Component {
   }
 
   editFieldHandle = (field) => {
-    console.log(field)
     this.setState({ editField: field })
   }
 
@@ -44,7 +43,7 @@ export default class Show extends React.Component {
     const { member } = this.state
 
     const ShowOrEditDatePicker = ({ name, value }) => <>
-      <div className='w-[180px] lg:w-[400px]'>
+      <div className='w-[180px] lg:w-[200px]'>
         {this.state.editField == name ?
           <DatePicker className='w-[180px]' size='large' defaultValue={value && dayjs(value, dateFormat)} autoFocus onBlur={(e) => { this.onSubmit(e, name) }} />
           :
@@ -55,7 +54,7 @@ export default class Show extends React.Component {
     </>
 
     const ShowOrEditInput = ({ name, value }) => <>
-      <div className='w-[180px] lg:w-[400px]'>
+      <div className='w-[180px] lg:w-[200px]'>
         {this.state.editField == name ?
           <Input className='lg:w-[200px]' size='large' defaultValue={value} autoFocus onPressEnter={(e) => { this.onSubmit(e, name) }} onBlur={(e) => { this.onSubmit(e, name) }} />
           :
@@ -66,7 +65,7 @@ export default class Show extends React.Component {
     </>
 
     const ShowOrEditBalanceInput = ({ name, value }) => <>
-      <div className='w-[180px] lg:w-[400px]'>
+      <div className='w-[180px] lg:w-[200px]'>
         {this.state.editField == name ?
           <InputNumber className='w-[180px]' size='large' defaultValue={value} autoFocus onPressEnter={(e) => { this.onSubmit(e, name) }} onBlur={(e) => { this.onSubmit(e, name) }} />
           :

@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 class Users::SessionsController < Devise::SessionsController
+  layout 'devise'
   before_action :check_send_frequent!, only: :send_verify_code
   after_action :write_cache_for_verify_code!, only: :send_verify_code
 

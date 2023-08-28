@@ -1,3 +1,4 @@
+<%= link_to t('back'), members_path, class: 'text-primary-599', data: { turbo_frame: :member_index, turbo_action: :replace } %>
 <%= react_component "member/Show",
-    member: @member.as_json(except:%i[id user_id created_at updated_at])
-  %>
+  member: @member.as_json(except:%i[id user_id created_at updated_at])
+%>

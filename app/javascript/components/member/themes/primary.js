@@ -1,7 +1,7 @@
 import React from 'react';
-import { SettingOutlined } from '@ant-design/icons';
 import { Badge } from 'antd';
-import * as ThemeUtil from './theme_util'
+import * as ThemeUtil from '../../../utils/theme_util'
+import Charge from './Charge'
 
 const BaseInfo = ({ label, value }) => (
   <div className='flex flex-col'>
@@ -14,15 +14,20 @@ const BaseInfo = ({ label, value }) => (
   </div>
 )
 
-export default class BaseCard extends React.Component {
+export default class Primary extends React.Component {
+  state = {
+    configMode: false
+  }
+  toggleConfigMode = () => {
+    this.setState({ configMode: !this.state.configMode });
+  }
   render() {
     const { member } = this.props
+    const { configMode } = this.state
     return (
       <>
-        <div className={`member-card bg-gradient-primary`}>
-          <div className="setting-icon">
-            <SettingOutlined className='cursor-pointer' />
-          </div>
+        <div className='member-card bg-gradient-primary' onClick={() => { this.toggleConfigMode() }}>
+          <Charge member={member} toggleConfigMode={() => { this.toggleConfigMode() }} configMode={configMode} />
           <div className="store-name">
             {member.store_name}
           </div>

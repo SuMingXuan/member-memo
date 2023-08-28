@@ -1,7 +1,6 @@
-<%= turbo_frame_tag "member_index" do %>
-  <%= react_component "member/List",
-        members: @members.as_json(except:%i[id user_id created_at updated_at])
-      %>
-  <%= paginate @members %>
-<% end %>
+<%= react_component "member/List",
+  members: @members.as_json(except:%i[id user_id created_at updated_at]),
+  total_pages: @members.total_pages,
+  current_page: @members.current_page
+%>
 <%= react_component "member/Create", userInfo: current_user.user_info_json %>

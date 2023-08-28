@@ -24,7 +24,7 @@ export default class Create extends React.Component {
       .then((res) => {
         if (res.success) {
           this.setState({ isModalOpen: false })
-          Turbo.visit(res.location, { frame: 'main_frame', action: 'replace' });
+          visit(res.location);
         } else {
           App.message.error(res.message);
         }

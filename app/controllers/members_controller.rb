@@ -2,6 +2,12 @@ class MembersController < ApplicationController
   def index
     @members = current_user.members.sorted_by_expiry
     @members = @members.page(params[:page])
+    respond_to do |format|
+      format.json do
+        render json: { success: true, members: @members.as_json(except: %i[id user_id created_at updated_at]) }
+      end
+      format.html {}
+    end
   end
 
   def show
