@@ -23,11 +23,13 @@ export default class Create extends React.Component {
       .then((res) => res.json())
       .then((res) => {
         if (res.success) {
-          Turbo.visit(res.location);
+          this.setState({ isModalOpen: false })
+          Turbo.visit(res.location, { frame: 'main_frame', action: 'replace' });
         } else {
           App.message.error(res.message);
         }
       });
+
   }
   openCreateModal = () => {
     this.setState({ isModalOpen: true })
@@ -47,7 +49,6 @@ export default class Create extends React.Component {
       dark: 'bg-gradient-dark',
       primary: 'bg-gradient-primary'
     }
-    console.log(userInfo.birthday, dayjs(userInfo.birthday, dateFormat))
     const initialValues = {
       card_number: userInfo.phone || userInfo.name,
       birthday: userInfo.birthday && dayjs(userInfo.birthday, dateFormat),

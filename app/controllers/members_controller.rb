@@ -5,7 +5,7 @@ class MembersController < ApplicationController
   end
 
   def show
-    @member = current_user.members.find_by(uuid: params[:uuid])
+    member
   end
 
   def create
@@ -19,11 +19,31 @@ class MembersController < ApplicationController
     render json: { success: true, location: member_path(member.uuid) }
   end
 
+  def update
+    if member.update(update_member_params)
+      render json: { success: true }
+    else
+      render json: { success: false, message: member.full_message }
+    end
+  end
+
   private
+
+  def member
+    @member ||= current_user.members.find_by(uuid: params[:uuid])
+  end
 
   def member_params
     params.require(:member).permit(:card_number, :birthday, :store_name, :balance, :theme).tap do |options|
-      options[:balance] = (params[:member][:balance].to_f - params[:consumption].to_f).round(2)
+      if params[:member][:balance].present? && params[:consumption].present?
+        options[:balance] = (params[:member][:balance].to_f - params[:consumption].to_f).round(2)
+      end
     end
+  end
+
+  def update_member_params
+    params.require(:member).permit(
+      :card_number, :store_name, :balance, :level, :expires_at, :birthday, :store_address, :activity_rules
+    )
   end
 end
