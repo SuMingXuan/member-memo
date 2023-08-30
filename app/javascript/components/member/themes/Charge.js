@@ -1,6 +1,6 @@
 import React from 'react';
 import { Button } from 'antd';
-import { CloseCircleOutlined, EyeOutlined } from '@ant-design/icons';
+import { CloseCircleOutlined, SettingOutlined } from '@ant-design/icons';
 
 export default class Charge extends React.Component {
   state = {
@@ -30,7 +30,7 @@ export default class Charge extends React.Component {
         {
           configMode ? <CloseCircleOutlined onClick={() => { this.props.toggleConfigMode() }} className='cursor-pointer' /> :
             <a className='cursor-pointer' onClick={(e) => { e.stopPropagation(); visit(`/members/${member.uuid}`) }}>
-              <EyeOutlined />
+              <SettingOutlined />
             </a>
         }
       </div>

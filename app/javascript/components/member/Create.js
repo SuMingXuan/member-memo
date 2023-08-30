@@ -75,7 +75,7 @@ export default class Create extends React.Component {
               <Button
                 type='primary'
                 onClick={() => this.openCreateModal()}
-                className='lg:block hidden btn-primary w-[150px] h-[45px] mr-[20px] rounded-[12px] shadow-2xl'>
+                className='lg:block fixed hidden right-[60px] bottom-[10%] btn-primary w-[120px] h-[45px] rounded-[8px] shadow-2xl z-[100]'>
                 创建
               </Button>
             </div>
