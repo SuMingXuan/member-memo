@@ -44,6 +44,7 @@ gem 'bootsnap', require: false
 gem 'devise', '~> 4.9', '>= 4.9.2'
 gem 'figaro', '~> 1.2'
 gem 'kaminari', '~> 1.2', '>= 1.2.2'
+gem 'paranoia', '~> 2.6', '>= 2.6.2'
 gem 'react-rails', '~> 3.1', '>= 3.1.1'
 gem 'redis', '~> 5.0', '>= 5.0.7'
 gem 'shakapacker', '~> 7.0', '>= 7.0.3'

@@ -41,7 +41,7 @@ export default class LeftSider extends React.Component {
       {
         key: 'user',
         icon: <UserOutlined />,
-        label: '个人信息',
+        label: <a data-method="delete" data-turbo-action="replace" href='/users/sign_out'>个人信息</a>,
       },
     ];
 

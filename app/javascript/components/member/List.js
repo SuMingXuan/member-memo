@@ -2,7 +2,6 @@ import React from 'react';
 import Dark from './themes/dark'
 import Primary from './themes/primary'
 import { Button } from 'antd';
-import { DownOutlined } from '@ant-design/icons';
 
 export default class List extends React.Component {
   state = {

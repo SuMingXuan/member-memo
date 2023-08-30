@@ -3,6 +3,9 @@ import dayjs from 'dayjs';
 
 import { Badge, Descriptions, Input, DatePicker, InputNumber } from 'antd';
 
+import {
+  EditOutlined,
+} from '@ant-design/icons';
 export default class Show extends React.Component {
   state = {
     editField: null,
@@ -42,14 +45,21 @@ export default class Show extends React.Component {
   render() {
     const { member } = this.state
 
+    const ShowValue = ({ value, name }) => <>
+      <div className='h-[42px] flex items-center cursor-pointer' onClick={() => this.editFieldHandle(name)} >
+        {
+          value || <EditOutlined />
+        }
+      </div>
+    </>
+
     const ShowOrEditDatePicker = ({ name, value }) => <>
       <div className='w-[180px] lg:w-[200px]'>
         {this.state.editField == name ?
           <DatePicker className='w-[180px]' size='large' defaultValue={value && dayjs(value, dateFormat)} autoFocus onBlur={(e) => { this.onSubmit(e, name) }} />
           :
-          <div className='h-[42px] flex items-center cursor-pointer' onClick={() => this.editFieldHandle(name)} >
-            {value}
-          </div>}
+          <ShowValue value={value} name={name} />
+        }
       </div>
     </>
 
@@ -58,9 +68,8 @@ export default class Show extends React.Component {
         {this.state.editField == name ?
           <Input className='lg:w-[200px]' size='large' defaultValue={value} autoFocus onPressEnter={(e) => { this.onSubmit(e, name) }} onBlur={(e) => { this.onSubmit(e, name) }} />
           :
-          <div className='h-[42px] flex items-center cursor-pointer' onClick={() => this.editFieldHandle(name)} >
-            {value}
-          </div>}
+          <ShowValue value={value} name={name} />
+        }
       </div>
     </>
 
@@ -69,9 +78,8 @@ export default class Show extends React.Component {
         {this.state.editField == name ?
           <InputNumber className='w-[180px]' size='large' defaultValue={value} autoFocus onPressEnter={(e) => { this.onSubmit(e, name) }} onBlur={(e) => { this.onSubmit(e, name) }} />
           :
-          <div className='h-[42px] flex items-center cursor-pointer' onClick={() => this.editFieldHandle(name)} >
-            {value}
-          </div>}
+          <ShowValue value={value} name={name} />
+        }
       </div>
     </>
     const BaseLabel = ({ name, label }) => <div className='w-[80px] lg:w-[100px] cursor-pointer' onClick={() => { this.setState({ editField: name }) }}>{label}</div>
