@@ -10,9 +10,45 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_08_27_134012) do
+ActiveRecord::Schema[7.0].define(version: 2023_08_30_135221) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "coupons", force: :cascade do |t|
+    t.uuid "uuid", default: -> { "gen_random_uuid()" }, null: false
+    t.bigint "member_id", null: false
+    t.string "type", null: false
+    t.integer "status", default: 0, null: false
+    t.date "expires_at"
+    t.decimal "threshold", precision: 12, scale: 2, default: "0.0", comment: "阈值"
+    t.decimal "discount", precision: 12, scale: 2, default: "0.0", comment: "折扣"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["member_id"], name: "index_coupons_on_member_id"
+  end
+
+  create_table "member_order_items", force: :cascade do |t|
+    t.bigint "member_order_id", null: false
+    t.integer "item_type"
+    t.integer "item_id"
+    t.datetime "deleted_at"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["member_order_id"], name: "index_member_order_items_on_member_order_id"
+  end
+
+  create_table "member_orders", force: :cascade do |t|
+    t.uuid "uuid", default: -> { "gen_random_uuid()" }, null: false
+    t.string "type", null: false
+    t.decimal "amount", precision: 12, scale: 2, default: "0.0"
+    t.integer "points_amount", default: 0
+    t.bigint "member_id", null: false
+    t.string "remark"
+    t.datetime "deleted_at"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["member_id"], name: "index_member_orders_on_member_id"
+  end
 
   create_table "members", force: :cascade do |t|
     t.uuid "uuid", default: -> { "gen_random_uuid()" }, null: false
@@ -26,12 +62,24 @@ ActiveRecord::Schema[7.0].define(version: 2023_08_27_134012) do
     t.integer "theme", default: 0
     t.string "activity_rules"
     t.integer "coupons_count", default: 0
-    t.integer "points", default: 0
+    t.integer "points_count", default: 0
     t.decimal "balance", precision: 12, scale: 2, default: "0.0"
     t.bigint "user_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.datetime "deleted_at"
     t.index ["user_id"], name: "index_members_on_user_id"
+  end
+
+  create_table "points", force: :cascade do |t|
+    t.uuid "uuid", default: -> { "gen_random_uuid()" }, null: false
+    t.bigint "member_id", null: false
+    t.integer "available_amount", default: 0
+    t.integer "used_amount", default: 0
+    t.date "expires_at"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["member_id"], name: "index_points_on_member_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -55,5 +103,9 @@ ActiveRecord::Schema[7.0].define(version: 2023_08_27_134012) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "coupons", "members"
+  add_foreign_key "member_order_items", "member_orders"
+  add_foreign_key "member_orders", "members"
   add_foreign_key "members", "users"
+  add_foreign_key "points", "members"
 end

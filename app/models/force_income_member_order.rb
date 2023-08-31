@@ -1,0 +1,2 @@
+class ForceIncomeMemberOrder < RechargeMemberOrder
+end

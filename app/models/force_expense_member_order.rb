@@ -1,0 +1,2 @@
+class ForceExpenseMemberOrder < ConsumptionMemberOrder
+end
