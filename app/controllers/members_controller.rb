@@ -15,14 +15,27 @@ class MembersController < ApplicationController
   end
 
   def create
-    member = current_user.members.build(member_params)
-    member.save
+    ActiveRecord::Base.transaction do
+      @member = current_user.members.build(member_params)
 
-    if member.save && current_user.birthday.blank?
-      current_user.birthday = member.birthday
-      current_user.save
+      # 一次充值需要手动新建一个充值和消费的订单
+      if member_params[:balance] > 0
+        order = @member.recharge_member_orders.build
+        order.recharge(recharge_amount: member_params[:balance])
+      end
+
+      if params[:consumption] > 0
+        order = @member.consumption_member_orders.build
+        order.consumption(consumption_amount: params[:consumption])
+      end
+
+      if @member.save && current_user.birthday.blank?
+        current_user.birthday = @member.birthday
+        current_user.save
+      end
     end
-    render json: { success: true, location: member_path(member.uuid) }
+
+    render json: { success: true, location: member_path(@member.uuid) }
   end
 
   def update
@@ -40,16 +53,13 @@ class MembersController < ApplicationController
   end
 
   def member_params
-    params.require(:member).permit(:card_number, :birthday, :store_name, :balance, :theme).tap do |options|
-      if params[:member][:balance].present? && params[:consumption].present?
-        options[:balance] = (params[:member][:balance].to_f - params[:consumption].to_f).round(2)
-      end
-    end
+    @member_params ||= params.require(:member).permit(:card_number, :birthday, :store_name, :balance, :theme)
   end
 
   def update_member_params
     params.require(:member).permit(
-      :card_number, :store_name, :balance, :level, :expires_at, :birthday, :store_address, :activity_rules
+      :card_number, :store_name, :balance, :level, :expires_at,
+      :birthday, :store_address, :activity_rules, :force_income_or_expense
     )
   end
 end

@@ -42,7 +42,7 @@ export default class List extends React.Component {
           })}
         </div>
         {
-          currentPage <= totalPages && <div className='flex justify-center mt-[20px]'>
+          currentPage < totalPages && <div className='flex justify-center mt-[20px]'>
             <Button type='link' className={`text-primary-599 ${MobilePlatform ? 'text-[16px]' : 'text-[18px]'}`} onClick={(e) => { this.pageHandle(e) }}>下一页</Button>
           </div>
         }

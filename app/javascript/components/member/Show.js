@@ -22,6 +22,9 @@ export default class Show extends React.Component {
 
     const values = {}
     values[name] = value
+    if (name == 'balance') {
+      values.force_income_or_expense = true
+    }
     fetch(`/members/${member.uuid}`, {
       method: 'PUT',
       headers: {
