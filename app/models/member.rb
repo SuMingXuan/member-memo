@@ -31,6 +31,10 @@ class Member < ApplicationRecord
     uuid
   end
 
+  def as_json_list
+    as_json(except: %i[id user_id created_at updated_at])
+  end
+
   private
 
   def listen_income_and_expense

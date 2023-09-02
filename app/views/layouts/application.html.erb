@@ -9,7 +9,7 @@
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
     <%= javascript_pack_tag "application", "data-turbo-track": "reload" %>
   </head>
-  <body class='bg-[#F5F5F5]'>
+  <body class='bg-[#fbfbfb]'>
     <div class="flex">
       <%= react_component 'layout/LeftSider', activeKey: params[:controller], logo: image_path('logo.svg') %>
       <%= turbo_frame_tag "main_frame", class: 'w-full p-[20px] lg:p-[40px] h-[100vh] overflow-y-scroll' do %>

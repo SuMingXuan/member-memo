@@ -1,7 +1,7 @@
 import React from 'react';
 import { Badge } from 'antd';
 import * as ThemeUtil from '../../../utils/theme_util'
-import Charge from './Charge'
+import Charge from '../Charge'
 
 export default class Dark extends React.Component {
   state = {

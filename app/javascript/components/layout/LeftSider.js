@@ -62,13 +62,13 @@ export default class LeftSider extends React.Component {
           </FloatButton.Group>
         </>
         :
-        <Layout className='hidden lg:flex h-[100vh] strick bg-white'>
+        <Layout className='hidden lg:flex h-[100vh] strick bg-white shadow'>
           <Sider theme='light'>
             <div className="demo-logo-vertical flex justify-center">
-              <img src={logo} className='rounded-[12px] my-[20px] w-[90px]'></img>
+              <img src={logo} className='rounded-[12px] w-[200px]'></img>
             </div>
             <Divider />
-            <Menu defaultSelectedKeys={[activeKey]} defaultOpenKeys={['card']} mode="inline" items={items} />
+            <Menu className='border-e-0' defaultSelectedKeys={[activeKey]} defaultOpenKeys={['card']} mode="inline" items={items} />
           </Sider>
         </Layout>
 

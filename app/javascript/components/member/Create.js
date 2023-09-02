@@ -1,6 +1,8 @@
 import React from 'react';
 import dayjs from 'dayjs';
 import locale from 'antd/es/date-picker/locale/zh_CN';
+import { TimeFormat } from '../../utils/custom_format'
+
 
 import { PlusOutlined } from '@ant-design/icons';
 import { Button, FloatButton, Modal, Form, Input, DatePicker, InputNumber, Col, Row, Radio } from 'antd';
@@ -51,7 +53,7 @@ export default class Create extends React.Component {
     }
     const initialValues = {
       card_number: userInfo.phone || userInfo.name,
-      birthday: userInfo.birthday && dayjs(userInfo.birthday, dateFormat),
+      birthday: userInfo.birthday && dayjs(userInfo.birthday, TimeFormat.default),
       theme: theme,
       balance: 0,
       consumption: 0,
@@ -147,7 +149,7 @@ export default class Create extends React.Component {
               label="会员生日"
               help={userInfo.birthday ? null : '如果该会员有生日活动，补充生日后我们会在当天发送提醒'}
             >
-              <DatePicker className='common-input w-full' size='large' format={dateFormat} locale={locale} />
+              <DatePicker className='common-input w-full' size='large' format={TimeFormat.default} locale={locale} />
             </Item>
 
             <Item

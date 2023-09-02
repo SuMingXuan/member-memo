@@ -21,7 +21,7 @@ export default class Charge extends React.Component {
     const Mask = ({ member }) => <>
       <div className="absolute flex justify-around items-center top-0 left-0 translate-x-0 translate-y-0 z-[20] w-full h-full bg-[#3d3d3dd3]">
         <Button ghost danger size='large' className='w-[120px] text-white' onClick={(e) => { this.openChargeModal(e) }}>消费</Button>
-        <Button ghost type='primary' size='large' className='w-[120px] text-white' onClick={(e) => { this.openConsumptionModal(e) }}>充值</Button>
+        <Button ghost type='primary' size='large' className='text-primary-599 border-primary-599 w-[120px] text-white' onClick={(e) => { this.openConsumptionModal(e) }}>充值</Button>
       </div>
     </>
     const { member, configMode } = this.props

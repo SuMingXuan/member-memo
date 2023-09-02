@@ -68,6 +68,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_08_30_135221) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.datetime "deleted_at"
+    t.decimal "discount", precision: 12, scale: 2, default: "1.0"
     t.index ["user_id"], name: "index_members_on_user_id"
   end
 

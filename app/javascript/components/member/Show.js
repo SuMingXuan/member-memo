@@ -1,7 +1,10 @@
 import React from 'react';
 import dayjs from 'dayjs';
+import { TimeFormat } from '../../utils/custom_format'
+import locale from 'antd/es/date-picker/locale/zh_CN';
 
-import { Badge, Descriptions, Input, DatePicker, InputNumber } from 'antd';
+import { Divider, Descriptions, Input, DatePicker, InputNumber, Popconfirm } from 'antd';
+import CustomTimeLine from './CustomTimeLine'
 
 import {
   EditOutlined,
@@ -9,7 +12,7 @@ import {
 export default class Show extends React.Component {
   state = {
     editField: null,
-    member: this.props.member
+    member: this.props.member,
   }
 
   editFieldHandle = (field) => {
@@ -39,6 +42,7 @@ export default class Show extends React.Component {
           member[name] = value
           this.setState({ editField: null })
           this.setState({ member: member })
+          visit(`/members/${member.uuid}`);
         } else {
           App.message.error(res.message);
         }
@@ -47,7 +51,7 @@ export default class Show extends React.Component {
 
   render() {
     const { member } = this.state
-
+    const { member_orders_group } = this.props
     const ShowValue = ({ value, name }) => <>
       <div className='h-[42px] flex items-center cursor-pointer' onClick={() => this.editFieldHandle(name)} >
         {
@@ -59,7 +63,7 @@ export default class Show extends React.Component {
     const ShowOrEditDatePicker = ({ name, value }) => <>
       <div className='w-[180px] lg:w-[200px]'>
         {this.state.editField == name ?
-          <DatePicker className='w-[180px]' size='large' defaultValue={value && dayjs(value, dateFormat)} autoFocus onBlur={(e) => { this.onSubmit(e, name) }} />
+          <DatePicker className='w-[180px]' size='large' defaultValue={value && dayjs(value, TimeFormat.default)} autoFocus onBlur={(e) => { this.onSubmit(e, name) }} locale={locale} />
           :
           <ShowValue value={value} name={name} />
         }
@@ -67,7 +71,7 @@ export default class Show extends React.Component {
     </>
 
     const ShowOrEditInput = ({ name, value }) => <>
-      <div className='w-[180px] lg:w-[200px]'>
+      <div className='w-[180px] lg:w-[200px] rounded-[12px]'>
         {this.state.editField == name ?
           <Input className='lg:w-[200px]' size='large' defaultValue={value} autoFocus onPressEnter={(e) => { this.onSubmit(e, name) }} onBlur={(e) => { this.onSubmit(e, name) }} />
           :
@@ -76,8 +80,8 @@ export default class Show extends React.Component {
       </div>
     </>
 
-    const ShowOrEditBalanceInput = ({ name, value }) => <>
-      <div className='w-[180px] lg:w-[200px]'>
+    const ShowOrEditAmountInput = ({ name, value }) => <>
+      <div className='w-[180px] lg:w-[200px] rounded-[12px]'>
         {this.state.editField == name ?
           <InputNumber className='w-[180px]' size='large' defaultValue={value} autoFocus onPressEnter={(e) => { this.onSubmit(e, name) }} onBlur={(e) => { this.onSubmit(e, name) }} />
           :
@@ -103,7 +107,13 @@ export default class Show extends React.Component {
         key: 'balance',
         span: 2,
         label: <BaseLabel name='balance' label='余额' />,
-        children: <ShowOrEditBalanceInput name='balance' value={member.balance}></ShowOrEditBalanceInput>,
+        children: <ShowOrEditAmountInput name='balance' value={member.balance}></ShowOrEditAmountInput>,
+      },
+      {
+        key: 'points_count',
+        span: 2,
+        label: <BaseLabel name='points_count' label='积分' />,
+        children: <ShowOrEditAmountInput name='points_count' value={member.points_count}></ShowOrEditAmountInput>,
       },
       {
         key: 'level',
@@ -139,6 +149,8 @@ export default class Show extends React.Component {
     return (
       <>
         <Descriptions column={MobilePlatform ? 2 : 4} title={<h2 className='text-center'>{member.store_name}</h2>} bordered items={items} />
+        <Divider />
+        <CustomTimeLine groups={member_orders_group} />
       </>
     );
   }

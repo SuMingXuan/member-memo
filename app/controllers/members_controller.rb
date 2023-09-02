@@ -11,7 +11,8 @@ class MembersController < ApplicationController
   end
 
   def show
-    member
+    @member = member
+    @member_orders = @member.member_orders.order(id: :desc)
   end
 
   def create
@@ -21,12 +22,12 @@ class MembersController < ApplicationController
       # 一次充值需要手动新建一个充值和消费的订单
       if member_params[:balance] > 0
         order = @member.recharge_member_orders.build
-        order.recharge(recharge_amount: member_params[:balance])
+        order.recharge(amount: member_params[:balance])
       end
 
       if params[:consumption] > 0
         order = @member.consumption_member_orders.build
-        order.consumption(consumption_amount: params[:consumption])
+        order.consumption(amount: params[:consumption])
       end
 
       if @member.save && current_user.birthday.blank?
@@ -59,7 +60,8 @@ class MembersController < ApplicationController
   def update_member_params
     params.require(:member).permit(
       :card_number, :store_name, :balance, :level, :expires_at,
-      :birthday, :store_address, :activity_rules, :force_income_or_expense
+      :birthday, :store_address, :activity_rules, :force_income_or_expense,
+      :points_count, :discount
     )
   end
 end

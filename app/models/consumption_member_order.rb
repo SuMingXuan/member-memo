@@ -11,7 +11,6 @@ class ConsumptionMemberOrder < MemberOrder
     return unless amount > 0
 
     self.amount = amount
-    member.balance = member.balance - amount
     member.balance = 0 if member.balance < 0
   end
 
@@ -19,7 +18,6 @@ class ConsumptionMemberOrder < MemberOrder
     return unless points_amount > 0
 
     self.points_amount = points_amount
-    member.points_count = member.points_count - points_amount
     member.points_count = 0 if member.points_count < 0
   end
 

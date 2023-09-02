@@ -1,5 +1,5 @@
 import React from 'react';
-
+import { TimeFormat } from '../../utils/custom_format';
 export default class Primary extends React.Component {
   render() {
     <>
@@ -69,7 +69,7 @@ export default class Primary extends React.Component {
             label="会员生日"
             help={userInfo.birthday ? null : '如果该会员有生日活动，补充生日后我们会在当天发送提醒'}
           >
-            <DatePicker className='common-input w-full' size='large' format={dateFormat} locale={locale} />
+            <DatePicker className='common-input w-full' size='large' format={TimeFormat.default} locale={locale} />
           </Item>
 
           <Item
