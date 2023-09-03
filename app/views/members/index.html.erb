@@ -1,6 +1,6 @@
 <%= react_component "member/List",
-  members: @members.as_json(except:%i[id user_id created_at updated_at]),
+  members: @members.map { |member| member.as_json_list },
   total_pages: @members.total_pages,
   current_page: @members.current_page
 %>
-<%= react_component "member/Create", userInfo: current_user.user_info_json %>
+<%= react_component "member/Create", userInfo: current_user.as_json_list %>

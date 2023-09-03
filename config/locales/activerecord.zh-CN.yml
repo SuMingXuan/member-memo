@@ -1,0 +1,6 @@
+zh-CN:
+  activerecord:
+    errors:
+      messages:
+        greater_than: 大于
+        less_than_or_equal_to: 小于等于

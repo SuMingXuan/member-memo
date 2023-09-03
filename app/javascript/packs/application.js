@@ -1,18 +1,19 @@
 // Support component names relative to this directory:
-import { Turbo } from "@hotwired/turbo-rails"
+import "@hotwired/turbo-rails"
 import jQuery from 'jquery'
 import { notification } from 'antd'
 import dayjs from 'dayjs'
 import 'dayjs/locale/zh-cn'
 dayjs.locale('zh-cn')
 
-Turbo.session.drive = true
-Window.Turbo = Turbo
+// Turbo.session.drive = true
+// Turbo.session.drive = false
+// Window.Turbo = Turbo
 
-Turbo.start()
+// Turbo.start()
 
-window.Rails = require('@rails/ujs')
-Rails.start()
+// window.Rails = require('@rails/ujs')
+// Rails.start()
 
 var componentRequireContext = require.context("components", true);
 var ReactRailsUJS = require("react_ujs");
@@ -56,23 +57,23 @@ window.App = $.extend({}, window.App, {
   },
 })
 
-// document.addEventListener("turbo:frame-load", (event) => {
-//   // Turbo.visit 的时候需要用到
-//   ReactRailsUJS.mountComponents('#main_frame')
-// })
+document.addEventListener("turbo:frame-load", (event) => {
+  // Turbo.visit 的时候需要用到
+  ReactRailsUJS.mountComponents('#main_frame')
+})
 
 
-// document.addEventListener("turbo:load", (event) => {
-//   // 浏览器默认行为需要用到
-//   ReactRailsUJS.mountComponents('#main_frame')
-// })
+document.addEventListener("turbo:load", (event) => {
+  // 浏览器默认行为需要用到
+  ReactRailsUJS.mountComponents('#main_frame')
+})
 
-ReactRailsUJS.handleEvent('turbo:frame-load', ReactRailsUJS.handleMount)
-ReactRailsUJS.handleEvent('turbo:frame-render', ReactRailsUJS.handleUnmount)
+// ReactRailsUJS.handleEvent('turbo:frame-load', ReactRailsUJS.handleMount)
+// ReactRailsUJS.handleEvent('turbo:frame-render', ReactRailsUJS.handleUnmount)
 
 window.MobilePlatform = window.innerWidth < 1024
 window.csrf_token = document.querySelector('meta[name=csrf-token]').getAttribute('content');
-window.dateFormat = 'YYYY-MM-DD'
 window.visit = (src) => {
   Turbo.visit(src, { frame: 'main_frame', action: 'replace' })
+  // window.location.href = src
 }

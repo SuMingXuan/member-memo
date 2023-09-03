@@ -1,6 +1,7 @@
 import React from 'react';
 import Dark from './themes/dark'
 import Primary from './themes/primary'
+import Red from './themes/red'
 import { Button } from 'antd';
 
 export default class List extends React.Component {
@@ -29,13 +30,15 @@ export default class List extends React.Component {
 
   render() {
     const { members, totalPages, currentPage } = this.state
-    console.log(currentPage, totalPages);
+    console.log(members)
     return (
       <>
         <div className='grid lg:p-[20px] w-full lg:grid-cols-2 xl:grid-cols-3 gap-[20px] lg:gap-[35px]'>
           {members.map(member => {
             if (member.theme === 'dark') {
               return <Dark member={member} key={member.uuid} />;
+            } else if (member.theme === 'red') {
+              return <Red member={member} key={member.uuid} />;
             } else {
               return <Primary member={member} key={member.uuid} />;
             }

@@ -1,7 +1,9 @@
 import React from 'react';
 import { Badge } from 'antd';
 import * as ThemeUtil from '../../../utils/theme_util'
-import Charge from './Charge'
+import Charge from '../Charge'
+import DiscountOrLevelLabel from './components/DiscountOrLevelLabel'
+import BaseInfo from './components/BaseInfo'
 
 export default class Dark extends React.Component {
   state = {
@@ -14,16 +16,7 @@ export default class Dark extends React.Component {
   render() {
     const { member } = this.props
     const { configMode } = this.state
-    const BaseInfo = ({ label, value }) => (
-      <div className='flex flex-col mt-[5px]'>
-        <div className="font-[100]">
-          {label}
-        </div>
-        <div className="font-[700] text-[34px]">
-          {value}
-        </div>
-      </div>
-    )
+
     return (
       <>
         <div className='member-card bg-gradient-dark' onClick={() => { this.toggleConfigMode() }}>
@@ -37,11 +30,11 @@ export default class Dark extends React.Component {
                 {ThemeUtil.formatCardNumber(member.card_number)}
               </div>
             </div>
-            {member.level && <div className='level'>{member.level}</div>}
+            <DiscountOrLevelLabel discount={member.discount} level={member.level} />
           </div>
           <div className='flex justify-between'>
             {member.balance > 0 && <BaseInfo value={member.balance} label='余额' />}
-            {member.points > 0 && <BaseInfo value={member.points} label='积分' />}
+            {member.points_count > 0 && <BaseInfo value={member.points_count} label='积分' />}
             {member.coupons_count > 0 && <BaseInfo value={member.coupons_count} label='优惠券' />}
           </div>
           <div className='absolute bottom-[10px] left-[20px]'>

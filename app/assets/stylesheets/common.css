@@ -39,3 +39,11 @@ h2 {
 .rounded-none {
   border-radius: 0px !important;
 }
+
+.custom-timeline.ant-timeline.ant-timeline-label .ant-timeline-item-label {
+  width: unset;
+}
+
+.ant-input-number-handler-wrap {
+  display: none !important;
+}

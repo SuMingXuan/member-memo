@@ -5,7 +5,7 @@ class User < ApplicationRecord
 
   has_many :members
 
-  def user_info_json
+  def as_json_list
     as_json(only: %i[phone name birthday])
   end
 end

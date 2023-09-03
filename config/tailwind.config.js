@@ -1,6 +1,7 @@
 const defaultTheme = require('tailwindcss/defaultTheme')
 
 module.exports = {
+  important: true,
   content: [
     './public/*.html',
     './app/helpers/**/*.rb',
@@ -8,10 +9,19 @@ module.exports = {
     './app/views/**/*.{erb,haml,html,slim}'
   ],
   safelist: [
+    'before:border-[#47C93A]',
+    'before:border-[#FF4857]',
+    'before:border-[#a7a7a7]',
+    'before:border-[#a7a7a7]',
+    'text-[#47C93A]',
+    'text-[#FF4857]',
+    'text-[#a7a7a7]',
+    'text-[#a7a7a7]',
   ],
   theme: {
     fontFamily: {
-      credit: ['ocr_a_std', 'sans-serif']
+      credit: ['ocr_a_std', 'sans-serif'],
+      mono: ['PT Mono']
     },
     extend: {
       colors: {
@@ -19,7 +29,8 @@ module.exports = {
           'FFB': '#FFBA01'
         },
         red: {
-          'FF4': '#FF4857'
+          'FF4': '#FF4857',
+          'F14': '#F1404B'
         },
         green: {
           '47C': '#47C93A',
