@@ -42,7 +42,6 @@ export default class Show extends React.Component {
           member[name] = value
           this.setState({ editField: null })
           this.setState({ member: member })
-          visit(`/members/${member.uuid}`);
         } else {
           App.message.error(res.message);
         }
@@ -73,17 +72,17 @@ export default class Show extends React.Component {
     const ShowOrEditInput = ({ name, value }) => <>
       <div className='w-[180px] lg:w-[200px] rounded-[12px]'>
         {this.state.editField == name ?
-          <Input className='lg:w-[200px]' size='large' defaultValue={value} autoFocus onPressEnter={(e) => { this.onSubmit(e, name) }} onBlur={(e) => { this.onSubmit(e, name) }} />
+          <Input className='lg:w-[200px] rounded-[12px]' size='large' defaultValue={value} autoFocus onPressEnter={(e) => { this.onSubmit(e, name) }} onBlur={(e) => { this.onSubmit(e, name) }} />
           :
           <ShowValue value={value} name={name} />
         }
       </div>
     </>
 
-    const ShowOrEditAmountInput = ({ name, value }) => <>
+    const ShowOrEditAmountInput = ({ name, value, max, min, placeholder }) => <>
       <div className='w-[180px] lg:w-[200px] rounded-[12px]'>
         {this.state.editField == name ?
-          <InputNumber className='w-[180px]' size='large' defaultValue={value} autoFocus onPressEnter={(e) => { this.onSubmit(e, name) }} onBlur={(e) => { this.onSubmit(e, name) }} />
+          <InputNumber className='w-[180px]' max={max} min={min} placeholder={placeholder} size='large' defaultValue={value} autoFocus onPressEnter={(e) => { this.onSubmit(e, name) }} onBlur={(e) => { this.onSubmit(e, name) }} />
           :
           <ShowValue value={value} name={name} />
         }
@@ -116,6 +115,12 @@ export default class Show extends React.Component {
         children: <ShowOrEditAmountInput name='points_count' value={member.points_count}></ShowOrEditAmountInput>,
       },
       {
+        key: 'discount',
+        span: 2,
+        label: <BaseLabel name='discount' label='折扣' />,
+        children: <ShowOrEditAmountInput name='discount' max={10.0} min={0.01} placeholder="0 - 10的折扣" value={member.discount}></ShowOrEditAmountInput>,
+      },
+      {
         key: 'level',
         span: 2,
         label: <BaseLabel name='level' label='会员等级' />,
@@ -144,6 +149,12 @@ export default class Show extends React.Component {
         span: 2,
         label: <BaseLabel name='activity_rules' label='活动说明' />,
         children: <ShowOrEditInput name='activity_rules' value={member.activity_rules}></ShowOrEditInput>,
+      },
+      {
+        key: 'total_savings_amount',
+        span: 2,
+        label: '总共约节约',
+        children: member.total_savings_amount,
       },
     ];
     return (

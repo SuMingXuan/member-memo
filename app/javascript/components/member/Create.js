@@ -49,7 +49,8 @@ export default class Create extends React.Component {
     const { userInfo } = this.props
     const themeClass = {
       dark: 'bg-gradient-dark',
-      primary: 'bg-gradient-primary'
+      primary: 'bg-gradient-primary',
+      red: 'bg-gradient-red'
     }
     const initialValues = {
       card_number: userInfo.phone || userInfo.name,
@@ -159,6 +160,7 @@ export default class Create extends React.Component {
               <Radio.Group className='flex justify-start gap-[10px]' onChange={(e) => { this.selectTheme(e) }}>
                 <ColorRadio value='dark' />
                 <ColorRadio value='primary' />
+                <ColorRadio value='red' />
               </Radio.Group>
             </Item>
             <Item>

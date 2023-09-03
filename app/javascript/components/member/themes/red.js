@@ -5,10 +5,11 @@ import Charge from '../Charge'
 import DiscountOrLevelLabel from './components/DiscountOrLevelLabel'
 import BaseInfo from './components/BaseInfo'
 
-export default class Primary extends React.Component {
+export default class Red extends React.Component {
   state = {
     configMode: false
   }
+
   toggleConfigMode = () => {
     this.setState({ configMode: !this.state.configMode });
   }
@@ -17,13 +18,17 @@ export default class Primary extends React.Component {
     const { configMode } = this.state
     return (
       <>
-        <div className='member-card bg-gradient-primary' onClick={() => { this.toggleConfigMode() }}>
+        <div className='member-card bg-gradient-red' onClick={() => { this.toggleConfigMode() }}>
           <Charge member={member} toggleConfigMode={() => { this.toggleConfigMode() }} configMode={configMode} />
           <div className="store-name">
             {member.store_name}
           </div>
-          <div className='flex justify-between'>
-            <span className={`card-number-primary`}>{ThemeUtil.formatCardNumber(member.card_number)}</span>
+          <div className='flex gap-[10px] my-[8px] items-center'>
+            <div className='relative w-[calc(100%-70px)]'>
+              <div className='font-mono absolute top-[-9px]'>
+                {ThemeUtil.formatCardNumber(member.card_number)}
+              </div>
+            </div>
             <DiscountOrLevelLabel discount={member.discount} level={member.level} />
           </div>
           <div className='flex justify-between'>

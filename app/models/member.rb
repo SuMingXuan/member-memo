@@ -2,7 +2,7 @@ class Member < ApplicationRecord
   include UuidConcern
   attr_accessor :force_income_or_expense
 
-  FREE_THEMES = { dark: 0, primary: 1 }.freeze
+  FREE_THEMES = { dark: 0, primary: 1, red: 2 }.freeze
   PAID_THEMES = {}.freeze
   THEMES = FREE_THEMES.merge(PAID_THEMES)
 
@@ -12,12 +12,16 @@ class Member < ApplicationRecord
 
   belongs_to :user, counter_cache: true
   has_many :coupons, dependent: :destroy
+  has_many :available_coupons, -> { available }, class_name: 'Coupon', foreign_key: :member_id
   has_one :point, dependent: :destroy
   has_many :member_orders, dependent: :destroy
   has_many :recharge_member_orders, dependent: :destroy
   has_many :consumption_member_orders, dependent: :destroy
   has_many :force_expense_member_orders, dependent: :destroy
   has_many :force_income_member_orders, dependent: :destroy
+
+  validates :discount, presence: true,
+                       numericality: { greater_than: 0, less_than_or_equal_to: 10, message: '折扣应该大于 0 且小于等于 10' }
 
   scope :sorted_by_expiry, lambda {
     order(Arel.sql("
@@ -35,6 +39,11 @@ class Member < ApplicationRecord
     as_json(except: %i[id user_id created_at updated_at])
   end
 
+  def savings(amount)
+    original_amount = amount / (discount / 10.0)
+    original_amount - amount
+  end
+
   private
 
   def listen_income_and_expense
@@ -42,7 +51,7 @@ class Member < ApplicationRecord
 
     calculate_balance if balance_changed?
     calculate_points if points_count_changed?
-    force_income_member_orders ? build_force_member_orders : build_member_orders
+    force_income_or_expense ? build_force_member_orders : build_member_orders
   end
 
   def calculate_balance

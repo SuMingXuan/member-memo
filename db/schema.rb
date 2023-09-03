@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_08_30_135221) do
+ActiveRecord::Schema[7.0].define(version: 2023_09_03_053410) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -47,6 +47,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_08_30_135221) do
     t.datetime "deleted_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.decimal "savings_amount", precision: 12, scale: 2, default: "0.0"
     t.index ["member_id"], name: "index_member_orders_on_member_id"
   end
 
@@ -62,13 +63,14 @@ ActiveRecord::Schema[7.0].define(version: 2023_08_30_135221) do
     t.integer "theme", default: 0
     t.string "activity_rules"
     t.integer "coupons_count", default: 0
-    t.integer "points_count", default: 0
+    t.decimal "points_count", precision: 12, scale: 2, default: "0.0"
     t.decimal "balance", precision: 12, scale: 2, default: "0.0"
     t.bigint "user_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.datetime "deleted_at"
-    t.decimal "discount", precision: 12, scale: 2, default: "1.0"
+    t.decimal "discount", precision: 12, scale: 2, default: "10.0"
+    t.decimal "total_savings_amount", precision: 12, scale: 2, default: "0.0"
     t.index ["user_id"], name: "index_members_on_user_id"
   end
 

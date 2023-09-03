@@ -57,10 +57,17 @@ export default class Charge extends React.Component {
                           </div>
 
                         </div>
-                        <div className={`text-[${typeMap[order.type].color}]`}>
+                        <div className={`text-[${typeMap[order.type].color}] flex justify-between`}>
 
                           {
-                            order.amount > 0 && <div>金额&nbsp;&nbsp;&nbsp;{typeMap[order.type].operation}{order.amount}</div>
+                            order.amount > 0 && <div>
+                              <div>金额&nbsp;&nbsp;&nbsp;{typeMap[order.type].operation}{order.amount}</div>
+                              {
+                                order.savings_amount > 0 && <div className='text-sm text-gray-777'>
+                                  节省&nbsp;&nbsp;&nbsp;{order.savings_amount}
+                                </div>
+                              }
+                            </div>
                           }
                           {
                             order.points_amount > 0 && <div>积分&nbsp;&nbsp;&nbsp;{typeMap[order.type].operation}{order.points_amount}</div>

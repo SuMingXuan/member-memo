@@ -32,6 +32,12 @@
   .pagination-action {
     @apply inline-block w-[10px] h-[10px] border-t-[2px] border-l-[2px] border-primary-599;
   }
+  /* red card start */
+
+  .bg-gradient-red {
+    @apply bg-red-F14 text-white relative overflow-hidden before:bg-gradient-to-r before:from-[#C10E1A] before:to-[#F1404C4D] before:w-[500px] before:h-[500px] before:top-[-320px] before:left-[-40px] after:w-[300px] after:h-[300px] after:bg-gradient-to-r after:from-[#C10E1A] after:to-[#F1404C4D] after:top-[80px] after:right-[-70px];
+  }
+  /* red card end */
 
   /* primary card start */
   .bg-gradient-primary {
@@ -50,7 +56,10 @@
     @apply cursor-pointer rounded-[12px] p-[20px] m-[auto] border shadow-[0_10px_15px_rgba(0,0,0,0.2)] w-full max-w-[470px] h-[210px] z-[10] before:absolute before:rounded-full before:z-[-30] after:absolute after:rounded-full after:z-[-30];
   }
   .level {
-    @apply border border-[white]/50 border-[0.5px] px-[15px] rounded-full text-[12px] flex items-center;
+    @apply border border-[white]/50 border-[0.5px] px-[10px] rounded-full text-[12px] flex items-center;
+  }
+  .discount {
+    @apply level justify-between;
   }
   .store-name {
     @apply text-[32px] font-bold line-clamp line-clamp-1;

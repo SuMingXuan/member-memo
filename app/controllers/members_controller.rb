@@ -43,7 +43,28 @@ class MembersController < ApplicationController
     if member.update(update_member_params)
       render json: { success: true }
     else
-      render json: { success: false, message: member.full_message }
+      render json: { success: false, message: member.errors.messages.values.flatten.join('，') }
+    end
+  end
+
+  def recharge
+    member.balance += charge_params[:amount].to_f
+    member.points_count += charge_params[:points_amount].to_f
+    if member.save
+      render json: { success: true }
+    else
+      render json: { success: false, message: member.errors.messages.values.flatten.join('，') }
+    end
+  end
+
+  def consumption
+    amount = charge_params[:amount].to_f
+    member.balance -= amount
+    member.points_count -= charge_params[:points_amount].to_f
+    if member.save
+      render json: { success: true }
+    else
+      render json: { success: false, message: member.errors.messages.values.flatten.join('，') }
     end
   end
 
@@ -63,5 +84,9 @@ class MembersController < ApplicationController
       :birthday, :store_address, :activity_rules, :force_income_or_expense,
       :points_count, :discount
     )
+  end
+
+  def charge_params
+    params.permit(:amount, :points_amount)
   end
 end

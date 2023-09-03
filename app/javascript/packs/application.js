@@ -1,5 +1,5 @@
 // Support component names relative to this directory:
-import { Turbo } from "@hotwired/turbo-rails"
+import "@hotwired/turbo-rails"
 import jQuery from 'jquery'
 import { notification } from 'antd'
 import dayjs from 'dayjs'
@@ -7,10 +7,10 @@ import 'dayjs/locale/zh-cn'
 dayjs.locale('zh-cn')
 
 // Turbo.session.drive = true
-Turbo.session.drive = false
-Window.Turbo = Turbo
+// Turbo.session.drive = false
+// Window.Turbo = Turbo
 
-Turbo.start()
+// Turbo.start()
 
 // window.Rails = require('@rails/ujs')
 // Rails.start()
@@ -74,6 +74,6 @@ document.addEventListener("turbo:load", (event) => {
 window.MobilePlatform = window.innerWidth < 1024
 window.csrf_token = document.querySelector('meta[name=csrf-token]').getAttribute('content');
 window.visit = (src) => {
-  // Turbo.visit(src, { frame: 'main_frame', action: 'replace' })
-  window.location.href = src
+  Turbo.visit(src, { frame: 'main_frame', action: 'replace' })
+  // window.location.href = src
 }

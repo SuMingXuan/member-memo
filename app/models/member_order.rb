@@ -9,7 +9,7 @@ class MemberOrder < ApplicationRecord
 
   def as_json_list
     as_json(
-      only: %i[type amount points_amount remark uuid created_at],
+      only: %i[type amount points_amount remark uuid created_at savings_amount],
       methods: %i[created_date]
     )
   end

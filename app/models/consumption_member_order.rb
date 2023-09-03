@@ -10,7 +10,10 @@ class ConsumptionMemberOrder < MemberOrder
   def decrement_member_balance(amount)
     return unless amount > 0
 
+    savings = member.savings(amount)
     self.amount = amount
+    self.savings_amount = savings
+    member.total_savings_amount += savings
     member.balance = 0 if member.balance < 0
   end
 

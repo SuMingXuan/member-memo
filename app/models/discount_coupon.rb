@@ -1,0 +1,2 @@
+class DiscountCoupon < Coupon
+end

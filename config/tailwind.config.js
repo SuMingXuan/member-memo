@@ -20,7 +20,8 @@ module.exports = {
   ],
   theme: {
     fontFamily: {
-      credit: ['ocr_a_std', 'sans-serif']
+      credit: ['ocr_a_std', 'sans-serif'],
+      mono: ['PT Mono']
     },
     extend: {
       colors: {
@@ -28,7 +29,8 @@ module.exports = {
           'FFB': '#FFBA01'
         },
         red: {
-          'FF4': '#FF4857'
+          'FF4': '#FF4857',
+          'F14': '#F1404B'
         },
         green: {
           '47C': '#47C93A',

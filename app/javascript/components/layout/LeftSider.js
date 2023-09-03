@@ -16,7 +16,7 @@ export default class LeftSider extends React.Component {
       {
         key: 'dashboard',
         icon: <PieChartOutlined />,
-        label: <a data-turbo-frame="main_frame" data-turbo-action="replace" href='/'>看板</a>,
+        label: <a data-turbo-frame="main_frame" data-turbo-action="replace" href='/dashboard'>看板</a>,
       },
       {
         key: 'card',
@@ -45,7 +45,6 @@ export default class LeftSider extends React.Component {
       },
     ];
 
-
     return (
       MobilePlatform ?
         <>
@@ -55,14 +54,14 @@ export default class LeftSider extends React.Component {
             style={{ right: 5, bottom: 80 }}
             icon={<AppstoreOutlined />}
           >
-            <FloatButton type='primary' data-turbo-frame='main_frame' data-turbo-action="replace" href='/' icon={<PieChartOutlined />} />
+            <FloatButton type='primary' data-turbo-frame='main_frame' data-turbo-action="replace" href='/dashboard' icon={<PieChartOutlined />} />
             <FloatButton type='primary' data-turbo-frame='main_frame' data-turbo-action="replace" href='/members' icon={<CreditCardOutlined />} />
             <FloatButton type='primary' icon={<TransactionOutlined />} />
             <FloatButton type='primary' icon={<UserOutlined />} />
           </FloatButton.Group>
         </>
         :
-        <Layout className='hidden lg:flex h-[100vh] strick bg-white shadow'>
+        <Layout className='hidden lg:flex h-[100vh] sticky top-0 left-0 bg-white shadow'>
           <Sider theme='light'>
             <div className="demo-logo-vertical flex justify-center">
               <img src={logo} className='rounded-[12px] w-[200px]'></img>

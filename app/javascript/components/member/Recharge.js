@@ -1,93 +1,79 @@
 import React from 'react';
-import { TimeFormat } from '../../utils/custom_format';
-export default class Primary extends React.Component {
+import { Modal, Form, InputNumber, Button } from 'antd';
+const { Item } = Form
+export default class Recharge extends React.Component {
+
   render() {
-    <>
-      <Modal
-        title="消费"
-        zIndex={200}
-        style={{
-          top: MobilePlatform ? 20 : 100,
-        }}
-        open={isModalOpen}
-        footer={null}
-        onCancel={() => this.closeCreateModal()}>
+    const { openCharge, member, closeRechargeModal, onSubmit } = this.props
 
-        <Form
-          layout="vertical"
-          name="create_member"
-          initialValues={initialValues}
-          onFinish={(values) => this.createMember(values)}
-        >
-          <input type="hidden" name="authenticity_token" value={csrf_token} />
-          <Item
-            name='store_name'
-            label='门店名称'
-            rules={[
-              {
-                required: true,
-                message: '请输入门店名称'
-              }
-            ]}
-          >
-            <Input className='common-input' size='large' placeholder="门店名称" />
-          </Item>
-          <Item
-            name='card_number'
-            label='会员卡号'
-            rules={[
-              {
-                required: true,
-                message: '请输入会员卡号！'
-              }
-            ]}
-          >
-            <Input className='common-input' size='large' placeholder="会员卡号" />
-          </Item>
+    return (
+      <>
+        <Modal
+          title={`${member.store_name} 充值`}
+          zIndex={300}
+          style={{
+            top: MobilePlatform ? 20 : 100,
+          }}
+          open={openCharge}
+          footer={null}
+          onCancel={() => closeRechargeModal()}>
 
-          <Row gutter={20}>
-            <Col span={12}>
-              <Item
-                name="balance"
-                label="充值金额"
-              >
-                <InputNumber prefix="￥" className='w-full' size='large' />
-              </Item>
-            </Col>
-            <Col span={12}>
-              <Item
-                name="consumption"
-                label="本次消费金额"
-              >
-                <InputNumber prefix="￥" className='w-full' size='large' />
-              </Item>
-            </Col>
-          </Row>
-
-          <Item
-            name="birthday"
-            label="会员生日"
-            help={userInfo.birthday ? null : '如果该会员有生日活动，补充生日后我们会在当天发送提醒'}
+          <Form
+            layout="vertical"
+            name="create_member"
+            onFinish={(values) => onSubmit(values)}
           >
-            <DatePicker className='common-input w-full' size='large' format={TimeFormat.default} locale={locale} />
-          </Item>
 
-          <Item
-            name="theme"
-            label="卡面"
-          >
-            <Radio.Group className='flex justify-start gap-[10px]' onChange={(e) => { this.selectTheme(e) }}>
-              <ColorRadio value='dark' />
-              <ColorRadio value='primary' />
-            </Radio.Group>
-          </Item>
-          <Item>
-            <Button type="primary" htmlType="submit" className="btn-primary rounded-[12px] float-right w-[150px]">
-              确定
-            </Button>
-          </Item>
-        </Form>
-      </Modal>
-    </>
+            <Item
+              name="amount"
+              label="金额"
+              rules={[
+                ({ getFieldValue }) => ({
+                  validator: (_, value) => {
+                    const pointsAmount = getFieldValue('points_amount');
+                    if (!value && !pointsAmount) {
+                      return Promise.reject('金额和积分至少需要填写一个');
+                    }
+                    return Promise.resolve();
+                  },
+                }),
+              ]}
+            >
+              <InputNumber
+                prefix="￥"
+                className='w-full'
+                size='large'
+              />
+            </Item>
+            <Item
+              name="points_amount"
+              label="积分"
+              rules={[
+                ({ getFieldValue }) => ({
+                  validator: (_, value) => {
+                    const amount = getFieldValue('amount');
+                    if (!value && !amount) {
+                      return Promise.reject('金额和积分至少需要填写一个');
+                    }
+                    return Promise.resolve();
+                  },
+                }),
+              ]}
+            >
+              <InputNumber
+                className='w-full'
+                size='large'
+              />
+            </Item>
+
+            <Item>
+              <Button type="primary" htmlType="submit" className="btn-primary rounded-[12px] float-right w-[150px]">
+                确定
+              </Button>
+            </Item>
+          </Form>
+        </Modal>
+      </>
+    )
   }
 }

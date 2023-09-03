@@ -17,5 +17,10 @@ Rails.application.routes.draw do
 
   # Defines the root path route ("/")
   root 'members#index'
-  resources :members, param: :uuid
+  resources :members, param: :uuid do
+    member do
+      post :recharge, :consumption
+    end
+  end
+  resources :dashboard
 end
