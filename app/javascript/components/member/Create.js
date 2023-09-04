@@ -176,7 +176,7 @@ export default class Create extends React.Component {
             <Item
               name="birthday"
               label="会员生日"
-              help="'如果该会员有生日活动则可填写"
+              help="如果该会员有生日活动则可填写"
             >
               <DatePicker placeholder='' className='common-input w-full' size='large' format={TimeFormat.default} locale={locale} />
             </Item>

@@ -1,4 +1,5 @@
 class MembersController < ApplicationController
+  before_action :check_members_count!, only: :create
   def index
     @members = current_user.members.sorted_by_expiry
     @members = @members.page(params[:page])
@@ -88,5 +89,11 @@ class MembersController < ApplicationController
 
   def charge_params
     params.permit(:amount, :points_amount)
+  end
+
+  def check_members_count!
+    return unless current_user.members.count >= current_user.max_members_count
+
+    render json: { success: false, message: t('errors.messages.not_enough_members_count') }
   end
 end

@@ -7,3 +7,4 @@ zh-CN:
       verify_code_not_match: 验证码错误
       theme_dose_not_exist: 卡面不存在，请选择正确的卡面
       phone_format_invalid: 电话格式不正确
+      not_enough_members_count: 会员卡超出限制
