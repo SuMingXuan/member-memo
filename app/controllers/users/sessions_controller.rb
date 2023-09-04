@@ -2,6 +2,7 @@
 
 class Users::SessionsController < Devise::SessionsController
   layout 'devise'
+  before_action :check_phone_format, only: %i[send_verify_code create]
   before_action :check_send_frequent!, only: :send_verify_code
   after_action :write_cache_for_verify_code!, only: :send_verify_code
 
@@ -10,6 +11,7 @@ class Users::SessionsController < Devise::SessionsController
   def create
     user = User.find_or_initialize_by(phone: params[:phone])
     if user.new_record?
+      user.invitation_code = cookies[:invitation_code]
       user.name = params[:phone]
       user.save
     end
@@ -53,5 +55,11 @@ class Users::SessionsController < Devise::SessionsController
 
   def verify_code
     @verify_code ||= Rails.env.production? ? rand(0..999_999).to_s.rjust(6, '0') : '123456'
+  end
+
+  def check_phone_format
+    return if params[:phone].match?(/\A\d{11}\z/)
+
+    render json: { success: false, message: t('errors.messages.phone_format_invalid') }
   end
 end
