@@ -1,5 +1,4 @@
 <%= link_to t('back'), members_path, class: 'text-primary-599' %>
-<%= link_to t('show'), member_path(@member), class: 'text-primary-599' %>
 <%= react_component "member/Show",
   member: @member.as_json_list,
   member_orders_group: @member_orders.map {|order| order.as_json_list }.group_by { |order| order["created_date"] }

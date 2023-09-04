@@ -1,6 +1,7 @@
 import React from 'react';
 import { Modal, Form, InputNumber, Button } from 'antd';
 const { Item } = Form
+import * as CalculateUtil from '../../utils/calculate_util.js'
 export default class Consumption extends React.Component {
   state = {
     savingsAmount: 0,
@@ -10,8 +11,8 @@ export default class Consumption extends React.Component {
 
   calcSavingsAmount = (amount) => {
     const { discount } = this.props.member
-    const originalAmount = (amount / (discount / 10.0)).toFixed(2)
-    const savingsAmount = (originalAmount - amount).toFixed(2)
+    const originalAmount = CalculateUtil.OriginalAmount(amount, discount)
+    const savingsAmount = CalculateUtil.SavingsAmount(amount, discount)
     this.setState({ savingsAmount, originalAmount, showSavingsDetail: true })
   }
 
@@ -43,7 +44,7 @@ export default class Consumption extends React.Component {
                 name="amount"
                 label="最终消费金额"
               >
-                <InputNumber onChange={(value) => this.calcSavingsAmount(value)} max={member.balance} prefix="￥" className='w-full' size='large' />
+                <InputNumber onChange={(value) => this.calcSavingsAmount(value)} max={member.balance} min={0} prefix="￥" className='w-full' size='large' />
               </Item>
             }
             {
@@ -52,15 +53,15 @@ export default class Consumption extends React.Component {
                 name="points_amount"
                 label="最终消费积分"
               >
-                <InputNumber max={member.points_count} className='w-full' size='large' />
+                <InputNumber max={member.points_count} min={0} className='w-full' size='large' />
               </Item>
             }
 
             {
               showSavingsDetail && <>
                 <div className="flex justify-between mb-[20px]">
-                  <div className="text-gray-a7a">预计折扣前金额：{originalAmount}</div>
-                  <div className="text-gray-a7a">预计节约：{savingsAmount}</div>
+                  <div className="text-gray-a7a">折扣前：{originalAmount}</div>
+                  <div className="text-gray-a7a">节约：{savingsAmount}</div>
                 </div>
               </>
             }
