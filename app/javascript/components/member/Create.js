@@ -2,7 +2,7 @@ import React from 'react';
 import dayjs from 'dayjs';
 import locale from 'antd/es/date-picker/locale/zh_CN';
 import { TimeFormat } from '../../utils/custom_format'
-
+import * as CalculateUtil from '../../utils/calculate_util.js'
 
 import { PlusOutlined } from '@ant-design/icons';
 import { Button, FloatButton, Modal, Form, Input, DatePicker, InputNumber, Col, Row, Radio } from 'antd';
@@ -12,6 +12,10 @@ export default class Create extends React.Component {
   state = {
     isModalOpen: false,
     theme: 'dark',
+    discount: 10,
+    showSavingsDetail: false,
+    consumptionAmount: 0,
+    rechargeAmount: 0,
   }
   createMember = (values) => {
     fetch(`/members`, {
@@ -41,11 +45,17 @@ export default class Create extends React.Component {
     this.setState({ isModalOpen: false })
   }
 
+  onDiscountChange = (value) => {
+    if (value > 0) {
+      this.setState({ showSavingsDetail: true, discount: value })
+    }
+  }
+
   selectTheme = (e) => {
     this.setState({ theme: e.target.value })
   }
   render() {
-    const { isModalOpen, theme } = this.state
+    const { isModalOpen, theme, discount, showSavingsDetail, consumptionAmount, rechargeAmount } = this.state
     const { userInfo } = this.props
     const themeClass = {
       dark: 'bg-gradient-dark',
@@ -126,21 +136,39 @@ export default class Create extends React.Component {
               <Input className='common-input' size='large' placeholder="会员卡号" />
             </Item>
 
-            <Row gutter={20}>
-              <Col span={12}>
+            <Row gutter={24}>
+              <Col span={8}>
                 <Item
                   name="balance"
                   label="充值金额"
+                  help={
+                    showSavingsDetail && `剩余：¥ ${rechargeAmount - consumptionAmount}`
+                  }
                 >
-                  <InputNumber prefix="￥" className='w-full' size='large' />
+                  <InputNumber min={0} prefix="￥" className='w-full' size='large' onChange={(value) => this.setState({ rechargeAmount: value })} />
                 </Item>
               </Col>
-              <Col span={12}>
+              <Col span={8}>
                 <Item
                   name="consumption"
                   label="本次消费金额"
+
+                  help={
+                    showSavingsDetail && `折扣前：¥ ${CalculateUtil.OriginalAmount(consumptionAmount, discount)}`
+                  }
                 >
-                  <InputNumber prefix="￥" className='w-full' size='large' />
+                  <InputNumber min={0} prefix="￥" className='w-full' size='large' onChange={(value) => { this.setState({ consumptionAmount: value }) }} />
+                </Item>
+              </Col>
+              <Col span={8}>
+                <Item
+                  name="discount"
+                  label="折扣"
+                  help={
+                    showSavingsDetail && `节约：¥ ${CalculateUtil.SavingsAmount(consumptionAmount, discount)}`
+                  }
+                >
+                  <InputNumber placeholder='0-10之间' max={10} min={0} onChange={(value) => this.onDiscountChange(value)} className='w-full' size='large' />
                 </Item>
               </Col>
             </Row>
@@ -148,9 +176,9 @@ export default class Create extends React.Component {
             <Item
               name="birthday"
               label="会员生日"
-              help={userInfo.birthday ? null : '如果该会员有生日活动，补充生日后我们会在当天发送提醒'}
+              help="'如果该会员有生日活动则可填写"
             >
-              <DatePicker className='common-input w-full' size='large' format={TimeFormat.default} locale={locale} />
+              <DatePicker placeholder='' className='common-input w-full' size='large' format={TimeFormat.default} locale={locale} />
             </Item>
 
             <Item

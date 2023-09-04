@@ -75,7 +75,7 @@ class MembersController < ApplicationController
   end
 
   def member_params
-    @member_params ||= params.require(:member).permit(:card_number, :birthday, :store_name, :balance, :theme)
+    @member_params ||= params.require(:member).permit(:card_number, :birthday, :store_name, :balance, :theme, :discount)
   end
 
   def update_member_params

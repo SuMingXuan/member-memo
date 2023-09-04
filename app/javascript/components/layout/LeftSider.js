@@ -24,21 +24,6 @@ export default class LeftSider extends React.Component {
         label: <a data-turbo-frame="main_frame" data-turbo-action="replace" href='/members'>卡管理</a>,
       },
       {
-        key: 'member_order',
-        icon: <TransactionOutlined />,
-        label: '订单',
-        children: [
-          {
-            key: 'consumption',
-            label: '消费',
-          },
-          {
-            key: 'recharge',
-            label: '充值',
-          },
-        ]
-      },
-      {
         key: 'user',
         icon: <UserOutlined />,
         label: <a data-method="delete" data-turbo-action="replace" href='/users/sign_out'>个人信息</a>,
@@ -56,7 +41,6 @@ export default class LeftSider extends React.Component {
           >
             <FloatButton type='primary' data-turbo-frame='main_frame' data-turbo-action="replace" href='/dashboard' icon={<PieChartOutlined />} />
             <FloatButton type='primary' data-turbo-frame='main_frame' data-turbo-action="replace" href='/members' icon={<CreditCardOutlined />} />
-            <FloatButton type='primary' icon={<TransactionOutlined />} />
             <FloatButton type='primary' icon={<UserOutlined />} />
           </FloatButton.Group>
         </>

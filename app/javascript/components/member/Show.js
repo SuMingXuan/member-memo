@@ -59,10 +59,10 @@ export default class Show extends React.Component {
       </div>
     </>
 
-    const ShowOrEditDatePicker = ({ name, value }) => <>
+    const ShowOrEditDatePicker = ({ name, value, placeholder }) => <>
       <div className='w-[180px] lg:w-[200px]'>
         {this.state.editField == name ?
-          <DatePicker className='w-[180px]' size='large' defaultValue={value && dayjs(value, TimeFormat.default)} autoFocus onBlur={(e) => { this.onSubmit(e, name) }} locale={locale} />
+          <DatePicker className='w-[180px]' size='large' placeholder={placeholder} defaultValue={value && dayjs(value, TimeFormat.default)} autoFocus onBlur={(e) => { this.onSubmit(e, name) }} locale={locale} />
           :
           <ShowValue value={value} name={name} />
         }
@@ -70,9 +70,19 @@ export default class Show extends React.Component {
     </>
 
     const ShowOrEditInput = ({ name, value }) => <>
-      <div className='w-[180px] lg:w-[200px] rounded-[12px]'>
+      <div className='w-[180px] lg:w-[200px]'>
         {this.state.editField == name ?
-          <Input className='lg:w-[200px] rounded-[12px]' size='large' defaultValue={value} autoFocus onPressEnter={(e) => { this.onSubmit(e, name) }} onBlur={(e) => { this.onSubmit(e, name) }} />
+          <Input className='lg:w-[200px] rounded-[8px]' size='large' defaultValue={value} autoFocus onPressEnter={(e) => { this.onSubmit(e, name) }} onBlur={(e) => { this.onSubmit(e, name) }} />
+          :
+          <ShowValue value={value} name={name} />
+        }
+      </div>
+    </>
+
+    const ShowOrEditAreaInput = ({ name, value, placeholder }) => <>
+      <div className='w-[80%] lg:w-[80%] rounded-[8px]'>
+        {this.state.editField == name ?
+          <Input.TextArea placeholder={placeholder} className='w-[80%] lg:w-[80%] rounded-[8px]' size='large' defaultValue={value} autoFocus onPressEnter={(e) => { this.onSubmit(e, name) }} onBlur={(e) => { this.onSubmit(e, name) }} />
           :
           <ShowValue value={value} name={name} />
         }
@@ -80,7 +90,7 @@ export default class Show extends React.Component {
     </>
 
     const ShowOrEditAmountInput = ({ name, value, max, min, placeholder }) => <>
-      <div className='w-[180px] lg:w-[200px] rounded-[12px]'>
+      <div className='w-[180px] lg:w-[200px] rounded-[8px]'>
         {this.state.editField == name ?
           <InputNumber className='w-[180px]' max={max} min={min} placeholder={placeholder} size='large' defaultValue={value} autoFocus onPressEnter={(e) => { this.onSubmit(e, name) }} onBlur={(e) => { this.onSubmit(e, name) }} />
           :
@@ -94,67 +104,67 @@ export default class Show extends React.Component {
         key: 'card_number',
         span: 2,
         label: <BaseLabel name='card_number' label='会员卡号' />,
-        children: <ShowOrEditInput name='card_number' value={member.card_number}></ShowOrEditInput>,
+        children: <ShowOrEditInput name='card_number' value={member.card_number} />,
       },
       {
         key: 'store_name',
         span: 2,
         label: <BaseLabel name='store_name' label='门店名称' />,
-        children: <ShowOrEditInput name='store_name' value={member.store_name}></ShowOrEditInput>,
+        children: <ShowOrEditInput name='store_name' value={member.store_name} />,
       },
       {
         key: 'balance',
         span: 2,
         label: <BaseLabel name='balance' label='余额' />,
-        children: <ShowOrEditAmountInput name='balance' value={member.balance}></ShowOrEditAmountInput>,
+        children: <ShowOrEditAmountInput name='balance' value={member.balance} />,
       },
       {
         key: 'points_count',
         span: 2,
         label: <BaseLabel name='points_count' label='积分' />,
-        children: <ShowOrEditAmountInput name='points_count' value={member.points_count}></ShowOrEditAmountInput>,
+        children: <ShowOrEditAmountInput name='points_count' value={member.points_count} />,
       },
       {
         key: 'discount',
         span: 2,
         label: <BaseLabel name='discount' label='折扣' />,
-        children: <ShowOrEditAmountInput name='discount' max={10.0} min={0.01} placeholder="0 - 10的折扣" value={member.discount}></ShowOrEditAmountInput>,
+        children: <ShowOrEditAmountInput name='discount' max={10.0} min={0.01} placeholder="0 - 10的折扣" value={member.discount} />,
       },
       {
         key: 'level',
         span: 2,
         label: <BaseLabel name='level' label='会员等级' />,
-        children: <ShowOrEditInput name='level' value={member.level}></ShowOrEditInput>,
+        children: <ShowOrEditInput name='level' value={member.level} />,
       },
       {
         key: 'expires_at',
         span: 2,
         label: <BaseLabel name='expires_at' label='过期时间' />,
-        children: <ShowOrEditDatePicker name='expires_at' value={member.expires_at}></ShowOrEditDatePicker>,
+        children: <ShowOrEditDatePicker placeholder="不填则永久有效" name='expires_at' value={member.expires_at} />,
       },
       {
         key: 'birthday',
         span: 2,
         label: <BaseLabel name='birthday' label='生日' />,
-        children: <ShowOrEditDatePicker name='birthday' value={member.birthday}></ShowOrEditDatePicker>,
+        children: <ShowOrEditDatePicker name='birthday' value={member.birthday} />,
       },
       {
         key: 'store_address',
         span: 2,
         label: <BaseLabel name='store_address' label='门店地址' />,
-        children: <ShowOrEditInput name='store_address' value={member.store_address}></ShowOrEditInput>,
-      },
-      {
-        key: 'activity_rules',
-        span: 2,
-        label: <BaseLabel name='activity_rules' label='活动说明' />,
-        children: <ShowOrEditInput name='activity_rules' value={member.activity_rules}></ShowOrEditInput>,
+        children: <ShowOrEditInput name='store_address' value={member.store_address} />,
       },
       {
         key: 'total_savings_amount',
         span: 2,
-        label: '总共约节约',
+        label: '总共节约',
         children: member.total_savings_amount,
+      },
+      {
+        key: 'activity_rules',
+        span: 4,
+        label: <BaseLabel name='activity_rules' label='活动说明' />,
+        children: <ShowOrEditAreaInput placeholder="可以备注一些额外的活动规则" name='activity_rules' value={member.activity_rules} />,
       },
     ];
     return (
