@@ -22,5 +22,5 @@ Rails.application.routes.draw do
       post :recharge, :consumption
     end
   end
-  resources :dashboard
+  get :profile, to: 'profile#show'
 end

@@ -11,22 +11,17 @@ const { Sider } = Layout;
 
 export default class LeftSider extends React.Component {
   render() {
-    const { activeKey = 'dashboard', logo } = this.props
+    const { activeKey, logo } = this.props
     const items = [
       {
-        key: 'dashboard',
-        icon: <PieChartOutlined />,
-        label: <a data-turbo-frame="main_frame" data-turbo-action="replace" href='/dashboard'>看板</a>,
-      },
-      {
-        key: 'card',
+        key: 'members',
         icon: <CreditCardOutlined />,
-        label: <a data-turbo-frame="main_frame" data-turbo-action="replace" href='/members'>卡管理</a>,
+        label: <a href='/members'>卡管理</a>,
       },
       {
-        key: 'user',
+        key: 'profile',
         icon: <UserOutlined />,
-        label: <a data-method="delete" data-turbo-action="replace" href='/users/sign_out'>个人信息</a>,
+        label: <a href='/profile'>个人信息</a>,
       },
     ];
 
@@ -39,9 +34,8 @@ export default class LeftSider extends React.Component {
             style={{ right: 5, bottom: 80 }}
             icon={<AppstoreOutlined />}
           >
-            <FloatButton type='primary' data-turbo-frame='main_frame' data-turbo-action="replace" href='/dashboard' icon={<PieChartOutlined />} />
-            <FloatButton type='primary' data-turbo-frame='main_frame' data-turbo-action="replace" href='/members' icon={<CreditCardOutlined />} />
-            <FloatButton type='primary' icon={<UserOutlined />} />
+            <FloatButton type='primary' href='/members' icon={<CreditCardOutlined />} />
+            <FloatButton type='primary' href='/profile' icon={<UserOutlined />} />
           </FloatButton.Group>
         </>
         :
