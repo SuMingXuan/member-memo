@@ -30,7 +30,6 @@ export default class List extends React.Component {
 
   render() {
     const { members, totalPages, currentPage } = this.state
-    console.log(members)
     return (
       <>
         <div className='grid lg:p-[20px] w-full lg:grid-cols-2 xl:grid-cols-3 gap-[20px] lg:gap-[35px]'>

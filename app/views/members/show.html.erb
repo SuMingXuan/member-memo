@@ -1,4 +1,7 @@
-<%= link_to t('back'), members_path, class: 'text-primary-599' %>
+<div class="justify-between sticky top-[0px] z-[100] shadow left-0 p-[20px] mx-[-20px] mt-[-20px] lg:m-0 lg:flex lg:shadow lg:p-[20px] bg-[#fbfbfb]">
+  <%= link_to t('back'), members_path, class: 'text-primary-599' %>
+  <%= link_to '退出登录', destroy_user_session_path, class: 'text-primary-599', data: {turbo_method: :delete} %>
+</div>
 <%= react_component "member/Show",
   member: @member.as_json_list,
   member_orders_group: @member_orders.map {|order| order.as_json_list }.group_by { |order| order["created_date"] }

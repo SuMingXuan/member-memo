@@ -61,7 +61,7 @@ export default class Consumption extends React.Component {
               showSavingsDetail && <>
                 <div className="flex justify-between mb-[20px]">
                   <div className="text-gray-a7a">折扣前：{originalAmount}</div>
-                  <div className="text-gray-a7a">节约：{savingsAmount}</div>
+                  <div className="text-gray-a7a">节省：{savingsAmount}</div>
                 </div>
               </>
             }

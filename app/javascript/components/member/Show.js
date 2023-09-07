@@ -7,7 +7,7 @@ import { Divider, Descriptions, Input, DatePicker, InputNumber, Popconfirm } fro
 import CustomTimeLine from './CustomTimeLine'
 
 import {
-  EditOutlined,
+  EditTwoTone
 } from '@ant-design/icons';
 export default class Show extends React.Component {
   state = {
@@ -54,7 +54,7 @@ export default class Show extends React.Component {
     const ShowValue = ({ value, name }) => <>
       <div className='h-[42px] flex items-center cursor-pointer' onClick={() => this.editFieldHandle(name)} >
         {
-          value || <EditOutlined />
+          value || <EditTwoTone />
         }
       </div>
     </>
@@ -102,76 +102,87 @@ export default class Show extends React.Component {
     const items = [
       {
         key: 'card_number',
-        span: 2,
+        span: 1,
         label: <BaseLabel name='card_number' label='会员卡号' />,
         children: <ShowOrEditInput name='card_number' value={member.card_number} />,
       },
       {
         key: 'store_name',
-        span: 2,
+        span: 1,
         label: <BaseLabel name='store_name' label='门店名称' />,
         children: <ShowOrEditInput name='store_name' value={member.store_name} />,
       },
       {
         key: 'balance',
-        span: 2,
+        span: 1,
         label: <BaseLabel name='balance' label='余额' />,
         children: <ShowOrEditAmountInput name='balance' value={member.balance} />,
       },
       {
         key: 'points_count',
-        span: 2,
+        span: 1,
         label: <BaseLabel name='points_count' label='积分' />,
         children: <ShowOrEditAmountInput name='points_count' value={member.points_count} />,
       },
       {
         key: 'discount',
-        span: 2,
+        span: 1,
         label: <BaseLabel name='discount' label='折扣' />,
         children: <ShowOrEditAmountInput name='discount' max={10.0} min={0.01} placeholder="0 - 10的折扣" value={member.discount} />,
       },
       {
+        key: 'total_savings_amount',
+        span: 1,
+        label: '总共节省',
+        children: <div className='h-[42px] flex items-center text-green-47C'>
+          {
+            member.total_savings_amount
+          }
+        </div>,
+      },
+      {
         key: 'level',
-        span: 2,
+        span: 1,
         label: <BaseLabel name='level' label='会员等级' />,
         children: <ShowOrEditInput name='level' value={member.level} />,
       },
       {
         key: 'expires_at',
-        span: 2,
+        span: 1,
         label: <BaseLabel name='expires_at' label='过期时间' />,
         children: <ShowOrEditDatePicker placeholder="不填则永久有效" name='expires_at' value={member.expires_at} />,
       },
       {
         key: 'birthday',
-        span: 2,
+        span: 1,
         label: <BaseLabel name='birthday' label='生日' />,
         children: <ShowOrEditDatePicker name='birthday' value={member.birthday} />,
       },
       {
         key: 'store_address',
-        span: 2,
+        span: 1,
         label: <BaseLabel name='store_address' label='门店地址' />,
         children: <ShowOrEditInput name='store_address' value={member.store_address} />,
       },
       {
-        key: 'total_savings_amount',
-        span: 2,
-        label: '总共节约',
-        children: member.total_savings_amount,
-      },
-      {
         key: 'activity_rules',
-        span: 4,
+        span: 1,
         label: <BaseLabel name='activity_rules' label='活动说明' />,
         children: <ShowOrEditAreaInput placeholder="可以备注一些额外的活动规则" name='activity_rules' value={member.activity_rules} />,
       },
     ];
     return (
       <>
-        <Descriptions column={MobilePlatform ? 2 : 4} title={<h2 className='text-center'>{member.store_name}</h2>} bordered items={items} />
-        <Divider />
-        <CustomTimeLine groups={member_orders_group} />
+        <div className='flex flex-col lg:flex-row'>
+          <div className="lg:h-[calc(100vh-64px)] lg:max-h-[calc(100vh-64px)] lg:overflow-scroll lg:p-[50px] lg:border-r mb-[30px] lg:mb-0">
+            <Descriptions size="small" column={1} title={
+              <h2 className='text-center mt-[20px] lg:mt-0'>{member.store_name}</h2>
+            } bordered items={items} />
+          </div>
+          <div className="lg:h-[calc(100vh-64px)] lg:max-h-[calc(100vh-64px)] lg:overflow-scroll lg:px-[50px] lg:py-[50px] lg:flex-1">
+            <CustomTimeLine groups={member_orders_group} />
+          </div>
+        </div>
       </>
     );
   }

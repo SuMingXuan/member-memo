@@ -1,21 +1,10 @@
-<%# TODO 补充设计 %>
-<div>
+<div class="flex justify-end sticky top-[0px] z-[100] shadow left-0 p-[20px] mx-[-20px] mt-[-20px] lg:m-0 lg:shadow lg:p-[20px] bg-[#fbfbfb] text-primary-599">
   <%= link_to '退出登录', destroy_user_session_path, data: {turbo_method: :delete} %>
 </div>
-<div>
-  持卡数: <%= current_user.members_count %>
-</div>
-<div>
-  邀请链接: <%= user_session_url(invitation_code: current_user.code) %>
-</div>
-<div>
-  邀请列表: 
-  <% current_user.invited_users.each do |user| %>
-    <span>
-      <%= encrypt_phone_number(user.name) if user.name != user.phone %>
-    </span>
-    <span>
-      <%= encrypt_phone_number(user.phone) %>
-    </span>
-  <% end %>
+<div class="lg:p-[50px]">
+  <%= react_component "profile/userInfo",
+    user: current_user.as_json_list,
+    bi_infos: @bi_infos,
+    invited_users_count: current_user.invited_users_count,
+    invitation_url: user_session_url(invitation_code: current_user.code) %>
 </div>

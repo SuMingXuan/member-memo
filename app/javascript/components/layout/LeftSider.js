@@ -1,9 +1,8 @@
 import React from 'react';
 import {
-  PieChartOutlined,
   UserOutlined,
   CreditCardOutlined,
-  TransactionOutlined,
+  CustomerServiceOutlined,
   AppstoreOutlined
 } from '@ant-design/icons';
 import { Layout, Menu, Divider, FloatButton } from 'antd';
@@ -22,6 +21,11 @@ export default class LeftSider extends React.Component {
         key: 'profile',
         icon: <UserOutlined />,
         label: <a href='/profile'>个人信息</a>,
+      },
+      {
+        key: 'customer',
+        icon: <CustomerServiceOutlined />,
+        label: <a href='/'>疑问咨询</a>,
       },
     ];
 

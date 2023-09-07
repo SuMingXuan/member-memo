@@ -44,7 +44,18 @@ class Member < ApplicationRecord
     original_amount - amount
   end
 
+  def record_total_consumption_and_savings_amount(amount)
+    self.total_consumption_amount += amount
+    self.total_savings_amount += savings(amount)
+  end
+
+  def record_total_recharge_amount(amount)
+    self.total_recharge_amount += amount
+  end
+
   private
+
+  # TODO: 如果项目能成功，这部分代码需要重构，这里的回调可能比较复杂，需要用 swiper 通过广播的方式异步去计算
 
   def listen_income_and_expense
     return unless balance_changed? || points_count_changed? || coupons_count_changed?
@@ -55,20 +66,23 @@ class Member < ApplicationRecord
   end
 
   def calculate_balance
-    before, now = changes['balance']
-    amount_difference = before - now
-
+    amount_difference = changed_difference('balance')
     if amount_difference > 0
       consumption_infos[:amount] = amount_difference
+      record_total_consumption_and_savings_amount(amount_difference)
     else
+      record_total_recharge_amount(-amount_difference)
       recharge_infos[:amount] = -amount_difference
     end
   end
 
-  def calculate_points
-    before, now = changes['points_count']
-    points_difference = before - now
+  def changed_difference(field)
+    before, now = changes[field.to_s]
+    before - now
+  end
 
+  def calculate_points
+    points_difference = changed_difference('points_count')
     if points_difference > 0
       consumption_infos[:points_amount] = points_difference
     else

@@ -13,15 +13,12 @@ class ConsumptionMemberOrder < MemberOrder
     savings = member.savings(amount)
     self.amount = amount
     self.savings_amount = savings
-    member.total_savings_amount += savings
-    member.balance = 0 if member.balance < 0
   end
 
   def decrement_member_points(points_amount)
     return unless points_amount > 0
 
     self.points_amount = points_amount
-    member.points_count = 0 if member.points_count < 0
   end
 
   def decrement_member_coupons(coupons = [])

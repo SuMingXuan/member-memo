@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_09_04_135531) do
+ActiveRecord::Schema[7.0].define(version: 2023_09_06_143101) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -71,6 +71,8 @@ ActiveRecord::Schema[7.0].define(version: 2023_09_04_135531) do
     t.datetime "deleted_at"
     t.decimal "discount", precision: 12, scale: 2, default: "10.0"
     t.decimal "total_savings_amount", precision: 12, scale: 2, default: "0.0"
+    t.decimal "total_consumption_amount", precision: 12, scale: 2, default: "0.0"
+    t.decimal "total_recharge_amount", precision: 12, scale: 2, default: "0.0"
     t.index ["user_id"], name: "index_members_on_user_id"
   end
 

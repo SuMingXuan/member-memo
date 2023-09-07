@@ -23,10 +23,13 @@ class MembersController < ApplicationController
       # 一次充值需要手动新建一个充值和消费的订单
       if member_params[:balance] > 0
         order = @member.recharge_member_orders.build
+        @member.record_total_recharge_amount(member_params[:balance])
         order.recharge(amount: member_params[:balance])
       end
 
       if params[:consumption] > 0
+        @member.balance -= params[:consumption]
+        @member.record_total_consumption_and_savings_amount(params[:consumption])
         order = @member.consumption_member_orders.build
         order.consumption(amount: params[:consumption])
       end

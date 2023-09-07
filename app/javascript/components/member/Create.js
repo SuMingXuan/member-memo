@@ -165,7 +165,7 @@ export default class Create extends React.Component {
                   name="discount"
                   label="折扣"
                   help={
-                    showSavingsDetail && `节约：¥ ${CalculateUtil.SavingsAmount(consumptionAmount, discount)}`
+                    showSavingsDetail && `节省：¥ ${CalculateUtil.SavingsAmount(consumptionAmount, discount)}`
                   }
                 >
                   <InputNumber placeholder='0-10之间' max={10} min={0} onChange={(value) => this.onDiscountChange(value)} className='w-full' size='large' />
@@ -175,8 +175,7 @@ export default class Create extends React.Component {
 
             <Item
               name="birthday"
-              label="会员生日"
-              help="如果该会员有生日活动则可填写"
+              label="生日"
             >
               <DatePicker placeholder='' className='common-input w-full' size='large' format={TimeFormat.default} locale={locale} />
             </Item>

@@ -23,4 +23,5 @@ Rails.application.routes.draw do
     end
   end
   get :profile, to: 'profile#show'
+  put :profile, to: 'profile#update'
 end

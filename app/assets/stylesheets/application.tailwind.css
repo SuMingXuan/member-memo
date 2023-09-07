@@ -53,7 +53,7 @@
 
   /* dark card end */
   .member-card {
-    @apply cursor-pointer rounded-[12px] p-[20px] m-[auto] border shadow-[0_10px_15px_rgba(0,0,0,0.2)] w-full max-w-[470px] h-[210px] z-[10] before:absolute before:rounded-full before:z-[-30] after:absolute after:rounded-full after:z-[-30];
+    @apply cursor-pointer rounded-[12px] p-[20px] m-[auto] border shadow-3xl w-full max-w-[470px] h-[210px] z-[10] before:absolute before:rounded-full before:z-[-30] after:absolute after:rounded-full after:z-[-30];
   }
   .level {
     @apply border border-[white]/50 border-[0.5px] px-[10px] rounded-full text-[12px] flex items-center;

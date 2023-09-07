@@ -10,6 +10,8 @@ module InvitationConcern
     has_many :invited_users, class_name: 'User', foreign_key: 'invitation_code', primary_key: 'code'
     belongs_to :inviter, class_name: 'User', foreign_key: 'invitation_code', primary_key: 'code', optional: true
 
+    delegate :count, to: :invited_users, prefix: true
+
     private
 
     def set_invitation_code

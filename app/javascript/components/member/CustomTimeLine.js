@@ -39,17 +39,17 @@ export default class Charge extends React.Component {
           <>
             <div className='flex justify-start items-start'>
               <div className='flex justify-center items-center relative'>
-                <span className='w-[100px] absolute lg:static left-[25px] text-base text-gray-777/50'>{dayjs(createdDate).format(TimeFormat.default)}</span>
+                <span className='w-[100px] absolute lg:static left-[25px] text-sm opacity-80'>{dayjs(createdDate).format(TimeFormat.default)}</span>
                 <ClockCircleOutlined className='text-primary-599' />
               </div>
-              <div className='flex flex-col w-[88%] lg:w-[400px] my-[20px] px-[25px] shadow translate-x-[20px] rounded-[6px]'>
+              <div className='flex flex-col w-[88%] lg:w-[400px] my-[20px] px-[25px] shadow-md translate-x-[20px] rounded-[6px]'>
 
                 {
                   groups[createdDate].map((order, orderIndex) => (
                     <>
                       <div className={` relative py-[20px] before:w-0 before:border-l-[2px] before:border-[${typeMap[order.type].color}] before:absolute before:top-[-6px] before:lg:top-[-2px] before:left-[-54px] ${orderIndex + 1 < groups[createdDate].length ? 'before:h-full' : 'before:h-[calc(100%+28px)]'} ${orderIndex + 1 < groups[createdDate].length && 'border-b'}`}>
-                        <div className={`mb-[5px] flex items-center justify-between`}>
-                          <div className={`text-xl text-[${typeMap[order.type].color}]`}>
+                        <div className={`mb-[10px] flex items-center justify-between`}>
+                          <div>
                             {typeMap[order.type].name}
                           </div>
                           <div className='flex justify-end opacity-80 text-sm'>
@@ -57,20 +57,37 @@ export default class Charge extends React.Component {
                           </div>
 
                         </div>
-                        <div className={`text-[${typeMap[order.type].color}] flex justify-between`}>
+                        <div className={`flex justify-between`}>
 
                           {
-                            order.amount > 0 && <div>
-                              <div>金额&nbsp;&nbsp;&nbsp;{typeMap[order.type].operation}{order.amount}</div>
+                            order.amount > 0 && <div className='text-sm opacity-80'>
+                              <div>
+                                <span className='mr-[8px]'>
+                                  金额
+                                </span>
+                                <span className={`text-[${typeMap[order.type].color}]`}>
+                                  {typeMap[order.type].operation}{order.amount}
+                                </span>
+                              </div>
                               {
-                                order.savings_amount > 0 && <div className='text-sm text-gray-777'>
-                                  节省&nbsp;&nbsp;&nbsp;{order.savings_amount}
+                                order.savings_amount > 0 && <div className='mt-[4px]'>
+                                  <span className='mr-[8px]'>
+                                    节省
+                                  </span>
+                                  {order.savings_amount}
                                 </div>
                               }
                             </div>
                           }
                           {
-                            order.points_amount > 0 && <div>积分&nbsp;&nbsp;&nbsp;{typeMap[order.type].operation}{order.points_amount}</div>
+                            order.points_amount > 0 && <div className='text-sm'>
+                              <span className='opacity-80 mr-[8px]'>
+                                积分
+                              </span>
+                              <span className={`text-[${typeMap[order.type].color}]`}>
+                                {typeMap[order.type].operation}{order.points_amount}
+                              </span>
+                            </div>
                           }
                         </div>
 
