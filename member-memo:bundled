@@ -1,0 +1,10 @@
+# 使用 Ruby 3.2.2 作为基础镜像
+FROM registry.cn-chengdu.aliyuncs.com/member-memo/ruby:3.2.2
+
+ADD Gemfile /app
+ADD Gemfile.lock /app
+ADD package.json /app
+ADD yarn.lock /app
+
+RUN bundle install
+RUN yarn install

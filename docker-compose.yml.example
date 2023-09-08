@@ -8,23 +8,31 @@ services:
       - pgdata:/var/lib/postgresql/data
     environment:
       POSTGRES_USER: xxx
-      POSTGRES_PASSWORD: xxxx
+      POSTGRES_PASSWORD: xxx-
       POSTGRES_DB: xxx
     ports:
       - "5432:5432"
   web:
-    image: registry.cn-chengdu.aliyuncs.com/member-memo/rails:7.0.7
+    image: registry-vpc.cn-chengdu.aliyuncs.com/member-memo/project
     restart: always
     command: >
       bash -c "
       bundle exec rails assets:precompile
+      && bundle exec rails db:create
       && bundle exec rails db:migrate
       && bundle exec rails db:seed
       && bundle exec rails s -p 3000 -b '0.0.0.0'"
-    volumes:
-      - ./log:/myapp/log
     environment:
       RAILS_ENV: production
+      POSTGRESQL_HOST: "db"
+      POSTGRESQL_USERNAME: xxx
+      POSTGRESQL_PASSWORD: xxx-
+      POSTGRESQL_DATABASE_PRD: xxx
+      RAILS_SERVE_STATIC_FILES: "true"
+
+    volumes:
+      - ./log:/myapp/log
+
     ports:
       - "3000:3000"
     depends_on:
