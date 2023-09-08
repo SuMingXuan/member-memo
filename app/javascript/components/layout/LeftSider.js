@@ -38,8 +38,8 @@ export default class LeftSider extends React.Component {
             style={{ right: 5, bottom: 80 }}
             icon={<AppstoreOutlined />}
           >
-            <FloatButton type='primary' href='/members' icon={<CreditCardOutlined />} />
-            <FloatButton type='primary' href='/profile' icon={<UserOutlined />} />
+            <FloatButton className="shadow-2xl" type='primary' href='/members' icon={<CreditCardOutlined />} />
+            <FloatButton className="shadow-2xl" type='primary' href='/profile' icon={<UserOutlined />} />
           </FloatButton.Group>
         </>
         :

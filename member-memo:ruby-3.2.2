@@ -1,0 +1,18 @@
+# 使用 Ruby 3.2.2 作为基础镜像
+FROM ruby:3.2.2
+
+# 安装一些常用工具
+RUN apt-get update -qq && apt-get install -y build-essential libpq-dev nodejs npm
+
+RUN npm install -g yarn
+
+RUN mkdir /app
+# 设置工作目录
+WORKDIR /app
+
+ADD . /app
+
+RUN bundle install
+RUN yarn install
+
+

@@ -32,7 +32,7 @@ export default class List extends React.Component {
     const { members, totalPages, currentPage } = this.state
     return (
       <>
-        <div className='grid lg:p-[20px] w-full lg:grid-cols-2 xl:grid-cols-3 gap-[20px] lg:gap-[35px]'>
+        <div className='flex flex-wrap justify-center lg:justify-around lg:p-[20px] w-full gap-[20px] lg:gap-[35px]'>
           {members.map(member => {
             if (member.theme === 'dark') {
               return <Dark member={member} key={member.uuid} />;

@@ -1,0 +1,35 @@
+version: "3"
+services:
+  db:
+    image: postgres:15.4
+    restart: always
+    command: ["-c", "shared_buffers=256MB", "-c", "max_connections=100"]
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    environment:
+      POSTGRES_USER: xxx
+      POSTGRES_PASSWORD: xxxx
+      POSTGRES_DB: xxx
+    ports:
+      - "5432:5432"
+  web:
+    image: registry.cn-chengdu.aliyuncs.com/member-memo/rails:7.0.7
+    restart: always
+    command: >
+      bash -c "
+      bundle exec rails assets:precompile
+      && bundle exec rails db:migrate
+      && bundle exec rails db:seed
+      && bundle exec rails s -p 3000 -b '0.0.0.0'"
+    volumes:
+      - ./log:/myapp/log
+    environment:
+      RAILS_ENV: production
+    ports:
+      - "3000:3000"
+    depends_on:
+      - db
+volumes:
+  pgdata:
+    external: true
+    name: member-memo-db
