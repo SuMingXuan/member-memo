@@ -2,7 +2,7 @@
   <div class="flex flex-col lg:flex-row justify-center lg:justify-between lg:justify-items-center items-center h-[100vh]">
     <div class="sign-bg text-white flex justify-center flex-col items-center gap-[46px] w-[400px]">
       <%= image_tag 'logo.svg', class: 'rounded-[12px] w-[120px] lg:w-[200px] bg-white' %>
-      <p class='p mb-[100px] lg:mb-0'><%= t('site_slogan') %></p>
+      <p class='p text-xl mb-[100px] lg:mb-0'><%= t('site_slogan') %></p>
     </div>
     <div class=''>
       <%= react_component 'devise/SignIn' %>

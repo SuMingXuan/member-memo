@@ -281,6 +281,9 @@ GEM
       sprockets (>= 3.0.0)
     tailwindcss-rails (2.0.30-x86_64-darwin)
       railties (>= 6.0.0)
+    tencentcloud-sdk-common (3.0.655)
+    tencentcloud-sdk-sms (3.0.655)
+      tencentcloud-sdk-common (~> 3.0)
     thor (1.2.2)
     tilt (2.2.0)
     timeout (0.4.0)
@@ -336,6 +339,7 @@ DEPENDENCIES
   simplecov-lcov
   sprockets-rails
   tailwindcss-rails (~> 2.0, >= 2.0.30)
+  tencentcloud-sdk-sms (~> 3.0, >= 3.0.655)
   turbo-rails
   tzinfo-data
   web-console

@@ -118,7 +118,7 @@ export default class UserInfo extends React.Component {
 
           <Card
             className='shadow-xl w-full lg:w-[unset]'
-            title="习惯"
+            title="最常消费"
           >
 
             <Statistic

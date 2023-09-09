@@ -151,7 +151,7 @@ export default class Create extends React.Component {
               <Col span={8}>
                 <Item
                   name="consumption"
-                  label="本次消费金额"
+                  label="本次消费"
 
                   help={
                     showSavingsDetail && `折扣前：¥ ${CalculateUtil.OriginalAmount(consumptionAmount, discount)}`
