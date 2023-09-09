@@ -7,13 +7,21 @@ services:
     volumes:
       - pgdata:/var/lib/postgresql/data
     environment:
-      POSTGRES_USER: xxx
-      POSTGRES_PASSWORD: xxx-
-      POSTGRES_DB: xxx
+      POSTGRES_USER: username
+      POSTGRES_PASSWORD: password
+      POSTGRES_DB: member_memo
     ports:
       - "5432:5432"
+  redis:
+    image: redis:7.2.1
+    restart: always
+    command: redis-server
+    volumes:
+      - cache:/data
+    ports:
+      - "6379:6379"
   web:
-    image: registry-vpc.cn-chengdu.aliyuncs.com/member-memo/project
+    image: registry-vpc.cn-chengdu.aliyuncs.com/member-memo/project:20230908
     restart: always
     command: >
       bash -c "
@@ -25,10 +33,11 @@ services:
     environment:
       RAILS_ENV: production
       POSTGRESQL_HOST: "db"
-      POSTGRESQL_USERNAME: xxx
-      POSTGRESQL_PASSWORD: xxx-
-      POSTGRESQL_DATABASE_PRD: xxx
+      POSTGRESQL_USERNAME: username
+      POSTGRESQL_PASSWORD: password
+      POSTGRESQL_DATABASE_PRD: member_memo
       RAILS_SERVE_STATIC_FILES: "true"
+      REDIS_URL: "redis://redis:6379/0"
 
     volumes:
       - ./log:/myapp/log
@@ -37,7 +46,11 @@ services:
       - "3000:3000"
     depends_on:
       - db
+      - redis
 volumes:
+  cache:
+    external: true
+    name: member-memo-redis-db
   pgdata:
     external: true
     name: member-memo-db

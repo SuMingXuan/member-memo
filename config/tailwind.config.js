@@ -42,6 +42,7 @@ module.exports = {
         gray: {
           'a7a': '#a7a7a7',
           '777': '#777',
+          'CCC': '#cccccc'
         },
         black: {
           '303': '#303030',

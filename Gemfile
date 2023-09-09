@@ -45,13 +45,11 @@ gem 'tzinfo-data', platforms: %i[mingw mswin x64_mingw jruby]
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', require: false
 gem 'devise', '~> 4.9', '>= 4.9.2'
-gem 'figaro', '~> 1.2'
 gem 'kaminari', '~> 1.2', '>= 1.2.2'
 gem 'paranoia', '~> 2.6', '>= 2.6.2'
 gem 'react-rails', '~> 3.1', '>= 3.1.1'
 gem 'redis', '~> 5.0', '>= 5.0.7'
 gem 'shakapacker', '~> 7.0', '>= 7.0.3'
-gem 'sidekiq', '~> 7.1', '>= 7.1.2'
 gem 'tailwindcss-rails', '~> 2.0', '>= 2.0.30'
 # Use Sass to process CSS
 # gem "sassc-rails"
@@ -69,7 +67,7 @@ end
 
 group :development do
   # Use console on exceptions pages [https://github.com/rails/web-console]
-  gem 'letter_opener_web', '~> 2.0'
+  # gem 'letter_opener_web', '~> 2.0'
   gem 'web-console'
 
   # Add speed badges [https://github.com/MiniProfiler/rack-mini-profiler]
