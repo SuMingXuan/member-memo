@@ -12,7 +12,7 @@ export default class List extends React.Component {
     price: 0,
   }
   render() {
-    const { invitation_url, products, user } = this.props
+    const { invitation_url, products, user, alipay_icon, wxpay_icon } = this.props
     const { selectedProductId } = this.state
     return (
       <div className='relative'>
@@ -29,9 +29,8 @@ export default class List extends React.Component {
               <CopyToClipboard
                 text={invitation_url}
                 onCopy={() => App.message.success('复制成功')}>
-                <div className='flex items-center cursor-pointer gap-[15px] text-start'>
+                <div className='hover:text-primary-599 flex items-center cursor-pointer gap-[15px] text-start'>
                   {invitation_url}
-                  <CopyTwoTone />
                 </div>
               </CopyToClipboard>
             </div>
@@ -62,10 +61,17 @@ export default class List extends React.Component {
             </div>
             <div className='flex flex-row gap-[30px] justify-between lg:justify-end w-full lg:w-[unset]'>
               <div>
-                <Button size="large" className='w-[120px] h-[45px] rounded-[8px] shadow-2xl bg-primary-599 text-white'>支付宝</Button>
+
+                <Button size="large" className='hover:border-2 w-[120px] h-[45px] rounded-[8px] shadow border-primary-599 text-primary-599 flex items-center justify-center gap-[5px]'>
+                  <img className='w-[15px]' src={alipay_icon} />
+                  支付宝
+                </Button>
               </div>
               <div>
-                <Button size="large" className='w-[120px] h-[45px] rounded-[8px] shadow-2xl bg-green-47C text-white'>微信</Button>
+                <Button size="large" className='hover:border-2 w-[120px] h-[45px] rounded-[8px] shadow border-green-47C text-green-47C flex items-center justify-center gap-[5px]'>
+                  <img className='w-[15px]' src={wxpay_icon} />
+                  微信
+                </Button>
               </div>
             </div>
           </div>
