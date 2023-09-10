@@ -7,5 +7,5 @@
     total_pages: @members.total_pages,
     current_page: @members.current_page
   %>
-  <%= react_component "member/Create", userInfo: current_user.as_json_list %>
+  <%= react_component "member/Create", userInfo: current_user.as_json_list, themesList: Member::THEMES.keys %>
 </div>

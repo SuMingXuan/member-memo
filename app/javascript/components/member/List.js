@@ -2,6 +2,7 @@ import React from 'react';
 import Dark from './themes/dark'
 import Primary from './themes/primary'
 import Red from './themes/red'
+import Blue from './themes/blue'
 import { Button } from 'antd';
 
 export default class List extends React.Component {
@@ -38,6 +39,8 @@ export default class List extends React.Component {
               return <Dark member={member} key={member.uuid} />;
             } else if (member.theme === 'red') {
               return <Red member={member} key={member.uuid} />;
+            } else if (member.theme === 'blue') {
+              return <Blue member={member} key={member.uuid} />;
             } else {
               return <Primary member={member} key={member.uuid} />;
             }

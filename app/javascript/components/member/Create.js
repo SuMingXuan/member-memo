@@ -61,12 +61,7 @@ export default class Create extends React.Component {
   }
   render() {
     const { isModalOpen, theme, discount, showSavingsDetail, consumptionAmount, rechargeAmount } = this.state
-    const { userInfo } = this.props
-    const themeClass = {
-      dark: 'bg-gradient-dark',
-      primary: 'bg-gradient-primary',
-      red: 'bg-gradient-red'
-    }
+    const { userInfo, themesList } = this.props
     const initialValues = {
       card_number: userInfo.phone || userInfo.name,
       birthday: userInfo.birthday && dayjs(userInfo.birthday, TimeFormat.default),
@@ -76,11 +71,10 @@ export default class Create extends React.Component {
     }
 
     const ColorRadio = ({ value }) => (
-      <Radio value={value} className={`hidden-radio w-[80px] h-[50px] rounded-[12px] hover:opacity-100 ${this.state.theme == value ? 'opacity-100 border-[3px] border-primary-599' : 'opacity-50'} ${themeClass[value]}`} />
+      <Radio value={value} className={`hidden-radio w-[80px] h-[50px] rounded-[12px] hover:opacity-100 ${this.state.theme == value ? 'opacity-100 border-[3px] border-primary-599' : 'opacity-50'} bg-gradient-${value}`} />
     )
     return (
       <>
-
         {
           MobilePlatform ?
             <FloatButton
@@ -190,9 +184,9 @@ export default class Create extends React.Component {
               label="卡面"
             >
               <Radio.Group className='flex justify-start gap-[10px]' onChange={(e) => { this.selectTheme(e) }}>
-                <ColorRadio value='dark' />
-                <ColorRadio value='primary' />
-                <ColorRadio value='red' />
+                {
+                  themesList.map((theme) => <ColorRadio value={theme} />)
+                }
               </Radio.Group>
             </Item>
             <Item>

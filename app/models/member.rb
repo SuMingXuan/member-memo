@@ -2,7 +2,7 @@ class Member < ApplicationRecord
   include UuidConcern
   attr_accessor :force_income_or_expense
 
-  FREE_THEMES = { dark: 0, primary: 1, red: 2 }.freeze
+  FREE_THEMES = { dark: 0, primary: 1, red: 2, blue: 3 }.freeze
   PAID_THEMES = {}.freeze
   THEMES = FREE_THEMES.merge(PAID_THEMES)
 
