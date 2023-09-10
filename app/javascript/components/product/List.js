@@ -20,7 +20,7 @@ export default class List extends React.Component {
           <h2 className='text-center my-[20px] lg:my-[40px] text-2xl lg:text-[32px]'>购买卡位</h2>
           {
             user.members_count > user.max_members_count &&
-            <p className='text-sm lg:text-base text-red-FF4 mb-[20px] lg:mb-[40px] text-center'>当前不能再新增会员卡了，请及时购买。</p>
+            <p className='text-sm lg:text-base text-red-FF4 mb-[20px] lg:mb-[40px] text-center'>当前不能再创建会员卡了，请及时购买。</p>
           }
         </div>
         <div className='flex flex-col lg:flex-row gap-[20px] lg:items-center lg:justify-between'>

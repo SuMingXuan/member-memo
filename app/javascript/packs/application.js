@@ -7,7 +7,7 @@ import 'dayjs/locale/zh-cn'
 dayjs.locale('zh-cn')
 
 // Turbo.session.drive = true
-// Turbo.session.drive = false
+Turbo.session.drive = false
 // Window.Turbo = Turbo
 
 // Turbo.start()

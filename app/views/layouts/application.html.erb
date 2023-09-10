@@ -1,9 +1,12 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>MemberMemo</title>
+    <title><%= t('site_name') %></title>
+    <meta name="keywords" content="会员, 会员笔记, 会员卡, 个人用户会员卡管理">
+    <meta name="description" content="<%= t('site_slogan') %>">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <meta name="turbo-visit-control" content="reload">
+    <link rel="icon" type="image/png" href="/favicon.png"/>
+    <link rel="icon" type="image/png" href="/favicon.ico"/>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
     <%= stylesheet_link_tag "tailwind", "inter-font", "data-turbo-track": "reload" %>

@@ -1,6 +1,11 @@
 DATE := `date +%Y%m%d`
 
 build\:push:
-	docker build -t member-memo-project:$(DATE) .
-	docker tag member-memo-project:$(DATE) registry.cn-chengdu.aliyuncs.com/member-memo/project:$(DATE)
-	docker push registry.cn-chengdu.aliyuncs.com/member-memo/project:$(DATE)
+	docker build -t member-memo:project .
+	docker tag member-memo:project ccr.ccs.tencentyun.com/tsf_100020325872/member-memo:project
+	docker push ccr.ccs.tencentyun.com/tsf_100020325872/member-memo:project
+
+build\:bundle:
+	docker build -t member-memo:bundled -f member-memo.bundled .
+	docker tag member-memo:bundled ccr.ccs.tencentyun.com/tsf_100020325872/member-memo:bundled
+	docker push ccr.ccs.tencentyun.com/tsf_100020325872/member-memo:bundled

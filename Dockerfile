@@ -1,4 +1,4 @@
-FROM registry.cn-chengdu.aliyuncs.com/member-memo/bundled:20230909
+FROM ccr.ccs.tencentyun.com/tsf_100020325872/member-memo:bundled
 
 ADD . /app
 

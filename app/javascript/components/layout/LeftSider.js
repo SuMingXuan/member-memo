@@ -41,7 +41,7 @@ export default class LeftSider extends React.Component {
     ];
 
     return (
-      <>
+      <nav>
 
         {MobilePlatform ?
           <>
@@ -103,7 +103,7 @@ export default class LeftSider extends React.Component {
 
 
         </Modal>
-      </>
+      </nav>
 
     );
   }
