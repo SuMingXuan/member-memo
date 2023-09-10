@@ -70,4 +70,7 @@
   .common-input {
     @apply rounded-[6px] border-[#d9d9d9];
   }
+  .selected-product {
+    @apply border-primary-599 shadow relative after:absolute after:border-[30px] after:border-r-primary-599 after:border-t-primary-599 after:border-l-transparent after:border-b-transparent after:rounded-tr-[8px] after:top-0 after:right-0 before:w-[20px] before:h-[10px] before:border-[2px] before:border-r-white before:border-t-white before:border-l-transparent before:border-b-transparent before:top-[8px] before:right-[6px] before:absolute before:z-[30] before:rotate-[135deg];
+  }
 }

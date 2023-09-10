@@ -17,6 +17,7 @@ module.exports = {
     'text-[#FF4857]',
     'text-[#a7a7a7]',
     'text-[#a7a7a7]',
+    'flex-row',
   ],
   theme: {
     fontFamily: {

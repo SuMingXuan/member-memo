@@ -83,7 +83,7 @@ class MembersController < ApplicationController
   end
 
   def update_member_params
-    params.require(:member).permit(
+    params.permit(
       :card_number, :store_name, :balance, :level, :expires_at,
       :birthday, :store_address, :activity_rules, :force_income_or_expense,
       :points_count, :discount

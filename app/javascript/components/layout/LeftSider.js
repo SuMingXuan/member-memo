@@ -3,9 +3,11 @@ import {
   UserOutlined,
   CreditCardOutlined,
   CustomerServiceOutlined,
-  AppstoreOutlined
+  AppstoreOutlined,
+  AccountBookOutlined
 } from '@ant-design/icons';
 import { Layout, Menu, Divider, FloatButton, Modal, Card } from 'antd';
+import { CopyToClipboard } from 'react-copy-to-clipboard';
 const { Sider } = Layout;
 
 export default class LeftSider extends React.Component {
@@ -20,6 +22,11 @@ export default class LeftSider extends React.Component {
         key: 'members',
         icon: <CreditCardOutlined />,
         label: <a href='/members'>卡管理</a>,
+      },
+      {
+        key: 'product',
+        icon: <AccountBookOutlined />,
+        label: <a href='/products'>购买卡位</a>,
       },
       {
         key: 'profile',
@@ -45,7 +52,9 @@ export default class LeftSider extends React.Component {
               icon={<AppstoreOutlined />}
             >
               <FloatButton className="shadow-2xl" type='primary' href='/members' icon={<CreditCardOutlined />} />
+              <FloatButton className="shadow-2xl" type='primary' href='/products' icon={<AccountBookOutlined />} />
               <FloatButton className="shadow-2xl" type='primary' href='/profile' icon={<UserOutlined />} />
+              <FloatButton className="shadow-2xl" type='primary' onClick={() => { this.setState({ openCustomService: true }) }} icon={<CustomerServiceOutlined />} />
             </FloatButton.Group>
           </>
           :
@@ -58,13 +67,37 @@ export default class LeftSider extends React.Component {
               <Menu className='border-e-0' defaultSelectedKeys={[activeKey]} defaultOpenKeys={['card']} mode="inline" items={items} />
             </Sider>
           </Layout>}
-        <Modal open={openCustomService} footer={null} onCancel={() => { this.setState({ openCustomService: false }) }}>
-          <div className='flex items-center lg:flex-col flex-row gap-[25px]'>
-            <div className='border rounded-[12px] p-[20px]'>
+        <Modal centered open={openCustomService} footer={null} onCancel={() => { this.setState({ openCustomService: false }) }}>
+          <div className='flex items-center lg:flex-row flex-col gap-[25px] py-[50px]'>
+            <div className='border rounded-[12px] p-[5px] lg:p-[20px]'>
               <img src={custom_qr_code} className='w-[120px]' />
             </div>
-            <div className='text-xl'>
-              如果使用中有任何疑问请随时联系我们。
+
+            <div className='lg:text-xl flex flex-col gap-[15px]'>
+              <div className='text-center lg:text-start'>
+                电话：<a href='tel:13608077730'>13608077730</a>
+              </div>
+              <div>
+                <CopyToClipboard
+                  text="SSS13608077730"
+                  onCopy={() => App.message.success('复制成功')}>
+                  <div className='text-center lg:text-start'>
+                    微信：SSS13608077730
+                  </div>
+                </CopyToClipboard>
+              </div>
+              <div>
+                <CopyToClipboard
+                  text="1154621382"
+                  onCopy={() => App.message.success('复制成功')}>
+                  <div className='text-center lg:text-start'>
+                    QQ：1154621382
+                  </div>
+                </CopyToClipboard>
+              </div>
+              <div className='opacity-80 text-center lg:text-start'>
+                如果使用中有任何疑问请随时联系我们。
+              </div>
             </div>
           </div>
 

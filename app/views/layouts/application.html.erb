@@ -12,7 +12,11 @@
   </head>
   <body class='bg-[#fbfbfb]'>
     <div class="flex">
-      <%= react_component 'layout/LeftSider', activeKey: params[:controller], logo: image_path('logo.svg'), custom_qr_code: image_path("wechat_qr_code.jpg") %>
+      <%= react_component 'layout/LeftSider',
+        activeKey: params[:controller],
+        logo: image_path('logo.svg'),
+        custom_qr_code: image_path("wechat_qr_code.jpg")
+      %>
       <%= turbo_frame_tag "main_frame", class: 'w-full p-[20px] lg:p-[unset]' do %>
         <%= yield %>
       <% end%>

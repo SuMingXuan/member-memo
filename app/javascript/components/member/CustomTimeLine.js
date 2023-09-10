@@ -18,7 +18,7 @@ export default class Charge extends React.Component {
       },
       'RechargeMemberOrder': {
         name: '充值',
-        operation: '',
+        operation: '+',
         color: '#47C93A',
       },
       'ForceExpenseMemberOrder': {
@@ -28,7 +28,7 @@ export default class Charge extends React.Component {
       },
       'ForceIncomeMemberOrder': {
         name: '冲正',
-        operation: '',
+        operation: '+',
         color: '#a7a7a7',
       },
     }

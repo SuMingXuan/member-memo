@@ -17,4 +17,6 @@ Rails.application.routes.draw do
   end
   get :profile, to: 'profile#show'
   put :profile, to: 'profile#update'
+  resources :products, only: :index
+  resources :orders, only: :create
 end

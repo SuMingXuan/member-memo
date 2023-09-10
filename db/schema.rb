@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_09_06_143101) do
+ActiveRecord::Schema[7.0].define(version: 2023_09_09_143826) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -76,6 +76,16 @@ ActiveRecord::Schema[7.0].define(version: 2023_09_06_143101) do
     t.index ["user_id"], name: "index_members_on_user_id"
   end
 
+  create_table "orders", force: :cascade do |t|
+    t.bigint "product_id", null: false
+    t.bigint "user_id", null: false
+    t.decimal "payment_amount", precision: 12, scale: 2, default: "0.0"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["product_id"], name: "index_orders_on_product_id"
+    t.index ["user_id"], name: "index_orders_on_user_id"
+  end
+
   create_table "points", force: :cascade do |t|
     t.uuid "uuid", default: -> { "gen_random_uuid()" }, null: false
     t.bigint "member_id", null: false
@@ -85,6 +95,15 @@ ActiveRecord::Schema[7.0].define(version: 2023_09_06_143101) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["member_id"], name: "index_points_on_member_id"
+  end
+
+  create_table "products", force: :cascade do |t|
+    t.string "name"
+    t.integer "count"
+    t.integer "status", default: 0
+    t.decimal "price", precision: 12, scale: 2, default: "0.0"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "users", force: :cascade do |t|
@@ -116,5 +135,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_09_06_143101) do
   add_foreign_key "member_order_items", "member_orders"
   add_foreign_key "member_orders", "members"
   add_foreign_key "members", "users"
+  add_foreign_key "orders", "products"
+  add_foreign_key "orders", "users"
   add_foreign_key "points", "members"
 end

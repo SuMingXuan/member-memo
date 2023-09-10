@@ -4,6 +4,7 @@ class User < ApplicationRecord
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :rememberable, :trackable
+  before_create :set_max_members_count
 
   has_many :members
   has_many :member_orders, through: :members
@@ -14,5 +15,11 @@ class User < ApplicationRecord
     as_json(
       only: %i[phone name birthday max_members_count members_count]
     )
+  end
+
+  private
+
+  def set_max_members_count
+    self.set_max_members_count = 10
   end
 end

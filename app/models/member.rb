@@ -69,9 +69,7 @@ class Member < ApplicationRecord
     amount_difference = changed_difference('balance')
     if amount_difference > 0
       consumption_infos[:amount] = amount_difference
-      record_total_consumption_and_savings_amount(amount_difference)
     else
-      record_total_recharge_amount(-amount_difference)
       recharge_infos[:amount] = -amount_difference
     end
   end
@@ -91,10 +89,14 @@ class Member < ApplicationRecord
   end
 
   def build_member_orders
-    consumption_member_orders.build.consumption(**consumption_infos) if consumption_infos.present?
+    if consumption_infos.present?
+      consumption_member_orders.build.consumption(**consumption_infos)
+      record_total_consumption_and_savings_amount(consumption_infos[:amount])
+    end
     return unless recharge_infos.present?
 
     recharge_member_orders.build.recharge(**recharge_infos)
+    record_total_recharge_amount(recharge_infos[:amount])
   end
 
   def build_force_member_orders
