@@ -2,12 +2,12 @@ import React from 'react';
 import dayjs from 'dayjs';
 import { TimeFormat } from '../../utils/custom_format'
 import locale from 'antd/es/date-picker/locale/zh_CN';
-
-import { Divider, Descriptions, Input, DatePicker, InputNumber, Popconfirm } from 'antd';
+import { Descriptions, Input, DatePicker, InputNumber, Tooltip } from 'antd';
 import CustomTimeLine from './CustomTimeLine'
 
 import {
-  EditTwoTone
+  EditTwoTone,
+  QuestionCircleTwoTone
 } from '@ant-design/icons';
 export default class Show extends React.Component {
   state = {
@@ -115,13 +115,25 @@ export default class Show extends React.Component {
       {
         key: 'balance',
         span: 1,
-        label: <BaseLabel name='balance' label='余额' />,
+        label: <BaseLabel name='balance' label={
+          <div className='flex gap-[5px] items-center'>
+            余额
+            <Tooltip placement="right" title="如果余额出现了偏差可以在这里强制修正余额。别担心，同样会新增一条冲正记录">
+              <QuestionCircleTwoTone />
+            </Tooltip>
+          </div>} />,
         children: <ShowOrEditAmountInput name='balance' value={member.balance} />,
       },
       {
         key: 'points_count',
         span: 1,
-        label: <BaseLabel name='points_count' label='积分' />,
+        label: <BaseLabel name='points_count' label={
+          <div className='flex gap-[5px] items-center'>
+            积分
+            <Tooltip placement="right" title="如果积分出现了偏差可以在这里强制修正积分。别担心，同样会新增一条冲正记录">
+              <QuestionCircleTwoTone />
+            </Tooltip>
+          </div>} />,
         children: <ShowOrEditAmountInput name='points_count' value={member.points_count} />,
       },
       {
