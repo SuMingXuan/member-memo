@@ -41,32 +41,33 @@ export default class LeftSider extends React.Component {
     ];
 
     return (
-      <nav>
+      <nav className='sticky top-0 left-0 bg-white shadow'>
 
-        {MobilePlatform ?
-          <>
-            <FloatButton.Group
-              trigger="click"
-              type="primary"
-              style={{ right: 5, bottom: 80 }}
-              icon={<AppstoreOutlined />}
-            >
-              <FloatButton className="shadow-2xl" type='primary' href='/members' icon={<CreditCardOutlined />} />
-              <FloatButton className="shadow-2xl" type='primary' href='/products' icon={<AccountBookOutlined />} />
-              <FloatButton className="shadow-2xl" type='primary' href='/profile' icon={<UserOutlined />} />
-              <FloatButton className="shadow-2xl" type='primary' onClick={() => { this.setState({ openCustomService: true }) }} icon={<CustomerServiceOutlined />} />
-            </FloatButton.Group>
-          </>
-          :
-          <Layout className='hidden lg:flex h-[100vh] sticky top-0 left-0 bg-white shadow'>
-            <Sider theme='light'>
-              <div className="demo-logo-vertical flex justify-center">
-                <img src={logo} className='rounded-[12px] w-[200px]'></img>
-              </div>
-              <Divider />
-              <Menu className='border-e-0' defaultSelectedKeys={[activeKey]} defaultOpenKeys={['card']} mode="inline" items={items} />
-            </Sider>
-          </Layout>}
+        {
+          MobilePlatform ?
+            <>
+              < FloatButton.Group
+                trigger="click"
+                type="primary"
+                style={{ right: 5, bottom: 80 }}
+                icon={< AppstoreOutlined />}
+              >
+                <FloatButton className="shadow-2xl" type='primary' href='/members' icon={<CreditCardOutlined />} />
+                <FloatButton className="shadow-2xl" type='primary' href='/products' icon={<AccountBookOutlined />} />
+                <FloatButton className="shadow-2xl" type='primary' href='/profile' icon={<UserOutlined />} />
+                <FloatButton className="shadow-2xl" type='primary' onClick={() => { this.setState({ openCustomService: true }) }} icon={<CustomerServiceOutlined />} />
+              </FloatButton.Group >
+            </>
+            :
+            <Layout className='hidden lg:flex h-[100vh]'>
+              <Sider theme='light'>
+                <div className="demo-logo-vertical flex justify-center">
+                  <img src={logo} className='rounded-[12px] w-[200px]'></img>
+                </div>
+                <Divider />
+                <Menu className='border-e-0' defaultSelectedKeys={[activeKey]} defaultOpenKeys={['card']} mode="inline" items={items} />
+              </Sider>
+            </Layout>}
         <Modal centered open={openCustomService} footer={null} onCancel={() => { this.setState({ openCustomService: false }) }}>
           <div className='flex items-center lg:flex-row flex-col gap-[25px] py-[50px]'>
             <div className='border rounded-[12px] p-[5px] lg:p-[20px]'>
@@ -103,7 +104,7 @@ export default class LeftSider extends React.Component {
 
 
         </Modal>
-      </nav>
+      </nav >
 
     );
   }

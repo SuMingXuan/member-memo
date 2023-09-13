@@ -68,6 +68,7 @@ export default class Create extends React.Component {
       theme: theme,
       balance: 0,
       consumption: 0,
+      discount: 10,
     }
 
     const ColorRadio = ({ value }) => (
@@ -167,17 +168,17 @@ export default class Create extends React.Component {
                     showSavingsDetail && `节省：¥ ${CalculateUtil.SavingsAmount(consumptionAmount, discount)}`
                   }
                 >
-                  <InputNumber placeholder='0-10之间' max={10} min={0} onChange={(value) => this.onDiscountChange(value)} className='w-full' size='large' />
+                  <InputNumber suffix="折" placeholder='0-10之间' max={10} min={0} onChange={(value) => this.onDiscountChange(value)} className='w-full' size='large' />
                 </Item>
               </Col>
             </Row>
 
-            <Item
+            {/* <Item
               name="birthday"
               label="生日"
             >
               <DatePicker placeholder='' className='common-input w-full' size='large' format={TimeFormat.default} locale={locale} />
-            </Item>
+            </Item> */}
 
             <Item
               name="theme"

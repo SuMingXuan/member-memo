@@ -42,7 +42,7 @@ export default class Consumption extends React.Component {
               member.balance > 0 &&
               <Item
                 name="amount"
-                label="最终消费金额"
+                label="本次消费金额"
               >
                 <InputNumber onChange={(value) => this.calcSavingsAmount(value)} max={member.balance} min={0} prefix="￥" className='w-full' size='large' />
               </Item>
@@ -51,9 +51,9 @@ export default class Consumption extends React.Component {
               member.points_count > 0 &&
               <Item
                 name="points_amount"
-                label="最终消费积分"
+                label="本次消费积分"
               >
-                <InputNumber max={member.points_count} min={0} className='w-full' size='large' />
+                <InputNumber placeholder='没有则不填' max={member.points_count} min={0} className='w-full' size='large' />
               </Item>
             }
 
@@ -67,7 +67,7 @@ export default class Consumption extends React.Component {
             }
 
             <Item>
-              <Button type="primary" htmlType="submit" className="btn-primary rounded-[12px] float-right w-[150px]">
+              <Button type="primary" htmlType="submit" className="btn-primary rounded-[12px] float-right w-[120px]">
                 确定
               </Button>
             </Item>

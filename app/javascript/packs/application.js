@@ -6,11 +6,11 @@ import dayjs from 'dayjs'
 import 'dayjs/locale/zh-cn'
 dayjs.locale('zh-cn')
 
-// Turbo.session.drive = true
-Turbo.session.drive = false
+Turbo.session.drive = true
+// Turbo.session.drive = false
 // Window.Turbo = Turbo
 
-// Turbo.start()
+Turbo.start()
 
 // window.Rails = require('@rails/ujs')
 // Rails.start()
@@ -68,7 +68,7 @@ window.App = $.extend({}, window.App, {
 //   ReactRailsUJS.mountComponents('#main_frame')
 // })
 
-// ReactRailsUJS.handleEvent('turbo:frame-load', ReactRailsUJS.handleMount)
+ReactRailsUJS.handleEvent('turbo:frame-load', ReactRailsUJS.handleMount)
 // ReactRailsUJS.handleEvent('turbo:frame-render', ReactRailsUJS.handleUnmount)
 
 window.MobilePlatform = window.innerWidth < 1024
