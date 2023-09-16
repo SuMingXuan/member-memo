@@ -24,11 +24,6 @@ export default class LeftSider extends React.Component {
         label: <a href='/members'>卡管理</a>,
       },
       {
-        key: 'product',
-        icon: <AccountBookOutlined />,
-        label: <a href='/products'>购买卡位</a>,
-      },
-      {
         key: 'profile',
         icon: <UserOutlined />,
         label: <a href='/profile'>个人信息</a>,
@@ -37,6 +32,11 @@ export default class LeftSider extends React.Component {
         key: 'customer',
         icon: <CustomerServiceOutlined />,
         label: <a onClick={() => { this.setState({ openCustomService: true }) }}>联系我们</a>,
+      },
+      {
+        key: 'product',
+        icon: <AccountBookOutlined />,
+        label: <a href='/products'>捐赠</a>,
       },
     ];
 
@@ -53,9 +53,9 @@ export default class LeftSider extends React.Component {
                 icon={< AppstoreOutlined />}
               >
                 <FloatButton className="shadow-2xl" type='primary' href='/members' icon={<CreditCardOutlined />} />
-                <FloatButton className="shadow-2xl" type='primary' href='/products' icon={<AccountBookOutlined />} />
                 <FloatButton className="shadow-2xl" type='primary' href='/profile' icon={<UserOutlined />} />
                 <FloatButton className="shadow-2xl" type='primary' onClick={() => { this.setState({ openCustomService: true }) }} icon={<CustomerServiceOutlined />} />
+                <FloatButton className="shadow-2xl" type='primary' href='/products' icon={<AccountBookOutlined />} />
               </FloatButton.Group >
             </>
             :
@@ -97,14 +97,12 @@ export default class LeftSider extends React.Component {
                 </CopyToClipboard>
               </div>
               <div className='opacity-80 text-center lg:text-start'>
-                如果使用中有任何疑问请随时联系我们。
+                如果使用中有任何疑问和建议请随时联系我们。
               </div>
             </div>
           </div>
-
-
         </Modal>
-      </nav >
+      </nav>
 
     );
   }

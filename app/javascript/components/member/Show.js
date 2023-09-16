@@ -25,7 +25,7 @@ export default class Show extends React.Component {
 
     const values = {}
     values[name] = value
-    if (name == 'balance') {
+    if (name == 'balance' || name == 'points_count') {
       values.force_income_or_expense = true
     }
     fetch(`/members/${member.uuid}`, {
@@ -130,7 +130,7 @@ export default class Show extends React.Component {
         label: <BaseLabel name='points_count' label={
           <div className='flex gap-[5px] items-center'>
             积分
-            <Tooltip placement="right" title="如果积分出现了偏差可以在这里强制修正积分。别担心，同样会新增一条冲正记录">
+            <Tooltip placement="right" title="如果积分出现了偏差可以在这里强制修正积分。别担心，同样会新增一条冲正记录。同时如果你在这里填加了积分后，消费和充值的时候也可以填积分了。">
               <QuestionCircleTwoTone />
             </Tooltip>
           </div>} />,

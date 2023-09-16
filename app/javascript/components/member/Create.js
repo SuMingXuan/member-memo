@@ -39,11 +39,11 @@ export default class Create extends React.Component {
   }
   openCreateModal = () => {
     const { userInfo } = this.props
-    if (userInfo.max_members_count < userInfo.members_count) {
-      visit('/products')
-    } else {
-      this.setState({ isModalOpen: true })
-    }
+    // if (userInfo.max_members_count < userInfo.members_count) {
+    //   visit('/products')
+    // } else {
+    this.setState({ isModalOpen: true })
+    // }
   }
 
   closeCreateModal = () => {

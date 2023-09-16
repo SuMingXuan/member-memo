@@ -50,12 +50,14 @@ class Member < ApplicationRecord
   end
 
   def record_total_recharge_amount(amount)
+    return if amount.to_f == 0
+
     self.total_recharge_amount += amount
   end
 
   private
 
-  # TODO: 如果项目能成功，这部分代码需要重构，这里的回调可能比较复杂，需要用 swiper 通过广播的方式异步去计算
+  # TODO: 如果可以的话，这部分代码需要重构，这里的回调可能比较复杂，需要用 swiper 通过广播的方式异步去计算
 
   def listen_income_and_expense
     return unless balance_changed? || points_count_changed? || coupons_count_changed?
