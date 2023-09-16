@@ -78,6 +78,8 @@ module BiDataOfUser
 
     # 最常去的门店
     def most_frequent_members_of_consumption
+    # TODO ActiveRecord 可能有 bug 将 ForceExpenseMemberOrder 也查了进来
+
       group = consumption_member_orders.group(:member_id).count
       max_frequent = group.invert.keys.max
       member_ids = group.select { |_k, v| v == max_frequent }.keys

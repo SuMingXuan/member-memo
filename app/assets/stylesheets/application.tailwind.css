@@ -50,7 +50,7 @@
   }
 
   .member-card {
-    @apply cursor-pointer rounded-[12px] p-[20px] border shadow-2xl w-full lg:min-w-[380px] lg:max-w-[470px] h-[210px] z-[10] before:absolute before:rounded-full before:z-[-30] after:absolute after:rounded-full after:z-[-30];
+    @apply cursor-pointer rounded-[12px] p-[20px] border shadow-2xl w-full lg:min-w-[380px] lg:max-w-[430px] h-[210px] z-[10] before:absolute before:rounded-full before:z-[-30] after:absolute after:rounded-full after:z-[-30];
   }
   .level {
     @apply border border-[white]/50 border-[0.5px] px-[10px] rounded-full text-[12px] flex items-center;
