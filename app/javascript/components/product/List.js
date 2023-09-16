@@ -16,13 +16,19 @@ export default class List extends React.Component {
         <Modal title="其他捐赠方式" open={openDonation} footer={null} onCancel={() => { this.setState({ openDonation: false }) }}>
 
           <h2 className='text-center my-[20px] lg:my-[40px] text-xl lg:text-[27px]'>感谢你的捐助</h2>
-          <p className='text-sm lg:text-base opacity-80 text-primary-599 mb-[10px] lg:mb-[20px] text-center'>
-            我们会将捐助的所有钱都用于服务器的维护和开销以及系统的后续迭代。每一分钱都能让这个系统多运行 105.79 秒
+          <p className='text-sm lg:text-base mb-[10px] lg:mb-[20px] text-center'>
+            我们会将捐助的所有钱都用于服务器的维护和开销以及系统的后续迭代。每一分钱都能让这个系统多运行 {((30 * 24 * 60 * 60) / (249 * 100)).toFixed(2)} 秒
+          </p>
+          <p className='text-sm lg:text-base text-primary-599 mb-[10px] lg:mb-[20px] text-center'>
+            如果可以，请备注你的联系方式，让我们一起聊聊。
           </p>
           <div className="flex flex-col items-center">
-            <img src={zfb_private_qrcode} className='w-[250px] mb-[20px]' alt="" />
-            <img src={wx_private_qrcode} className='w-[250px]' alt="" />
+            <img src={zfb_private_qrcode} className='w-[220px] mb-[20px]' alt="" />
+            <img src={wx_private_qrcode} className='w-[220px] mb-[20px]' alt="" />
           </div>
+          <p className='text-[6px] lg:text-base text-gray opacity-40 mb-[10px] lg:mb-[20px] text-center'>
+            抱歉！我们的服务器目前仅在成都节点部署，西南地区之外的用户外可能会出现较高的延迟。我们会尽全力在全国各个节点部署服务！
+          </p>
         </Modal>
         <div>
           <h2 className='text-center my-[20px] lg:my-[40px] text-2xl lg:text-[32px]'>

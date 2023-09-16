@@ -1,2 +1,3 @@
-class ForceIncomeMemberOrder < RechargeMemberOrder
+class ForceIncomeMemberOrder < MemberOrder
+  include RechargeConcern
 end

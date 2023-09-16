@@ -41,7 +41,7 @@ export default class LeftSider extends React.Component {
     ];
 
     return (
-      <nav className='sticky top-0 left-0 bg-white shadow'>
+      <nav className='sticky top-0 left-0 bg-white shadow z-[999]'>
 
         {
           MobilePlatform ?
@@ -49,6 +49,7 @@ export default class LeftSider extends React.Component {
               < FloatButton.Group
                 trigger="click"
                 type="primary"
+                className='z-[999]'
                 style={{ right: 5, bottom: 80 }}
                 icon={< AppstoreOutlined />}
               >
