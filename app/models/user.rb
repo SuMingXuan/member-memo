@@ -17,14 +17,14 @@ class User < ApplicationRecord
     )
   end
 
-  def md5_sign(data)
-    data = data.merge(key: '4ec94b293ff34defa7d35e37682e868f')
-    Digest::MD5.hexdigest(data.to_query)
-  end
+  # def md5_sign(data)
+  #   data = data.merge(key: '4ec94b293ff34defa7d35e37682e868f')
+  #   Digest::MD5.hexdigest(data.to_query)
+  # end
 
   private
 
   def set_max_members_count
-    self.set_max_members_count = 10
+    self.max_members_count = 10
   end
 end

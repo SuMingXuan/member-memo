@@ -7,7 +7,7 @@ FactoryBot.define do
     store_name { FFaker::CompanyCN.name }
     store_address { FFaker::Address.street_address }
     store_image_url { FFaker::Internet.http_url }
-    points { rand(0..10_000) }
+    points_count { rand(0..10_000) }
     balance { rand(0..10_000.0).round(2) }
     coupons_count { 3 }
     activity_rules { FFaker::LoremCN.paragraph }
