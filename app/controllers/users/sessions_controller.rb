@@ -58,7 +58,7 @@ class Users::SessionsController < Devise::SessionsController
   end
 
   def check_phone_format!
-    return if params[:phone].match?(/\A\d{11}\z/)
+    return unless params[:phone].blank? || !params[:phone].match?(/\A\d{11}\z/)
 
     render json: { success: false, message: t('errors.messages.phone_format_invalid') }
   end
