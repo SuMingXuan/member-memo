@@ -36,7 +36,7 @@ export default class List extends React.Component {
               捐赠
             </span>
           </h2>
-          <p className='text-sm lg:text-base text-primary-599 mb-[20px] lg:mb-[40px] text-center'>感谢你的支持，我们会更加努力改进微卡！</p>
+          <p className='text-sm lg:text-base text-primary-599 mb-[20px] lg:mb-[40px] text-center'>感谢你的支持，我们会更加努力改进会员影子！</p>
           {/* {
             user.members_count > user.max_members_count &&
             <p className='text-sm lg:text-base text-red-FF4 mb-[20px] lg:mb-[40px] text-center'>当前不能再创建会员卡了，请及时购买。</p>
