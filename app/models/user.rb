@@ -25,6 +25,6 @@ class User < ApplicationRecord
   private
 
   def set_max_members_count
-    self.max_members_count = 10
+    self.max_members_count = 3
   end
 end

@@ -1,14 +1,17 @@
-<div class="container mx-auto max-w-full lg:max-w-[1168px]">
-  <div class="flex flex-col lg:flex-row justify-center lg:justify-between items-center h-[100vh]">
-    <div class="sign-bg text-white flex justify-center flex-col items-center gap-[46px] w-[400px]">
-      <%= image_tag 'logo.svg', class: 'rounded-[12px] w-[120px] lg:w-[200px] bg-white' %>
-      <p class='p text-xl mb-[100px] lg:mb-0'><%= t('site_slogan') %></p>
+<div class="sign-bg">
+  <div class="container mx-auto max-w-full lg:max-w-[1168px]">
+    <div class="flex flex-col lg:flex-row justify-center lg:justify-between items-center h-[100vh]">
+      <div class=" text-white flex justify-center flex-col items-center gap-[46px] w-[400px]">
+        <%= image_tag 'logo.svg', class: 'rounded-[12px] w-[120px] lg:w-[200px] bg-white' %>
+        <p class='p text-xl mb-[100px] lg:mb-0'><%= t('site_slogan') %></p>
+      </div>
+      <div class=''>
+        <%= react_component 'devise/SignIn' %>
+      </div>
     </div>
-    <div class=''>
-      <%= react_component 'devise/SignIn' %>
+    <div class="absolute bottom-[10px] flex flex-col justify-center w-full lg:max-w-[1168px]">
+      <p class='p text-slate text-center'><%= t('auto_login_after_verified') %></p>
+      <a href="https://beian.miit.gov.cn/" class="text-sm text-slate-400 block w-full py-[8px] text-center" target="_blank">蜀ICP备2023023829号</a>
     </div>
-  </div>
-  <div class="absolute bottom-[10px] flex justify-center w-full lg:max-w-[1168px]">
-    <p class='p text-gray'><%= t('auto_login_after_verified') %></p>
   </div>
 </div>

@@ -2,7 +2,7 @@
 <html>
   <head>
     <title><%= t('site_name') %></title>
-    <meta name="keywords" content="会员, 会员笔记, 会员卡, 个人用户会员卡管理">
+    <meta name="keywords" content="会员卡, 会员影子, 会员卡管理, 个人用户会员卡管理">
     <meta name="description" content="<%= t('site_slogan') %>">
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <meta name="turbo-visit-control" content="reload">
@@ -15,15 +15,17 @@
     <%= javascript_pack_tag "application", "data-turbo-track": "reload" %>
   </head>
   <body class='bg-[#fbfbfb]'>
-    <div class="flex">
+    <div class="flex flex-col lg:flex-row">
       <%= react_component 'layout/LeftSider',
         activeKey: params[:controller],
         logo: image_path('logo.svg'),
         custom_qr_code: image_path("wechat_qr_code.jpg")
       %>
-      <%= turbo_frame_tag "main_frame", class: 'w-full p-[20px] lg:p-[unset]' do %>
+      <%= turbo_frame_tag "main_frame", class: 'w-full p-[20px] lg:p-[unset] relative' do %>
         <%= yield %>
+        <a href="https://beian.miit.gov.cn/" class="hidden lg:block text-sm text-slate-400 absolute bottom-0 w-full py-[8px] text-center" target="_blank">蜀ICP备2023023829号</a>
       <% end%>
+      <a href="https://beian.miit.gov.cn/" class="lg:hidden block text-sm text-slate-400 w-full py-[8px] text-center" target="_blank">蜀ICP备2023023829号</a>
     </div>
   </body>
 </html>
