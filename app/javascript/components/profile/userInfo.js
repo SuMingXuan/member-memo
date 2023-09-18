@@ -78,9 +78,9 @@ export default class UserInfo extends React.Component {
             <Col xs={{ span: 24 }} md={{ span: 12 }}>
               <Statistic title="持卡数量" value={user.members_count} />
             </Col>
-            {/* <Col xs={{ span: 24 }} md={{ span: 12 }}>
+            <Col xs={{ span: 24 }} md={{ span: 12 }}>
               <Statistic title="持卡上限" value={user.max_members_count} />
-            </Col> */}
+            </Col>
           </Row>
         </Card>
         <Card
@@ -95,7 +95,7 @@ export default class UserInfo extends React.Component {
                 <CopyToClipboard
                   text={invitation_url}
                   onCopy={() => App.message.success('复制成功')}>
-                  <div className='flex items-center cursor-pointer gap-[15px]'>
+                  <div className='hover:text-primary-599 flex items-center cursor-pointer gap-[15px]'>
                     {invitation_url}
                     <CopyTwoTone />
                   </div>
@@ -105,7 +105,7 @@ export default class UserInfo extends React.Component {
             title={
               <div className='flex'>
                 邀请链接
-                <Tooltip placement="right" title="每邀请一位用户都是对我们的一次鼓励。">
+                <Tooltip placement="right" title="每成功邀请一位新用户，永久赠送一张持卡数量。">
                   <QuestionCircleTwoTone className='ml-[5px] flex items-center' />
                 </Tooltip>
               </div>

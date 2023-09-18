@@ -29,14 +29,14 @@ export default class LeftSider extends React.Component {
         label: <a href='/profile'>个人信息</a>,
       },
       {
+        key: 'product',
+        icon: <AccountBookOutlined />,
+        label: <a href='/products'>购买卡位</a>,
+      },
+      {
         key: 'customer',
         icon: <CustomerServiceOutlined />,
         label: <a onClick={() => { this.setState({ openCustomService: true }) }}>联系我们</a>,
-      },
-      {
-        key: 'product',
-        icon: <AccountBookOutlined />,
-        label: <a href='/products'>捐赠</a>,
       },
     ];
 
@@ -55,8 +55,8 @@ export default class LeftSider extends React.Component {
               >
                 <FloatButton className="shadow-2xl" type='primary' href='/members' icon={<CreditCardOutlined />} />
                 <FloatButton className="shadow-2xl" type='primary' href='/profile' icon={<UserOutlined />} />
-                <FloatButton className="shadow-2xl" type='primary' onClick={() => { this.setState({ openCustomService: true }) }} icon={<CustomerServiceOutlined />} />
                 <FloatButton className="shadow-2xl" type='primary' href='/products' icon={<AccountBookOutlined />} />
+                <FloatButton className="shadow-2xl" type='primary' onClick={() => { this.setState({ openCustomService: true }) }} icon={<CustomerServiceOutlined />} />
               </FloatButton.Group >
             </>
             :
@@ -68,7 +68,8 @@ export default class LeftSider extends React.Component {
                 <Divider />
                 <Menu className='border-e-0' defaultSelectedKeys={[activeKey]} defaultOpenKeys={['card']} mode="inline" items={items} />
               </Sider>
-            </Layout>}
+            </Layout>
+        }
         <Modal centered open={openCustomService} footer={null} onCancel={() => { this.setState({ openCustomService: false }) }}>
           <div className='flex items-center lg:flex-row flex-col gap-[25px] py-[50px]'>
             <div className='border rounded-[12px] p-[5px] lg:p-[20px]'>

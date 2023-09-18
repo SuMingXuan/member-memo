@@ -6,7 +6,7 @@
     user: current_user.as_json_list,
     products: @products.map(&:as_json_list),
     invitation_url: user_session_url(invitation_code: current_user.code),
-    wx_private_qrcode: image_path('wx_private_qrcode.jpg'),
-    zfb_private_qrcode: image_path('zfb_private_qrcode.jpg')
+    alipay_icon: image_path('alipay.svg'),
+    wxpay_icon: image_path('wxpay.svg')
     %>
 </div>
