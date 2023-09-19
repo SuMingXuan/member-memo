@@ -62,10 +62,10 @@ export default class LeftSider extends React.Component {
             :
             <Layout className='hidden lg:flex h-[100vh]'>
               <Sider theme='light'>
-                <div className="demo-logo-vertical flex justify-center">
+                <div className="demo-logo-vertical flex justify-center p-[20px]">
                   <img src={logo} className='rounded-[12px] w-[200px]'></img>
                 </div>
-                <Divider />
+                <Divider className='mt-0' />
                 <Menu className='border-e-0' defaultSelectedKeys={[activeKey]} defaultOpenKeys={['card']} mode="inline" items={items} />
               </Sider>
             </Layout>
