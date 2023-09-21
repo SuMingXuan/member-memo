@@ -53,10 +53,10 @@ export default class LeftSider extends React.Component {
                 style={{ right: 5, bottom: 80 }}
                 icon={< AppstoreOutlined />}
               >
-                <FloatButton className="shadow-2xl" type='primary' href='/members' icon={<CreditCardOutlined />} />
-                <FloatButton className="shadow-2xl" type='primary' href='/profile' icon={<UserOutlined />} />
-                <FloatButton className="shadow-2xl" type='primary' href='/products' icon={<AccountBookOutlined />} />
-                <FloatButton className="shadow-2xl" type='primary' onClick={() => { this.setState({ openCustomService: true }) }} icon={<CustomerServiceOutlined />} />
+                <FloatButton type={activeKey == "members" ? "primary" : 'default'} className="shadow-2xl border-primary-599" href='/members' icon={<CreditCardOutlined />} />
+                <FloatButton type={activeKey == "profile" ? "primary" : 'default'} className="shadow-2xl border-primary-599" href='/profile' icon={<UserOutlined />} />
+                <FloatButton type={activeKey == "products" ? "primary" : 'default'} className="shadow-2xl border-primary-599" href='/products' icon={<AccountBookOutlined />} />
+                <FloatButton type={activeKey == "customer" ? "primary" : 'default'} className="shadow-2xl border-primary-599" onClick={() => { this.setState({ openCustomService: true }) }} icon={<CustomerServiceOutlined />} />
               </FloatButton.Group >
             </>
             :
@@ -85,7 +85,7 @@ export default class LeftSider extends React.Component {
                   text="SSS13608077730"
                   onCopy={() => App.message.success('复制成功')}>
                   <div className='text-center lg:text-start'>
-                    微信：SSS13608077730
+                    微信：13608077730
                   </div>
                 </CopyToClipboard>
               </div>
@@ -99,7 +99,7 @@ export default class LeftSider extends React.Component {
                 </CopyToClipboard>
               </div>
               <div className='opacity-80 text-center lg:text-start'>
-                如果使用中有任何疑问和建议请随时联系我们。
+                如果使用中有任何问题请随时联系我们。
               </div>
             </div>
           </div>
