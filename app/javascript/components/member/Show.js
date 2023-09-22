@@ -106,19 +106,19 @@ export default class Show extends React.Component {
         label: <BaseLabel name='card_number' label='会员卡号' />,
         children: <ShowOrEditInput name='card_number' value={member.card_number} />,
       },
-      {
-        key: 'store_name',
-        span: 1,
-        label: <BaseLabel name='store_name' label='门店名称' />,
-        children: <ShowOrEditInput name='store_name' value={member.store_name} />,
-      },
+      // {
+      //   key: 'store_name',
+      //   span: 1,
+      //   label: <BaseLabel name='store_name' label='门店名称' />,
+      //   children: <ShowOrEditInput name='store_name' value={member.store_name} />,
+      // },
       {
         key: 'balance',
         span: 1,
         label: <BaseLabel name='balance' label={
           <div className='flex gap-[5px] items-center'>
             余额
-            <Tooltip placement="right" title="如果余额出现了偏差可以在这里强制修正余额。别担心，同样会新增一条冲正记录">
+            <Tooltip placement="right" title="如果余额出现了偏差可以在这里强制修正余额">
               <QuestionCircleTwoTone />
             </Tooltip>
           </div>} />,
@@ -130,7 +130,7 @@ export default class Show extends React.Component {
         label: <BaseLabel name='points_count' label={
           <div className='flex gap-[5px] items-center'>
             积分
-            <Tooltip placement="right" title="如果积分出现了偏差可以在这里强制修正积分。别担心，同样会新增一条冲正记录。同时如果你在这里填加了积分后，消费和充值的时候也可以填积分了。">
+            <Tooltip placement="right" title="如果积分出现了偏差可以在这里强制修正积分。如果在这里的积分不为 0，则该会员卡会开启积分系统。">
               <QuestionCircleTwoTone />
             </Tooltip>
           </div>} />,
@@ -179,7 +179,7 @@ export default class Show extends React.Component {
       {
         key: 'activity_rules',
         span: 1,
-        label: <BaseLabel name='activity_rules' label='活动说明' />,
+        label: <BaseLabel name='activity_rules' label='备注' />,
         children: <ShowOrEditAreaInput placeholder="可以备注一些额外的活动规则" name='activity_rules' value={member.activity_rules} />,
       },
     ];

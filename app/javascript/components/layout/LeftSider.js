@@ -89,16 +89,7 @@ export default class LeftSider extends React.Component {
                   </div>
                 </CopyToClipboard>
               </div>
-              <div>
-                <CopyToClipboard
-                  text="1154621382"
-                  onCopy={() => App.message.success('复制成功')}>
-                  <div className='text-center lg:text-start'>
-                    QQ：1154621382
-                  </div>
-                </CopyToClipboard>
-              </div>
-              <div className='opacity-80 text-center lg:text-start'>
+              <div className='opacity-80 text-center text-base lg:text-start'>
                 如果使用中有任何问题请随时联系我们。
               </div>
             </div>
