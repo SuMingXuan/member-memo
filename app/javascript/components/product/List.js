@@ -24,22 +24,23 @@ export default class List extends React.Component {
           }
         </div>
         <div className='flex flex-col lg:flex-row gap-[20px] lg:items-center lg:justify-between'>
-          <Card onClick={() => { this.setState({ selectedProductId: 'free' }) }} className={`${selectedProductId == 'free' && 'selected-product'} lg:w-[300px] text-center cursor-pointer hover:shadow transition-shadow ease-in-out hover:border-primary-599`} title={
-            <span className='text-2xl'>免费</span>
-          }>
-            <div>
-              <CopyToClipboard
-                text={invitation_url}
-                onCopy={() => App.message.success('复制成功')}>
+          <CopyToClipboard
+            text={invitation_url}
+            onCopy={() => App.message.success('复制成功')}>
+            <Card onClick={() => { this.setState({ selectedProductId: 'free' }) }} className={`${selectedProductId == 'free' && 'selected-product'} lg:w-[300px] text-center cursor-pointer transition-shadow ease-in-out hover:border-primary-599`} title={
+              <span className='text-2xl'>免费</span>
+            }>
+              <div>
+
                 <div className='hover:text-primary-599 flex items-center cursor-pointer gap-[15px] text-start'>
                   {invitation_url}
                 </div>
-              </CopyToClipboard>
-            </div>
-            <div className='text-start mt-[15px]'>
-              每成功邀请一位新用户即可获得一张额外的卡位
-            </div>
-          </Card>
+              </div>
+              <div className='text-start mt-[15px]'>
+                每成功邀请一位新用户即可获得一张额外的卡位
+              </div>
+            </Card>
+          </CopyToClipboard>
 
           {
             products.map((product) => (
