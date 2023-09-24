@@ -81,7 +81,7 @@ export default class Charge extends React.Component {
       <div className="setting-icon z-[40]">
         {
           configMode ? <CloseCircleOutlined onClick={() => { this.props.toggleConfigMode() }} className='cursor-pointer' /> :
-            <a className='cursor-pointer' href={`/members/${member.uuid}`} onClick={(e) => { e.stopPropagation() }}>
+            <a data-turbo-frame="main_frame" data-turbo-action="replace" className='cursor-pointer' href={`/members/${member.uuid}`} onClick={(e) => { e.stopPropagation() }}>
               <SettingOutlined />
             </a>
         }

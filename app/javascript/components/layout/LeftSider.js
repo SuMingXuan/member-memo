@@ -29,7 +29,7 @@ export default class LeftSider extends React.Component {
         label: <a href='/profile'>个人信息</a>,
       },
       {
-        key: 'product',
+        key: 'products',
         icon: <AccountBookOutlined />,
         label: <a href='/products'>购买卡位</a>,
       },
