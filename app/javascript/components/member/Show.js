@@ -4,6 +4,8 @@ import { TimeFormat } from '../../utils/custom_format'
 import locale from 'antd/es/date-picker/locale/zh_CN';
 import { Descriptions, Input, DatePicker, InputNumber, Tooltip } from 'antd';
 import CustomTimeLine from './CustomTimeLine'
+import { EyeInvisibleTwoTone, EyeTwoTone } from '@ant-design/icons';
+
 
 import {
   EditTwoTone,
@@ -42,6 +44,36 @@ export default class Show extends React.Component {
           member[name] = value
           this.setState({ editField: null })
           this.setState({ member: member })
+        } else {
+          App.message.error(res.message);
+        }
+      });
+  }
+
+
+  toggleMember = (hidden) => {
+    const member = this.state.member
+    const values = {
+      hidden: hidden
+    }
+    fetch(`/members/${member.uuid}/toggle_display`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'X-CSRF-Token': csrf_token,
+      },
+      body: JSON.stringify(values)
+    })
+      .then((res) => res.json())
+      .then((res) => {
+        if (res.success) {
+          member["deleted_at"] = res.deleted_at
+          this.setState({ member: member })
+          if (res.deleted_at) {
+            App.message.success("已移动到垃圾箱。");
+          } else {
+            App.message.success("已移动到常用列表。");
+          }
         } else {
           App.message.error(res.message);
         }
@@ -188,7 +220,22 @@ export default class Show extends React.Component {
         <div className='flex flex-col lg:flex-row'>
           <div className="lg:h-[calc(100vh-64px)] lg:max-h-[calc(100vh-64px)] lg:overflow-scroll lg:p-[50px] lg:border-r mb-[30px] lg:mb-0">
             <Descriptions size="small" column={1} title={
-              <h2 className='text-center mt-[20px] lg:mt-0'>{member.store_name}</h2>
+              <h2 className='text-center mt-[20px] lg:mt-0 relative'>
+                {member.store_name}
+                {
+                  member.deleted_at ?
+                    <EyeTwoTone
+                      onClick={() => { this.toggleMember(false) }}
+                      size='large'
+                      className='absolute right-0 cursor-pointer' /> :
+                    <EyeInvisibleTwoTone
+                      onClick={() => { this.toggleMember(true) }}
+                      size='large'
+                      className='absolute right-0 cursor-pointer'
+                      twoToneColor='#FF4857' />
+                }
+
+              </h2>
             } bordered items={items} />
           </div>
           <div className="lg:h-[calc(100vh-64px)] lg:max-h-[calc(100vh-64px)] lg:overflow-scroll lg:px-[50px] lg:py-[50px] lg:flex-1">

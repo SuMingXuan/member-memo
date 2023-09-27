@@ -13,7 +13,6 @@ module BiDataOfUser
           best_deal_member_store_name
           most_consumption_amount_of_member
           most_consumption_store_name_of_member
-          most_frequent_members_of_consumption
           single_most_consumption_member_store_name
           single_most_consumption_amount
           single_most_consumption_at

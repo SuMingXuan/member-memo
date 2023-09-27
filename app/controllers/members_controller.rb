@@ -11,6 +11,27 @@ class MembersController < ApplicationController
     end
   end
 
+  def hidden
+    @members = current_user.members.deleted.sorted_by_expiry
+    @members = @members.page(params[:page])
+    respond_to do |format|
+      format.json do
+        render json: { success: true, members: @members.as_json(except: %i[id user_id created_at updated_at]) }
+      end
+      format.html {}
+    end
+  end
+
+  def toggle_display
+    @member = member
+    if params[:hidden]
+      @member.update(deleted_at: Time.now)
+    else
+      @member.update(deleted_at: nil)
+    end
+    render json: { success: true, deleted_at: @member.deleted_at }
+  end
+
   def show
     @member = member
     @member_orders = @member.member_orders.order(id: :desc)
@@ -75,7 +96,7 @@ class MembersController < ApplicationController
   private
 
   def member
-    @member ||= current_user.members.find_by(uuid: params[:uuid])
+    @member ||= current_user.members.with_deleted.find_by(uuid: params[:uuid])
   end
 
   def member_params

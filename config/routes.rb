@@ -13,6 +13,10 @@ Rails.application.routes.draw do
   resources :members, param: :uuid do
     member do
       post :recharge, :consumption
+      post :toggle_display
+    end
+    collection do
+      get :hidden
     end
   end
   get :profile, to: 'profile#show'

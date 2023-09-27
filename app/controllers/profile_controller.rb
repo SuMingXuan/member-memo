@@ -18,6 +18,6 @@ class ProfileController < ApplicationController
   private
 
   def update_params
-    params.permit(:birthday)
+    params.permit(:birthday, :name)
   end
 end

@@ -1,7 +1,7 @@
 import React from 'react';
 import dayjs from 'dayjs';
 import { EditTwoTone, CopyTwoTone, QuestionCircleTwoTone } from '@ant-design/icons';
-import { Row, Col, Card, DatePicker, Statistic, Tooltip } from 'antd';
+import { Row, Col, Card, DatePicker, Statistic, Tooltip, Input } from 'antd';
 import locale from 'antd/es/date-picker/locale/zh_CN';
 import { CopyToClipboard } from 'react-copy-to-clipboard';
 
@@ -16,9 +16,9 @@ export default class UserInfo extends React.Component {
   onSubmit = (event, name) => {
     const user = this.state.user
     const value = event.target.value
-    const values = {
-      birthday: value
-    }
+
+    const values = {}
+    values[name] = value
     fetch(`/profile`, {
       method: 'PUT',
       headers: {
@@ -52,6 +52,25 @@ export default class UserInfo extends React.Component {
         }
       </div>
     </>
+
+    const ShowOrEditInput = ({ name, value }) => <>
+      <div className=''>
+        {this.state.editField == name ?
+          <Input className='rounded-[8px]' size='large' defaultValue={value} autoFocus onPressEnter={(e) => { this.onSubmit(e, name) }} onBlur={(e) => { this.onSubmit(e, name) }} />
+          :
+          <ShowValue value={value} name={name} />
+        }
+      </div>
+    </>
+
+    const ShowValue = ({ value, name }) => <>
+      <div className='h-[42px] flex items-center cursor-pointer' onClick={() => this.setState({ editField: name })} >
+        {
+          value || <EditTwoTone />
+        }
+      </div>
+    </>
+
     return (
       <div className='flex gap-[25px] flex-wrap'>
 
@@ -60,6 +79,18 @@ export default class UserInfo extends React.Component {
           title="个人信息"
         >
           <Row>
+            <Col xs={{ span: 24 }} md={{ span: 24 }}>
+              <Statistic formatter={(value) =>
+                <>
+                  <div className='flex items-center gap-[20px] cursor-pointer'>
+
+                    <ShowOrEditInput name="name" value={value} />
+                    <EditTwoTone onClick={() => { this.setState({ editField: 'name' }) }} />
+                  </div>
+                </>
+              } title="姓名" value={user.name} />
+
+            </Col>
             <Col xs={{ span: 24 }} md={{ span: 24 }}>
               <Statistic formatter={(value) => <span>{value}</span>} title="电话" value={user.phone} />
             </Col>
@@ -113,7 +144,7 @@ export default class UserInfo extends React.Component {
             value={user.invitation_url} />
 
         </Card>
-        {
+        {/* {
           bi_infos.most_frequent_members_of_consumption.stores.length > 0 &&
 
           <Card
@@ -136,7 +167,7 @@ export default class UserInfo extends React.Component {
               value={`${bi_infos.most_frequent_members_of_consumption.max_frequent} 次`}
               precision={2} />
           </Card>
-        }
+        } */}
         <Card
           className='shadow-xl w-full lg:w-[unset]'
           title="总览"

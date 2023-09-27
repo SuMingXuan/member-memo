@@ -13,6 +13,7 @@ module MemberMemo
     config.time_zone = 'Beijing'
     config.i18n.available_locales = ['en', 'zh-CN']
     config.i18n.default_locale = 'zh-CN'
+    config.eager_load_paths << Rails.root.join('lib')
     # Configuration for the application, engines, and railties goes here.
     #
     # These settings can be overridden in specific environments using the files
