@@ -42,7 +42,7 @@ module BiDataOfUser
 
     # 当前总共的余额
     def total_balance
-      members.sum(:balance)
+      members.with_deleted.sum(:balance)
     end
 
     # 优惠最多的会员卡优惠了的金额
@@ -57,7 +57,7 @@ module BiDataOfUser
 
     # 优惠最多的会员对象
     def best_deal_member
-      @best_deal_member ||= members.order(total_savings_amount: :desc).first
+      @best_deal_member ||= members.with_deleted.order(total_savings_amount: :desc).first
     end
 
     # 总共消费最多的会员卡消费的金额
@@ -72,7 +72,7 @@ module BiDataOfUser
 
     # 总共消费最多的会员对象
     def most_consumption_member
-      @most_consumption_member ||= members.order(total_consumption_amount: :desc).first
+      @most_consumption_member ||= members.with_deleted.order(total_consumption_amount: :desc).first
     end
 
     # 最常去的门店
@@ -130,7 +130,7 @@ module BiDataOfUser
 
     # 总共充值最多金额的对象
     def most_recharge_member
-      @most_recharge_member ||= members.order(total_recharge_amount: :desc).first
+      @most_recharge_member ||= members.with_deleted.order(total_recharge_amount: :desc).first
     end
 
     # 单次最多充值
