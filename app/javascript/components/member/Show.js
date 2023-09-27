@@ -70,7 +70,7 @@ export default class Show extends React.Component {
           member["deleted_at"] = res.deleted_at
           this.setState({ member: member })
           if (res.deleted_at) {
-            App.message.success("已移动到垃圾箱。");
+            App.message.success("已移动到不常用。");
           } else {
             App.message.success("已移动到常用列表。");
           }

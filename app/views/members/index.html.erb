@@ -1,5 +1,5 @@
 <div class="flex justify-between sticky top-[0px] z-[100] shadow left-0 p-[20px] mb-[20px] mx-[-20px] mt-[-20px] lg:m-0 lg:shadow lg:p-[20px] bg-white text-primary-599 ">
-  <%= link_to '垃圾箱', hidden_members_path %>
+  <%= link_to '不常用', hidden_members_path, class: "text-red-FF4" %>
   <h2 class="text-black-009 flex items-center font-bold">常用卡</h2>
   <%= link_to '退出登录', destroy_user_session_path, data: {turbo_method: :delete} %>
 </div>
