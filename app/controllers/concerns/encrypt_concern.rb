@@ -1,4 +1,4 @@
-module EncryptHelper
+module EncryptConcern
   def encrypt_phone_number(phone_number)
     return unless phone_number.match?(/\A\d{11}\z/)
 

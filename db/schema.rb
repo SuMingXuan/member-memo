@@ -80,6 +80,11 @@ ActiveRecord::Schema[7.0].define(version: 2023_09_09_143826) do
     t.bigint "product_id", null: false
     t.bigint "user_id", null: false
     t.decimal "payment_amount", precision: 12, scale: 2, default: "0.0"
+    t.string "order_no", null: false
+    t.integer "status", default: 0, comment: "订单状态, 0:充值中, 1:充值成功, 2:充值失败"
+    t.integer "payment_method", default: 0, comment: "支付方式, 0:支付宝, 1:微信"
+    t.integer "payment_scene", default: 0, comment: "支付场景, 0:pc, 1:h5"
+    t.json "callback_data", default: {}, comment: "支付完成后，回调里面的信息"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["product_id"], name: "index_orders_on_product_id"

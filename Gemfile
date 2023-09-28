@@ -52,6 +52,8 @@ gem 'redis', '~> 5.0', '>= 5.0.7'
 gem 'shakapacker', '~> 7.0', '>= 7.0.3'
 gem 'tailwindcss-rails', '~> 2.0', '>= 2.0.30'
 gem 'tencentcloud-sdk-sms', '~> 3.0', '>= 3.0.655'
+gem 'figaro', '~> 1.2'
+gem 'alipay', '~> 0.17.0'
 # Use Sass to process CSS
 # gem "sassc-rails"
 

@@ -10,6 +10,7 @@ class User < ApplicationRecord
   has_many :member_orders, through: :members
   has_many :consumption_member_orders, through: :members
   has_many :recharge_member_orders, through: :members
+  has_many :orders
 
   def as_json_list
     as_json(

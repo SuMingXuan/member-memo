@@ -11,6 +11,29 @@ export default class List extends React.Component {
     selectedProductId: null,
     price: 0,
   }
+
+  submitPayment = (paymentMethod) => {
+    const { selectedProductId } = this.state
+    fetch(`/pay`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'X-CSRF-Token': csrf_token,
+      },
+      body: JSON.stringify({
+        product_id: selectedProductId,
+        payment_method: paymentMethod
+      })
+    })
+      .then((res) => res.json())
+      .then((res) => {
+        if (res.success) {
+          window.location.href = res.pay_url
+        } else {
+          App.message.error(res.message);
+        }
+      });
+  }
   render() {
     const { invitation_url, products, user, alipay_icon, wxpay_icon } = this.props
     const { selectedProductId } = this.state
@@ -67,13 +90,19 @@ export default class List extends React.Component {
             <div className='flex flex-row gap-[30px] justify-between lg:justify-end w-full lg:w-[unset]'>
               <div>
 
-                <Button size="large" className='hover:border-2 w-[120px] h-[45px] rounded-[8px] shadow border-primary-599 text-primary-599 flex items-center justify-center gap-[5px]'>
+                <Button
+                  onClick={() => { this.submitPayment("ali") }}
+                  size="large"
+                  className='hover:border-2 w-[120px] h-[45px] rounded-[8px] shadow border-primary-599 text-primary-599 flex items-center justify-center gap-[5px]'>
                   <img className='w-[15px]' src={alipay_icon} />
                   支付宝
                 </Button>
               </div>
               <div>
-                <Button size="large" className='hover:border-2 w-[120px] h-[45px] rounded-[8px] shadow border-green-47C text-green-47C flex items-center justify-center gap-[5px]'>
+                <Button
+                  onClick={() => { this.submitPayment("wechat") }}
+                  size="large"
+                  className='hover:border-2 w-[120px] h-[45px] rounded-[8px] shadow border-green-47C text-green-47C flex items-center justify-center gap-[5px]'>
                   <img className='w-[15px]' src={wxpay_icon} />
                   微信
                 </Button>

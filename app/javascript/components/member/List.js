@@ -32,6 +32,7 @@ export default class List extends React.Component {
 
   render() {
     const { members, totalPages, currentPage } = this.state
+    const { action } = this.props
     return (
       <>
         {
@@ -53,7 +54,9 @@ export default class List extends React.Component {
             <Empty description={
               <>
                 <p className='opacity-40 mb-[20px]'>空空如也</p>
-                <p className='flex lg:hidden items-center justify-center text-primary-599'>点击右下侧 <PlusCircleTwoTone className='mx-[4px]' /> 创建第一张会员卡</p>
+                {
+                  action == 'index' && <p className='flex lg:hidden items-center justify-center text-primary-599'>点击右下侧 <PlusCircleTwoTone className='mx-[4px]' /> 创建第一张会员卡</p>
+                }
               </>
             } className='text-gray mt-[20%]' />
         }

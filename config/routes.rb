@@ -10,6 +10,9 @@ Rails.application.routes.draw do
 
   # Defines the root path route ("/")
   root 'members#index'
+  resources :pay, only: :create do
+    post :ali_callback, :wechat_callback
+  end
   resources :members, param: :uuid do
     member do
       post :recharge, :consumption

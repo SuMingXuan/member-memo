@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 class Users::SessionsController < Devise::SessionsController
+  include EncryptConcern
+
   layout 'devise'
   before_action :check_phone_format!, only: %i[send_verify_code create]
   before_action :check_send_frequent!, only: :send_verify_code
@@ -12,7 +14,7 @@ class Users::SessionsController < Devise::SessionsController
     user = User.find_or_initialize_by(phone: params[:phone])
     if user.new_record?
       user.invitation_code = cookies[:invitation_code]
-      user.name = params[:phone]
+      user.name = encrypt_phone_number(params[:phone])
       user.save
     end
     sign_in(resource_name, user)

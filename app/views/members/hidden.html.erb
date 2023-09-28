@@ -7,6 +7,7 @@
   <%= react_component "member/List",
     members: @members.map { |member| member.as_json_list },
     total_pages: @members.total_pages,
-    current_page: @members.current_page
+    current_page: @members.current_page,
+    action: params[:action]
   %>
 </div>
