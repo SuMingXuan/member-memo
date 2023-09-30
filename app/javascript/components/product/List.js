@@ -21,7 +21,7 @@ export default class List extends React.Component {
         'X-CSRF-Token': csrf_token,
       },
       body: JSON.stringify({
-        product_id: selectedProductId,
+        product_uuid: selectedProductId,
         payment_method: paymentMethod
       })
     })
@@ -37,6 +37,7 @@ export default class List extends React.Component {
   render() {
     const { invitation_url, products, user, alipay_icon, wxpay_icon } = this.props
     const { selectedProductId } = this.state
+    console.log(selectedProductId)
     return (
       <div className='relative'>
         <div>
@@ -67,7 +68,7 @@ export default class List extends React.Component {
 
           {
             products.map((product) => (
-              <Card onClick={() => { this.setState({ selectedProductId: product.id, price: product.price }) }} className={`${selectedProductId == product.id && 'selected-product'} lg:w-[300px] lg:h-[200px] text-center cursor-pointer hover:shadow transition-shadow ease-in-out hover:border-primary-599`} title={
+              <Card key={product.uuid} onClick={() => { this.setState({ selectedProductId: product.uuid, price: product.price }) }} className={`${selectedProductId == product.uuid && 'selected-product'} lg:w-[300px] lg:h-[200px] text-center cursor-pointer hover:shadow transition-shadow ease-in-out hover:border-primary-599`} title={
                 <span className='text-2xl'>¥ {product.price}</span>
               }>
                 <div className='text-center text-xl'>
@@ -80,7 +81,7 @@ export default class List extends React.Component {
 
         </div>
         {
-          selectedProductId > 0 && <div className='bg-[#fbfbfb] flex flex-col lg:flex-row justify-end gap-[15px] lg:gap-[30px] mt-[20px] lg:mt-[80px] sticky bottom-[20px] lg:bottom-0 items-start lg:items-center'>
+          selectedProductId && selectedProductId != "free" && <div className='bg-[#fbfbfb] flex flex-col lg:flex-row justify-end gap-[15px] lg:gap-[30px] mt-[20px] lg:mt-[80px] sticky bottom-[20px] lg:bottom-0 items-start lg:items-center'>
             <div className='text-right'>
               总计：
               <span className='text-base lg:text-[32px] text-primary-599 mr-[20px]'>

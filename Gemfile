@@ -54,6 +54,8 @@ gem 'tailwindcss-rails', '~> 2.0', '>= 2.0.30'
 gem 'tencentcloud-sdk-sms', '~> 3.0', '>= 3.0.655'
 gem 'figaro', '~> 1.2'
 gem 'alipay', '~> 0.17.0'
+gem 'browser', '~> 5.3', '>= 5.3.1'
+
 # Use Sass to process CSS
 # gem "sassc-rails"
 

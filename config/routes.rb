@@ -11,7 +11,9 @@ Rails.application.routes.draw do
   # Defines the root path route ("/")
   root 'members#index'
   resources :pay, only: :create do
-    post :ali_callback, :wechat_callback
+    collection do
+      post :ali_auth, :wechat_auth
+    end
   end
   resources :members, param: :uuid do
     member do
@@ -24,6 +26,10 @@ Rails.application.routes.draw do
   end
   get :profile, to: 'profile#show'
   put :profile, to: 'profile#update'
-  resources :products, only: :index
+  resources :products, only: :index do
+    collection do
+      get :pay_success
+    end
+  end
   resources :orders, only: :create
 end
