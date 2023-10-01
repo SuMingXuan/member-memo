@@ -13,4 +13,5 @@
   <body class='bg-[#F5F5F5]'>
     <%= yield %>
   </body>
+  <%= render 'layouts/wechat_share' if browser.wechat? %>
 </html>
