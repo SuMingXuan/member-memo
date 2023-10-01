@@ -1,10 +1,10 @@
 <script>
   wx.config({
     debug: false,
-    appId: "<%= wechat_share_setting["appId"] %>",
-    timestamp: "<%= wechat_share_setting["timestamp"] %>",
-    nonceStr: "<%= wechat_share_setting["nonceStr"] %>",
-    signature: "<%= wechat_share_setting["c171b050916461dbf27b3ad87178ba68656a9582"] %>",
+    appId: "<%= wechat_share_setting['appId'] %>",
+    timestamp: "<%= wechat_share_setting['timestamp'] %>",
+    nonceStr: "<%= wechat_share_setting['nonceStr'] %>",
+    signature: "<%= wechat_share_setting['signature'] %>",
     jsApiList: ['updateAppMessageShareData', 'updateTimelineShareData']
   });
   var share_options = {
