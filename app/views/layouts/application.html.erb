@@ -13,7 +13,9 @@
     <%= csp_meta_tag %>
     <%= stylesheet_link_tag "application", "tailwind", "inter-font", "data-turbo-track": "reload" %>
     <%= javascript_pack_tag "application", "data-turbo-track": "reload" %>
-    <script src="https://res.wx.qq.com/open/js/jweixin-1.6.0.js"></script>
+    <% if browser.wechat? %>
+      <script src="https://res.wx.qq.com/open/js/jweixin-1.6.0.js"></script>
+    <% end %>
   </head>
   <body class='bg-[#fbfbfb]'>
     <div class="flex flex-col lg:flex-row">
