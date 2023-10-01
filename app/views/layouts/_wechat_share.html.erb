@@ -1,0 +1,23 @@
+<script>
+  wx.config({
+    debug: false,
+    appId: "<%= wechat_share_setting["appId"] %>",
+    timestamp: "<%= wechat_share_setting["timestamp"] %>",
+    nonceStr: "<%= wechat_share_setting["nonceStr"] %>",
+    signature: "<%= wechat_share_setting["c171b050916461dbf27b3ad87178ba68656a9582"] %>",
+    jsApiList: ['updateAppMessageShareData', 'updateTimelineShareData']
+  });
+  var share_options = {
+                        title: '<%= t('site_name') %>',
+                        desc: '<%= t('site_slogan') %>',
+                        link: '<%= request.url %>',
+                        imgUrl: '<%= image_url('logo.svg') %>'
+                      }
+  wx.ready(function () {
+    wx.updateAppMessageShareData(share_options)
+  });
+
+  wx.ready(function () {
+    wx.updateTimelineShareData(share_options)
+  })
+</script>

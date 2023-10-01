@@ -3,6 +3,17 @@ class ApplicationController < ActionController::Base
   before_action :store_invitation_code
   before_action :authenticate_user!
 
+  helper_method :wechat_share_setting
+
+  def wechat_share_setting
+    @wechat_share_setting ||= Rails.cache.fetch('weixin_authorize', expires_in: 1.hour) do
+      WeixinAuthorize::Client.new(
+        ENV.fetch('WECHAT_APP_ID'),
+        ENV.fetch('WECHAT_APP_SECRET')
+      ).get_jssign_package(request.url)
+    end
+  end
+
   private
 
   def custom_layout
