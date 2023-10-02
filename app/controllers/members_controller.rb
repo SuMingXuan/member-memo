@@ -7,7 +7,7 @@ class MembersController < ApplicationController
     @members = @members.page(params[:page])
     respond_to do |format|
       format.json do
-        render json: { success: true, members: @members.as_json_list }
+        render json: { success: true, members: @members.map(&:as_json_list) }
       end
       format.html {}
     end
@@ -18,7 +18,7 @@ class MembersController < ApplicationController
     @members = @members.page(params[:page])
     respond_to do |format|
       format.json do
-        render json: { success: true, members: @members.as_json_list }
+        render json: { success: true, members: @members.map(&:as_json_list) }
       end
       format.html {}
     end

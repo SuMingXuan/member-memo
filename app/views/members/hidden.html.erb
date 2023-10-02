@@ -1,7 +1,10 @@
 <div class="flex justify-between sticky top-[0px] z-[100] shadow left-0 p-[20px] mb-[20px] mx-[-20px] mt-[-20px] lg:m-0 lg:shadow lg:p-[20px] bg-white text-primary-599 ">
   <%= link_to '常用卡', members_path %>
   <h2 class="flex items-center font-bold text-red-FF4">不常用</h2>
-  <%= link_to '退出登录', destroy_user_session_path, data: {turbo_method: :delete} %>
+  <div class="flex items-center">
+    <%= link_to '退出登录', destroy_user_session_path, data: {turbo_method: :delete} %>
+    <%= react_component 'layout/WechatFloatWindow' if browser.wechat? %>
+  </div>
 </div>
 <div class="pb-[40px]">
   <%= react_component "member/List",

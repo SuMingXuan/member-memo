@@ -81,7 +81,7 @@ export default class UserInfo extends React.Component {
             <>
               <span>用户信息</span>
               {
-                user.seed && <Tooltip placement="right" title="会员影子为早期的种子用户提供更好的服务">
+                user.seed && <Tooltip placement="bottom" title="会员影子为早期的种子用户提供更好的服务">
                 <SeedIcon className="ml-2 cursor-pointer" />
               </Tooltip>
               }
