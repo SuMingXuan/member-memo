@@ -163,7 +163,12 @@ export default class Show extends React.Component {
         label: <BaseLabel name='points_count' label={
           <div className='flex gap-[5px] items-center'>
             积分
-            <Tooltip placement="right" title="如果积分出现了偏差可以在这里强制修正积分。如果在这里的积分不为 0，则该会员卡会开启积分系统。">
+            <Tooltip placement="right" title={
+              <>
+                <p>如果积分出现了偏差可以在这里强制修正积分。</p>
+                <p>如果在这里的积分不为 0，则该会员卡会开启积分记录。</p>
+              </>
+            }>
               <QuestionCircleTwoTone />
             </Tooltip>
           </div>} />,
