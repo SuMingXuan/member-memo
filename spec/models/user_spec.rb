@@ -12,7 +12,7 @@ RSpec.describe User, type: :model do
 
     it 'includes only specified attributes' do
       user_info = user.as_json_list
-      expect(user_info.keys).to match_array(%w[phone name birthday max_members_count members_count])
+      expect(user_info.keys).to match_array(%w[phone name birthday max_members_count members_count seed])
     end
   end
 end
