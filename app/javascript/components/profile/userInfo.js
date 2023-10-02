@@ -6,6 +6,7 @@ import locale from 'antd/es/date-picker/locale/zh_CN';
 import { CopyToClipboard } from 'react-copy-to-clipboard';
 
 import { TimeFormat } from '../../utils/custom_format'
+import { SeedIcon } from '../../utils/custom_icon'
 
 
 export default class UserInfo extends React.Component {
@@ -76,7 +77,17 @@ export default class UserInfo extends React.Component {
 
         <Card
           className='shadow-xl w-full lg:w-[unset]'
-          title="个人信息"
+          title={
+            <>
+              <span>用户信息</span>
+              {
+                user.seed && <Tooltip placement="right" title="种子用户，后续的所有功能我们都会优先为您考虑">
+                <SeedIcon className="ml-2 cursor-pointer" />
+              </Tooltip>
+              }
+              
+            </>
+          }
         >
           <Row>
             <Col xs={{ span: 24 }} md={{ span: 24 }}>

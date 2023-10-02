@@ -4,7 +4,7 @@ class User < ApplicationRecord
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :rememberable, :trackable
-  before_create :set_max_members_count
+  before_create :set_max_members_count, :set_seed
 
   has_many :members
   has_many :member_orders, through: :members
@@ -14,18 +14,18 @@ class User < ApplicationRecord
 
   def as_json_list
     as_json(
-      only: %i[phone name birthday max_members_count members_count]
+      only: %i[phone name birthday max_members_count members_count seed]
     )
   end
-
-  # def md5_sign(data)
-  #   data = data.merge(key: '4ec94b293ff34defa7d35e37682e868f')
-  #   Digest::MD5.hexdigest(data.to_query)
-  # end
 
   private
 
   def set_max_members_count
     self.max_members_count = 3
+  end
+
+  def set_seed
+    # 设置种子用户
+    self.seed = true
   end
 end

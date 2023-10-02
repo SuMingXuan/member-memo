@@ -1,5 +1,5 @@
 <div class="justify-between flex sticky top-[0px] z-[100] shadow left-0 p-[20px] mx-[-20px] mt-[-20px] lg:m-0 lg:flex lg:shadow lg:p-[20px] bg-[#fbfbfb]">
-  <%= link_to t('back'), request.referer || members_path, class: 'text-primary-599' %>
+  <%= link_to t('back'), @member.show? ? members_path : hidden_members_path, class: 'text-primary-599' %>
   <%= link_to '退出登录', destroy_user_session_path, class: 'text-primary-599', data: {turbo_method: :delete} %>
 </div>
 <%= react_component "member/Show",

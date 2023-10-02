@@ -9,6 +9,7 @@ class Member < ApplicationRecord
   acts_as_paranoid
 
   enum theme: FREE_THEMES
+  enum status: { show: 0, hidden: 1 }
 
   belongs_to :user, counter_cache: true
   has_many :coupons, dependent: :destroy

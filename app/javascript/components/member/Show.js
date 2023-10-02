@@ -51,10 +51,10 @@ export default class Show extends React.Component {
   }
 
 
-  toggleMember = (hidden) => {
+  toggleMember = (display) => {
     const member = this.state.member
     const values = {
-      hidden: hidden
+      display: display
     }
     fetch(`/members/${member.uuid}/toggle_display`, {
       method: 'POST',
@@ -67,11 +67,12 @@ export default class Show extends React.Component {
       .then((res) => res.json())
       .then((res) => {
         if (res.success) {
-          member["deleted_at"] = res.deleted_at
+          member["status"] = display
           this.setState({ member: member })
-          if (res.deleted_at) {
+          if (display == 'hidden') {
             App.message.success("已移动到不常用。");
-          } else {
+          } 
+          if (display == 'show') {
             App.message.success("已移动到常用列表。");
           }
         } else {
@@ -223,13 +224,13 @@ export default class Show extends React.Component {
               <h2 className='text-center mt-[20px] lg:mt-0 relative'>
                 {member.store_name}
                 {
-                  member.deleted_at ?
+                  member.status == 'show' ?
                     <EyeTwoTone
-                      onClick={() => { this.toggleMember(false) }}
+                      onClick={() => { this.toggleMember('hidden') }}
                       size='large'
                       className='absolute right-0 cursor-pointer' /> :
                     <EyeInvisibleTwoTone
-                      onClick={() => { this.toggleMember(true) }}
+                      onClick={() => { this.toggleMember('show') }}
                       size='large'
                       className='absolute right-0 cursor-pointer'
                       twoToneColor='#FF4857' />

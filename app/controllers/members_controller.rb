@@ -1,23 +1,24 @@
 class MembersController < ApplicationController
   # before_action :check_members_count!, only: :create
   def index
-    @members = current_user.members.sorted_by_expiry
+    @members = current_user.members
+    @show_hidden = @members.hidden.count > 0
+    @members = @members.show.sorted_by_expiry
     @members = @members.page(params[:page])
-    @show_hidden = @members.deleted.count > 0
     respond_to do |format|
       format.json do
-        render json: { success: true, members: @members.as_json(except: %i[id user_id created_at updated_at]) }
+        render json: { success: true, members: @members.as_json_list }
       end
       format.html {}
     end
   end
 
   def hidden
-    @members = current_user.members.deleted.sorted_by_expiry
+    @members = current_user.members.hidden.sorted_by_expiry
     @members = @members.page(params[:page])
     respond_to do |format|
       format.json do
-        render json: { success: true, members: @members.as_json(except: %i[id user_id created_at updated_at]) }
+        render json: { success: true, members: @members.as_json_list }
       end
       format.html {}
     end
@@ -25,12 +26,13 @@ class MembersController < ApplicationController
 
   def toggle_display
     @member = member
-    if params[:hidden]
-      @member.update(deleted_at: Time.now)
-    else
-      @member.update(deleted_at: nil)
+    case params[:display]
+    when 'hidden'
+      @member.hidden!
+    when 'show'
+      @member.show!
     end
-    render json: { success: true, deleted_at: @member.deleted_at }
+    render json: { success: true }
   end
 
   def show
