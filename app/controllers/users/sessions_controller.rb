@@ -6,9 +6,10 @@ class Users::SessionsController < Devise::SessionsController
   layout 'devise'
   before_action :check_phone_format!, only: %i[send_verify_code create]
   before_action :check_send_frequent!, only: :send_verify_code
-  after_action :write_cache_for_verify_code!, only: :send_verify_code
-
   before_action :check_verify_code!, only: :create
+
+  after_action :write_cache_for_verify_code, only: :send_verify_code
+  after_action :clear_verify_code_cache, only: :create
 
   def create
     user = User.find_or_initialize_by(phone: params[:phone])
@@ -50,9 +51,13 @@ class Users::SessionsController < Devise::SessionsController
                    message: t('errors.messages.frequent_sending') }
   end
 
-  def write_cache_for_verify_code!
+  def write_cache_for_verify_code
     Rails.cache.write(verify_code_cache_key, true, expires_in: 60)
     Rails.cache.write(verify_code_value_cache_key, verify_code, expires_in: 10.minutes)
+  end
+
+  def clear_verify_code_cache
+    Rails.cache.delete(verify_code_value_cache_key)
   end
 
   def verify_code
