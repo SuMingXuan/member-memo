@@ -13,7 +13,7 @@
     <%= csp_meta_tag %>
     <%= stylesheet_link_tag "application", "tailwind", "inter-font", "data-turbo-track": "reload" %>
     <%= javascript_pack_tag "application", "data-turbo-track": "reload" %>
-    <% if browser.wechat? %>
+    <% if false && browser.wechat? %>
       <script src="https://res.wx.qq.com/open/js/jweixin-1.6.0.js"></script>
     <% end %>
   </head>
@@ -31,5 +31,5 @@
       <a href="https://beian.miit.gov.cn/" class="lg:hidden block text-sm text-slate-400 w-full py-[8px] text-center" target="_blank">蜀ICP备2023023829号-1</a>
     </div>
   </body>
-  <%= render 'layouts/wechat_share' if browser.wechat? %>
+  <%= render 'layouts/wechat_share' if false && browser.wechat? %>
 </html>
