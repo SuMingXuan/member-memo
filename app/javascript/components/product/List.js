@@ -81,14 +81,14 @@ export default class List extends React.Component {
 
         </div>
         {
-          selectedProductId && selectedProductId != "free" && <div className='bg-[#fbfbfb] flex flex-col lg:flex-row justify-end gap-[15px] lg:gap-[30px] mt-[20px] lg:mt-[80px] sticky bottom-[20px] lg:bottom-0 items-start lg:items-center'>
+          selectedProductId && selectedProductId != "free" && <div className='bg-[#fbfbfb] flex flex-col lg:flex-row justify-end gap-[15px] lg:gap-[30px] mt-[20px] lg:mt-[80px] sticky bottom-[20px] lg:bottom-0 items-center lg:items-center'>
             <div className='text-right'>
               总计：
               <span className='text-base lg:text-[32px] text-primary-599 mr-[20px]'>
                 {this.state.price}
               </span>
             </div>
-            <div className='flex flex-row gap-[30px] justify-between lg:justify-end w-full lg:w-[unset]'>
+            <div className='flex flex-row gap-[30px] justify-center lg:justify-end w-full lg:w-[unset]'>
               <div>
 
                 <Button
@@ -99,7 +99,7 @@ export default class List extends React.Component {
                   支付宝
                 </Button>
               </div>
-              <div>
+              {/* <div>
                 <Button
                   onClick={() => { this.submitPayment("wechat") }}
                   size="large"
@@ -107,7 +107,7 @@ export default class List extends React.Component {
                   <img className='w-[15px]' src={wxpay_icon} />
                   微信
                 </Button>
-              </div>
+              </div> */}
             </div>
           </div>
         }
