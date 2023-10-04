@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_10_02_070937) do
+ActiveRecord::Schema[7.0].define(version: 2023_10_04_034240) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -48,6 +48,8 @@ ActiveRecord::Schema[7.0].define(version: 2023_10_02_070937) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.decimal "savings_amount", precision: 12, scale: 2, default: "0.0"
+    t.decimal "after_balance", precision: 12, scale: 2, default: "0.0"
+    t.decimal "after_points_amount", precision: 12, scale: 2, default: "0.0"
     t.index ["member_id"], name: "index_member_orders_on_member_id"
   end
 

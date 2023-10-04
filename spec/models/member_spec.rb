@@ -62,6 +62,13 @@ RSpec.describe Member, type: :model do
 
       expect(member.total_recharge_amount).to eq(old_total_recharge_amount + recharge_amount)
     end
+
+    it 'last after amount equal members balance' do
+      member.save
+      member.reload
+
+      expect(member.member_orders.last.after_balance).to eq(member.balance)
+    end
   end
 
   describe '#consumption' do
@@ -110,6 +117,13 @@ RSpec.describe Member, type: :model do
 
       expect(member.total_savings_amount).to eq(old_total_savings_amount + 12)
     end
+
+    it 'last after amount equal members balance' do
+      member.save
+      member.reload
+
+      expect(member.member_orders.last.after_balance).to eq(member.balance)
+    end
   end
 
   describe 'force recharge' do
@@ -144,6 +158,13 @@ RSpec.describe Member, type: :model do
       member.reload
 
       expect(member.total_recharge_amount).to eq(old_total_recharge_amount)
+    end
+
+    it 'last after amount equal members balance' do
+      member.save
+      member.reload
+
+      expect(member.member_orders.last.after_balance).to eq(member.balance)
     end
   end
 
@@ -193,6 +214,13 @@ RSpec.describe Member, type: :model do
       member.reload
 
       expect(member.total_savings_amount).to eq(old_total_savings_amount)
+    end
+
+    it 'last after amount equal members balance' do
+      member.save
+      member.reload
+
+      expect(member.member_orders.last.after_balance).to eq(member.balance)
     end
   end
 end

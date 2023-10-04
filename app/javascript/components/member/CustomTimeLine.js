@@ -49,7 +49,7 @@ export default class Charge extends React.Component {
                     <>
                       <div className={` relative py-[20px] before:w-0 before:border-l-[2px] before:border-[${typeMap[order.type].color}] before:absolute before:top-[-6px] before:lg:top-[-2px] before:left-[-54px] ${orderIndex + 1 < groups[createdDate].length ? 'before:h-full' : 'before:h-[calc(100%+28px)]'} ${orderIndex + 1 < groups[createdDate].length && 'border-b'}`}>
                         <div className={`mb-[10px] flex items-center justify-between`}>
-                          <div>
+                          <div className='font-bold'>
                             {typeMap[order.type].name}
                           </div>
                           <div className='flex justify-end opacity-80 text-sm'>
@@ -60,9 +60,9 @@ export default class Charge extends React.Component {
                         <div className={`flex justify-between`}>
 
                           {
-                            order.amount > 0 && <div className='text-sm opacity-80'>
+                            order.amount > 0 && <div className='text-sm'>
                               <div>
-                                <span className='mr-[8px]'>
+                                <span className='mr-[8px] text-[#000000]'>
                                   金额
                                 </span>
                                 <span className={`text-[${typeMap[order.type].color}]`}>
@@ -70,7 +70,21 @@ export default class Charge extends React.Component {
                                 </span>
                               </div>
                               {
-                                order.savings_amount > 0 && <div className='mt-[4px]'>
+                                order.amount > 0 &&
+                                <div className='mt-[4px] flex justify-between'>
+                                  {
+                                    order.amount > 0 && <>
+                                      <span className='mr-[8px]'>
+                                        余额
+                                      </span>
+                                      ¥ {order.after_balance}
+                                    </>
+                                  }
+                                </div>
+                              }
+                              {
+                                order.savings_amount > 0 &&
+                                <div className='mt-[4px]'>
                                   <span className='mr-[8px]'>
                                     节省
                                   </span>
@@ -81,14 +95,21 @@ export default class Charge extends React.Component {
                           }
                           {
                             order.points_amount > 0 && <div className='text-sm'>
-                              <span className='opacity-80 mr-[8px]'>
+                              <span className='text-[#000000] mr-[8px]'>
                                 积分
                               </span>
                               <span className={`text-[${typeMap[order.type].color}]`}>
                                 {typeMap[order.type].operation}{order.points_amount}
                               </span>
+                              <div className='mt-[4px] flex justify-between'>
+                                <span className='mr-[8px]'>
+                                  积分余额
+                                </span>
+                                {order.after_points_amount}
+                              </div>
                             </div>
                           }
+
                         </div>
 
                       </div>
