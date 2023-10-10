@@ -81,7 +81,7 @@ export default class UserInfo extends React.Component {
             <>
               <span>用户信息</span>
               {
-                user.seed && <Tooltip placement="bottom" title="会员影子为早期的种子用户提供更好的服务">
+                user.seed && <Tooltip placement="bottom" title="会员笔记为早期的种子用户提供更好的服务">
                 <SeedIcon className="ml-2 cursor-pointer" />
               </Tooltip>
               }
@@ -120,9 +120,9 @@ export default class UserInfo extends React.Component {
             <Col xs={{ span: 24 }} md={{ span: 12 }}>
               <Statistic title="持卡数量" value={user.members_count} />
             </Col>
-            <Col xs={{ span: 24 }} md={{ span: 12 }}>
+            {/* <Col xs={{ span: 24 }} md={{ span: 12 }}>
               <Statistic title="持卡上限" value={user.max_members_count} />
-            </Col>
+            </Col> */}
           </Row>
         </Card>
         <Card

@@ -24,6 +24,7 @@ class Users::SessionsController < Devise::SessionsController
   end
 
   def send_verify_code
+    Tencent::Sms.new.send_verify_code(params[:phone], verify_code) if Rails.env.production?
     render json: { success: true }
   end
 
