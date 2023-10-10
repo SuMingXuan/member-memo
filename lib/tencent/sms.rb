@@ -19,7 +19,7 @@ module Tencent
         ENV['TENCENT_VERIFY_CODE_SIGN'],
         [verify_code]
       )
-      puts client.SendSms(request)
+      client.SendSms(request)
     end
   end
 end
