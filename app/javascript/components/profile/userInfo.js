@@ -147,9 +147,9 @@ export default class UserInfo extends React.Component {
             title={
               <div className='flex'>
                 邀请链接
-                <Tooltip placement="right" title="每成功邀请一位新用户，永久赠送一张持卡数量。">
+                {/* <Tooltip placement="right" title="每成功邀请一位新用户，永久赠送一张持卡数量。">
                   <QuestionCircleTwoTone className='ml-[5px] flex items-center' />
-                </Tooltip>
+                </Tooltip> */}
               </div>
             }
             value={user.invitation_url} />
