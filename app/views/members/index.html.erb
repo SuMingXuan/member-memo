@@ -1,6 +1,6 @@
 <div class="flex <%= @show_hidden ? 'justify-between' : 'justify-end' %> sticky top-[0px] z-[100] shadow left-0 p-[20px] mb-[20px] mx-[-20px] mt-[-20px] lg:m-0 lg:shadow lg:p-[20px] bg-white text-primary-599 ">
   <% if @show_hidden %>
-    <%= link_to '不常用', hidden_members_path, class: "text-red-FF4" %>
+    <%= link_to '不常用', hidden_members_path, class: "text-red-FF4", data: { turbo_frame: :member_index, turbo_action: :replace } %>
     <h2 class="text-black-009 flex items-center font-bold">常用卡</h2>
   <% end %>
   <div class="flex items-center">

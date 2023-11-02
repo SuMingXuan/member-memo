@@ -21,18 +21,18 @@ export default class LeftSider extends React.Component {
       {
         key: 'members',
         icon: <CreditCardOutlined />,
-        label: <a href='/members'>卡管理</a>,
+        label: <a data-turbo-frame="main_frame" data-turbo-action="replace" href='/members'>卡管理</a>,
       },
       {
         key: 'profile',
         icon: <UserOutlined />,
-        label: <a href='/profile'>个人信息</a>,
+        label: <a data-turbo-frame="main_frame" data-turbo-action="replace" href='/profile'>个人信息</a>,
       },
-      // {
-      //   key: 'products',
-      //   icon: <AccountBookOutlined />,
-      //   label: <a href='/products'>购买卡位</a>,
-      // },
+      {
+        key: 'products',
+        icon: <AccountBookOutlined />,
+        label: <a data-turbo-frame="main_frame" data-turbo-action="replace" href='/products'>购买卡位</a>,
+      },
       {
         key: 'customer',
         icon: <CustomerServiceOutlined />,
@@ -53,9 +53,9 @@ export default class LeftSider extends React.Component {
                 style={{ right: 5, bottom: 80 }}
                 icon={< AppstoreOutlined />}
               >
-                <FloatButton type={activeKey == "members" ? "primary" : 'default'} className="shadow-2xl border-primary-599" href='/members' icon={<CreditCardOutlined />} />
-                <FloatButton type={activeKey == "profile" ? "primary" : 'default'} className="shadow-2xl border-primary-599" href='/profile' icon={<UserOutlined />} />
-                {/* <FloatButton type={activeKey == "products" ? "primary" : 'default'} className="shadow-2xl border-primary-599" href='/products' icon={<AccountBookOutlined />} /> */}
+                <FloatButton type={activeKey == "members" ? "primary" : 'default'} className="shadow-2xl border-primary-599" data-turbo-frame="main_frame" data-turbo-action="replace" href='/members' icon={<CreditCardOutlined />} />
+                <FloatButton type={activeKey == "profile" ? "primary" : 'default'} className="shadow-2xl border-primary-599" data-turbo-frame="main_frame" data-turbo-action="replace" href='/profile' icon={<UserOutlined />} />
+                <FloatButton type={activeKey == "products" ? "primary" : 'default'} className="shadow-2xl border-primary-599" data-turbo-frame="main_frame" data-turbo-action="replace" href='/products' icon={<AccountBookOutlined />} />
                 <FloatButton type={activeKey == "customer" ? "primary" : 'default'} className="shadow-2xl border-primary-599" onClick={() => { this.setState({ openCustomService: true }) }} icon={<CustomerServiceOutlined />} />
               </FloatButton.Group>
             </>

@@ -1,5 +1,5 @@
 class MembersController < ApplicationController
-  # before_action :check_members_count!, only: :create
+  before_action :check_members_count!, only: :create
   def index
     @members = current_user.members
     @show_hidden = @members.hidden.count > 0
