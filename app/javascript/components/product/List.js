@@ -37,7 +37,6 @@ export default class List extends React.Component {
   render() {
     const { invitation_url, products, user, alipay_icon, wxpay_icon } = this.props
     const { selectedProductId } = this.state
-    console.log(selectedProductId)
     return (
       <div className='relative'>
         <div>
