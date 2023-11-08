@@ -70,7 +70,7 @@ export default class Recharge extends React.Component {
             }
 
             <Item>
-              <Button type="primary" htmlType="submit" className="btn-primary rounded-[12px] float-right w-[150px]">
+              <Button onClick={() => closeRechargeModal()} type="primary" htmlType="submit" className="btn-primary rounded-[12px] float-right w-[150px]">
                 确定
               </Button>
             </Item>

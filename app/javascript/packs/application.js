@@ -73,3 +73,7 @@ ReactRailsUJS.handleEvent('turbo:frame-render', ReactRailsUJS.handleUnmount)
 window.MobilePlatform = window.innerWidth < 1024
 
 window.csrf_token = document.querySelector('meta[name=csrf-token]').getAttribute('content');
+window.visit = (src) => {
+  Turbo.visit(src, { frame: 'main_frame', action: 'replace' })
+  // window.location.href = src
+}

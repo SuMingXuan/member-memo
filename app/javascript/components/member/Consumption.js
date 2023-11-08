@@ -67,7 +67,7 @@ export default class Consumption extends React.Component {
             }
 
             <Item>
-              <Button type="primary" htmlType="submit" className="btn-primary rounded-[12px] float-right w-[120px]">
+              <Button type="primary" onClick={() => closeConsumptionModal()} htmlType="submit" className="btn-primary rounded-[12px] float-right w-[120px]">
                 确定
               </Button>
             </Item>
